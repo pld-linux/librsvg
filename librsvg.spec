@@ -5,7 +5,7 @@ Summary(uk):	SVG б╕бл╕отека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
 Version:	2.1.2
-Release:	1
+Release:	2
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
@@ -22,8 +22,6 @@ BuildRequires:	libxml2-devel >= 2.4.23
 BuildRequires:	popt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	librsvg0
-
-%define		_prefix			/usr/X11R6
 
 %description
 An SVG library based upon libart.
