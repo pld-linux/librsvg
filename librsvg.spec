@@ -59,7 +59,7 @@ Summary(pt_BR):	Bibliotecas e arquivos de inclusЦo para desenvolvimento com a li
 Summary(ru):	Библиотечные линки и файлы заголовков для разработки с librsvg
 Summary(uk):	Б╕бл╕отечн╕ л╕нки та файли заголовк╕в для розробки з librsvg
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gtk+2-devel >= 2.2.3
 Requires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:Requires:	libcroco-devel >= 0.4.0}
