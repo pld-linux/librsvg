@@ -3,7 +3,7 @@
 # _without_gimp		- without gimp svg plugin
 
 %ifarch ppc
-%define	_without-gimp	1
+%define	_without_gimp	1
 %endif
 
 Summary:	Raph's SVG library
