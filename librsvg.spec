@@ -29,7 +29,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define _sysconfdir	/etc
 
 %description
-Eazel Extension Library
+An SVG library based upon libart.
 
 %description -l pl
 Rozsze¿ona bibioteka eazel
@@ -73,16 +73,7 @@ wspomagaj± tworzenie oprogramowania z wykorzystaniem librsvg.
 %setup -q
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" 
-export LDFLAGS
-
-%configure2_13 \
-	--prefix=%{_prefix} \
-	--sysconfdir=%{_sysconfdir}
-%ifarch alpha
-	--host=alpha-pld-linux
-%endif
-
+%configure2_13
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -91,9 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 
 gzip -9nf ChangeLog AUTHORS NEWS
 
-%post
-/sbin/ldconfig
-
+%post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %clean
@@ -101,18 +90,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so*
-%doc *.gz
-
+%attr(755,root,root) %{_libdir}/*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
+%doc *.gz
 %attr(755,root,root) %{_bindir}/librsvg-config
 %attr(755,root,root) %{_libdir}/*.la
+%attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/*.sh
-%dir %{_includedir}/librsvg/*.h
-
+%{_includedir}/librsvg
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/*.a
+%{_libdir}/lib*.a
