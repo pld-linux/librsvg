@@ -35,6 +35,8 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	popt-devel >= 1.5
+Requires(post,postun):	/sbin/ldconfig
+Requires(post,postun):	gtk+2
 Requires:	gtk+2 >= 2.2.3
 Requires:	popt >= 1.5
 Obsoletes:	librsvg0
@@ -154,10 +156,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
+umask 022
 gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 
 %postun
 /sbin/ldconfig
+umask 022
 gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 
 %files
@@ -171,8 +175,8 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %files devel
 %defattr(644,root,root,755)
 %doc ChangeLog AUTHORS NEWS
-%{_libdir}/lib*.la
 %attr(755,root,root) %{_libdir}/lib*.so
+%{_libdir}/lib*.la
 %{_pkgconfigdir}/*.pc
 %{_includedir}/librsvg-2
 %{_docdir}/%{name}
