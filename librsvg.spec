@@ -25,7 +25,7 @@ Obsoletes:	librsvg0
 An SVG library based upon libart.
 
 %description -l pl
-Rozszerzona bibioteka eazel.
+Biblioteka do obs³ugi grafiki wektorowej.
 
 %description -l pt_BR
 Biblioteca de Extensão da Eazel.
