@@ -13,7 +13,7 @@ Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
 Version:	2.9.5
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Vendor:		GNOME
@@ -25,7 +25,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gtk+2-devel >= 2:2.6.2
 BuildRequires:	gtk-doc >= 0.9
-%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.10.0}
+%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.10.0-2}
 BuildRequires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.0}
 %{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.10.0}
@@ -75,7 +75,7 @@ Summary(ru):	Библиотечные линки и файлы заголовков для разработки с librsvg
 Summary(uk):	Б╕бл╕отечн╕ л╕нки та файли заголовк╕в для розробки з librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.10.0}
+%{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.10.0-2}
 Requires:	gtk+2-devel >= 2:2.6.2
 Requires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.0}
