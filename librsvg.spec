@@ -1,3 +1,7 @@
+
+# Conditional build
+# _without_gimp		- without gimp svg plugin
+
 Summary:	Raph's SVG library
 Summary(pl):	Biblioteka Raph's SVG
 Summary(pt_BR):	Biblioteca SVG
@@ -5,7 +9,7 @@ Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Name:		librsvg
 Version:	2.2.5
-Release:	1
+Release:	2
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
@@ -22,6 +26,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.1
 BuildRequires:	popt-devel
+%{!?_without_gimp:BuildRequires: gimp-devel >= 1.3.12}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	librsvg0
 
@@ -88,6 +93,19 @@ Statyczna wersja bibliotek librsvg.
 Bibliotecas estáticas para o desenvolvimento de aplicações com
 librsvg.
 
+%package -n gimp-svg
+Summary:	SVG plugin for Gimp
+Summary:	Wtyczka SVG dla Gimpa
+Group:		X11/Applications/Graphics
+Requires:	%{name} = %{version}
+Requires:	gimp
+
+%description -n gimp-svg
+SVG plugin for Gimp.
+
+%description -n gimp-svg -l pl
+Wtyczka SVG dla Gimpa.
+
 %prep
 %setup -q
 %patch -p1
@@ -135,3 +153,9 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+%if %{?_without_gimp:0}%{!?_without_gimp:1}
+%files -n gimp-svg
+%defattr(644,root,root,755)
+%attr(755,root,root)%{_libdir}/gimp/1.3/plug-ins/svg
+%endif
