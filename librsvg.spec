@@ -4,7 +4,7 @@ Summary:	Raph's SVG library
 Summary(pl):	Biblioteka Raph's SVG
 Summary(pt_BR):	Biblioteca SVG
 Name:		librsvg
-Version:	1.1.6
+Version:	2.0.0
 Release:	0.1
 License:	LGPL
 Vendor:		GNOME
