@@ -1,8 +1,7 @@
 #
 # Conditional build
-%bcond_with	gimp		# build gimp svg plugin (but gimp.spec provides better plugin)
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
-%bcond_with	libcroco	# build with CSS support through libcroco
+%bcond_without	libcroco	# build without CSS support through libcroco
 #
 Summary:	Raph's SVG library
 Summary(pl):	Biblioteka Raph's SVG
@@ -10,37 +9,35 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG ÂÉÂÌÉÏÔÅËÁ
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Name:		librsvg
-Version:	2.4.0
-Release:	3
+Version:	2.6.3
+Release:	1
+Epoch:		1
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	1a073864e5f6e9793cf23e38dc723803
-Patch0:		%{name}-link.patch
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.6/%{name}-%{version}.tar.bz2
+# Source0-md5:	02847b0d8fd87d13f69b1ab37c3dda12
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	freetype-devel >= 2.0.1
-%{?with_gimp:BuildRequires:	gimp-devel >= 1.3.20}
-BuildRequires:	gtk+2-devel >= 2.2.3
+BuildRequires:	gtk+2-devel >= 2:2.4.0
+BuildRequires:	gtk-doc >= 0.9
 BuildRequires:	libart_lgpl-devel >= 2.3.15
-%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.1.0}
+%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.5.0}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.6.0}
-BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	popt-devel >= 1.5
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gtk+2
-Requires:	gtk+2 >= 2.2.3
+Requires:	gtk+2 >= 2:2.4.0
+Requires:	libart_lgpl >= 2.3.15
+%{?with_libcroco:Requires:	libcroco >= 0.5.0}
+%{?with_libgsf:Requires:	libgsf >= 1.6.0}
+Requires:	libxml2 >= 2.5.10
 Requires:	popt >= 1.5
 Obsoletes:	librsvg0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%if %{with gimp}
-%define		gimpplugindir	%(gimptool --gimpplugindir)/plug-ins
-%endif
 
 %description
 An SVG library based upon libart.
@@ -64,10 +61,10 @@ Summary(pt_BR):	Bibliotecas e arquivos de inclusão para desenvolvimento com a li
 Summary(ru):	âÉÂÌÉÏÔÅÞÎÙÅ ÌÉÎËÉ É ÆÁÊÌÙ ÚÁÇÏÌÏ×ËÏ× ÄÌÑ ÒÁÚÒÁÂÏÔËÉ Ó librsvg
 Summary(uk):	â¦ÂÌ¦ÏÔÅÞÎ¦ Ì¦ÎËÉ ÔÁ ÆÁÊÌÉ ÚÁÇÏÌÏ×Ë¦× ÄÌÑ ÒÏÚÒÏÂËÉ Ú librsvg
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
-Requires:	gtk+2-devel >= 2.2.3
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	gtk+2-devel >= 2:2.4.0
 Requires:	libart_lgpl-devel >= 2.3.15
-%{?with_libcroco:Requires:	libcroco-devel >= 0.1.0}
+%{?with_libcroco:Requires:	libcroco-devel >= 0.5.0}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.6.0}
 Requires:	libxml2-devel >= 2.5.10
 Obsoletes:	librsvg0-devel
@@ -98,7 +95,7 @@ Summary(es):	Archivos estáticos necesarios para el desarrollo de aplicaciones co
 Summary(pl):	Statyczne biblioteki librsvg
 Summary(pt_BR):	Arquivos estáticos necessários para o desenvolvimento de aplicações com librsvg
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 This package contains static version of librsvg libraries.
@@ -110,22 +107,11 @@ Statyczna wersja bibliotek librsvg.
 Bibliotecas estáticas para o desenvolvimento de aplicações com
 librsvg.
 
-%package -n gimp-svg
-Summary:	SVG plugin for Gimp
-Summary:	Wtyczka SVG dla Gimpa
-Group:		X11/Applications/Graphics
-Requires:	%{name} = %{version}
-Requires:	gimp >= 1.3
-
-%description -n gimp-svg
-SVG plugin for Gimp.
-
-%description -n gimp-svg -l pl
-Wtyczka SVG dla Gimpa.
-
 %prep
 %setup -q
-%patch -p1
+
+# obsolete macro (defined as empty in gnome-common)
+%{__perl} -pi -e 's/GNOME_REQUIRE_PKGCONFIG//' configure.in
 
 %build
 %{__libtoolize}
@@ -134,16 +120,16 @@ Wtyczka SVG dla Gimpa.
 %{__automake}
 %configure \
 	%{!?with_libcroco:--without-croco} \
-	%{!?with_gimp:--without-gimp} \
-	%{!?with_libgsf:--without-svgz}
+	%{!?with_libgsf:--without-svgz} \
+	--enable-gtk-doc \
+	--with-html-dir=%{_gtkdocdir}/%{name}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir} \
-	manonedir=%{_mandir}/man1
+	pkgconfigdir=%{_pkgconfigdir}
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/2.*/{engines,loaders}/*.{la,a}
 
@@ -162,6 +148,7 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 
 %files
 %defattr(644,root,root,755)
+%doc ChangeLog AUTHORS NEWS
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/*.so
@@ -170,19 +157,12 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 
 %files devel
 %defattr(644,root,root,755)
-%doc ChangeLog AUTHORS NEWS
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %{_pkgconfigdir}/*.pc
 %{_includedir}/librsvg-2
-%{_docdir}/%{name}
+%{_gtkdocdir}/%{name}
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-
-%if %{with gimp}
-%files -n gimp-svg
-%defattr(644,root,root,755)
-%attr(755,root,root) %{gimpplugindir}/svg
-%endif
