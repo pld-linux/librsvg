@@ -10,7 +10,7 @@ Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
 Version:	2.6.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL
 Vendor:		GNOME
@@ -24,7 +24,7 @@ BuildRequires:	freetype-devel >= 2.0.1
 BuildRequires:	gtk+2-devel >= 2.2.3
 BuildRequires:	gtk-doc >= 0.9
 BuildRequires:	libart_lgpl-devel >= 2.3.15
-%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.4.0}
+%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.5.0}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.6.0}
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
@@ -62,7 +62,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gtk+2-devel >= 2.2.3
 Requires:	libart_lgpl-devel >= 2.3.15
-%{?with_libcroco:Requires:	libcroco-devel >= 0.4.0}
+%{?with_libcroco:Requires:	libcroco-devel >= 0.5.0}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.6.0}
 Requires:	libxml2-devel >= 2.5.10
 Obsoletes:	librsvg0-devel
