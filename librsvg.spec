@@ -93,7 +93,7 @@ Summary(es):	Archivos estáticos necesarios para el desarrollo de aplicaciones co
 Summary(pl):	Statyczne biblioteki librsvg
 Summary(pt_BR):	Arquivos estáticos necessários para o desenvolvimento de aplicações com librsvg
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 This package contains static version of librsvg libraries.
