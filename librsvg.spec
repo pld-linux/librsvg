@@ -2,6 +2,10 @@
 # Conditional build
 # _without_gimp		- without gimp svg plugin
 
+%ifarch ppc
+%define	_without-gimp	1
+%endif
+
 Summary:	Raph's SVG library
 Summary(pl):	Biblioteka Raph's SVG
 Summary(pt_BR):	Biblioteca SVG
@@ -119,9 +123,7 @@ Wtyczka SVG dla Gimpa.
 %{__autoconf}
 %{__automake}
 %configure \
-%ifarch ppc
-    --without-gimp
-%endif
+    %{?_without_gimp:--without-gimp}
 
 %install
 rm -rf $RPM_BUILD_ROOT
