@@ -4,10 +4,6 @@
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
 %bcond_with	libcroco	# build with CSS support through libcroco
 #
-%ifarch ppc
-%define	_without_gimp	1
-%endif
-
 Summary:	Raph's SVG library
 Summary(pl):	Biblioteka Raph's SVG
 Summary(pt_BR):	Biblioteca SVG
