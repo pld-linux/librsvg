@@ -2,6 +2,7 @@
 # Conditional build
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
 %bcond_without	libcroco	# build without CSS support through libcroco
+%bcond_without	gnomevfs	# build without gnome-vfs support
 #
 Summary:	Raph's SVG library
 Summary(pl):	Biblioteka Raph's SVG
@@ -9,35 +10,44 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG ÂÉÂÌÉÏÔÅËÁ
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Name:		librsvg
-Version:	2.6.5
+Version:	2.8.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	2d1d16f9493c80ce8214e585727334ae
+Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.8/%{name}-%{version}.tar.bz2
+# Source0-md5:	95d277280babc5c39e42521fb478ba0d
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gtk+2-devel >= 2:2.4.0
 BuildRequires:	gtk-doc >= 0.9
+%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.4.0}
 BuildRequires:	libart_lgpl-devel >= 2.3.15
-%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.5.0}
+%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.0}
+BuildRequires:	libgnomeprintui-devel >= 2.4.0
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.6.0}
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
+BuildRequires:	mozilla-devel
 BuildRequires:	popt-devel >= 1.5
+BuildRequires:	pkgconfig
+BuildRequires:	xcursor-devel
+BuildRequires:	xft-devel
+BuildRequires:	xrender-devel
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gtk+2
 Requires:	gtk+2 >= 2:2.4.0
 Requires:	libart_lgpl >= 2.3.15
-%{?with_libcroco:Requires:	libcroco >= 0.5.0}
+%{?with_libcroco:Requires:	libcroco >= 0.6.0}
 %{?with_libgsf:Requires:	libgsf >= 1.6.0}
 Requires:	libxml2 >= 2.5.10
 Requires:	popt >= 1.5
 Obsoletes:	librsvg0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		mozilladir	%{_libdir}/mozilla
 
 %description
 An SVG library based upon libart.
@@ -64,7 +74,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gtk+2-devel >= 2:2.4.0
 Requires:	libart_lgpl-devel >= 2.3.15
-%{?with_libcroco:Requires:	libcroco-devel >= 0.5.0}
+%{?with_libcroco:Requires:	libcroco-devel >= 0.6.0}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.6.0}
 Requires:	libxml2-devel >= 2.5.10
 Obsoletes:	librsvg0-devel
@@ -107,6 +117,21 @@ Statyczna wersja bibliotek librsvg.
 Bibliotecas estáticas para o desenvolvimento de aplicações com
 librsvg.
 
+%package -n	mozilla-plugin-rsvg
+Summary:	Mozilla SVG plugin using librsvg
+Summary(pl):	Wtyczka Mozilli do SVG wykorzystuj±ca librsvg
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	mozilla
+
+%description -n mozilla-plugin-rsvg
+This plugin allows Mozilla-family browsers to view Scalable Vector
+Graphics content using librsvg.
+
+%description -n mozilla-plugin-rsvg -l pl
+Ta wtyczka pozwala na ogl±danie grafiki w formacie SVG (Scalable
+Vector Graphics) w przegl±darkach z rodziny Mozilli.
+
 %prep
 %setup -q
 
@@ -121,8 +146,11 @@ librsvg.
 %configure \
 	%{!?with_libcroco:--without-croco} \
 	%{!?with_libgsf:--without-svgz} \
+	%{!?with_gnomevfs:--disable-gnome-vfs} \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}/%{name}
+
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -132,6 +160,7 @@ rm -rf $RPM_BUILD_ROOT
 	pkgconfigdir=%{_pkgconfigdir}
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/2.*/{engines,loaders}/*.{la,a}
+rm -f $RPM_BUILD_ROOT%{mozilladir}/plugins/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -154,6 +183,7 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/*.so
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/loaders/*.so
 %{_mandir}/man1/rsvg.1*
+%{_pixmapsdir}/*
 
 %files devel
 %defattr(644,root,root,755)
@@ -166,3 +196,7 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+%files -n mozilla-plugin-rsvg
+%defattr(644,root,root,755)
+%attr(755,root,root) %{mozilladir}/plugins/*.so
