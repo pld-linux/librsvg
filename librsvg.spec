@@ -20,15 +20,17 @@ Requires:	gtk+2 >= 2.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0.1
+%{!?_without_gimp:BuildRequires: gimp-devel >= 1.3.12}
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	libart_lgpl-devel >= 2.3.11
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.1
 BuildRequires:	popt-devel
-%{!?_without_gimp:BuildRequires: gimp-devel >= 1.3.12}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	librsvg0
+
+%define		gimpplugindir	%(gimp-config --gimpplugindir)/plug-ins
 
 %description
 An SVG library based upon libart.
@@ -157,5 +159,5 @@ rm -rf $RPM_BUILD_ROOT
 %if %{?_without_gimp:0}%{!?_without_gimp:1}
 %files -n gimp-svg
 %defattr(644,root,root,755)
-%attr(755,root,root)%{_libdir}/gimp/1.3/plug-ins/svg
+%attr(755,root,root) %{gimpplugindir}/svg
 %endif
