@@ -9,13 +9,6 @@ Release:	2
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
-Group(de):	Libraries
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-Group(pt_BR):	Bibliotecas
-Group(ru):	Библиотеки
-Group(uk):	Б╕бл╕отеки
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/librsvg/%{name}-%{version}.tar.bz2
 URL:		http://nautilus.eazel.com/
 BuildRequires:	freetype-devel >= 2.0.1
@@ -44,13 +37,6 @@ Summary:	Libraries and include files for developing with librsvg
 Summary(pl):	Biblioteki i pliki nagЁСwkowe do developing'u z u©yciem librsvg
 Summary(pt_BR):	Bibliotecas e arquivos de inclusЦo para desenvolvimento com a librsvg
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 Obsoletes:	librsvg0-devel
 
@@ -73,13 +59,6 @@ Summary(es):	Archivos estАticos necesarios para el desarrollo de aplicaciones co
 Summary(pl):	Statyczne biblioteki do developing'u z u©yciem librsvg
 Summary(pt_BR):	Arquivos estАticos necessАrios para o desenvolvimento de aplicaГУes com librsvg
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
