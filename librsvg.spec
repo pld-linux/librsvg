@@ -40,7 +40,7 @@ Obsoletes:	librsvg0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %if 0%{!?_without_gimp:1}
-%define		gimpplugindir	%(gimptool-1.3 --gimpplugindir)/plug-ins
+%define		gimpplugindir	%(gimptool --gimpplugindir)/plug-ins
 %endif
 
 %description
