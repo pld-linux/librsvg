@@ -118,7 +118,10 @@ Wtyczka SVG dla Gimpa.
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+%ifarch ppc
+    --without-gimp
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
