@@ -4,6 +4,7 @@
 %bcond_without	libcroco	# build without CSS support through libcroco
 %bcond_without	gnomeprint	# build without gnome-print support in viewer
 %bcond_without	gnomevfs	# build without gnome-vfs support
+%bcond_without	mozilla		# do not build mozilla plugin
 #
 Summary:	Raph's SVG library
 Summary(pl):	Biblioteka Raph's SVG
@@ -31,7 +32,7 @@ BuildRequires:	libart_lgpl-devel >= 2.3.15
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.6.0}
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
-BuildRequires:	mozilla-devel
+%{?with_mozilla:BuildRequires:	mozilla-devel}
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	xcursor-devel
@@ -141,6 +142,7 @@ Vector Graphics) w przegl±darkach z rodziny Mozilli.
 %{__perl} -pi -e 's/GNOME_REQUIRE_PKGCONFIG//' configure.in
 
 %build
+%{!?with_mozilla:export MOZILLA_CONFIG=no}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -199,6 +201,8 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
 
+%if %{with mozilla}
 %files -n mozilla-plugin-rsvg
 %defattr(644,root,root,755)
 %attr(755,root,root) %{mozilladir}/plugins/*.so
+%endif
