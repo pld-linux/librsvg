@@ -4,8 +4,8 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(uk):	SVG б╕бл╕отека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
-Version:	2.1.1
-Release:	3
+Version:	2.1.2
+Release:	1
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
@@ -118,7 +118,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/*.??
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/loaders/*.??
-%{_datadir}/themes/bubble
 
 %files devel
 %defattr(644,root,root,755)
