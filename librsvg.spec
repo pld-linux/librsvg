@@ -2,6 +2,7 @@
 # Conditional build
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
 %bcond_without	libcroco	# build without CSS support through libcroco
+%bcond_without	gnomeprint	# build without gnome-print support in viewer
 %bcond_without	gnomevfs	# build without gnome-vfs support
 #
 Summary:	Raph's SVG library
@@ -26,7 +27,7 @@ BuildRequires:	gtk-doc >= 0.9
 %{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.4.0}
 BuildRequires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.0}
-BuildRequires:	libgnomeprintui-devel >= 2.4.0
+%{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.4.0}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.6.0}
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
@@ -36,6 +37,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	xcursor-devel
 BuildRequires:	xft-devel
 BuildRequires:	xrender-devel
+%{!?with_gnomeprint:BuildConflicts:	libgnomeprintui-devel}
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gtk+2
 Requires:	gtk+2 >= 2:2.4.0
