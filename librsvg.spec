@@ -3,8 +3,8 @@
 Summary:	Raph's SVG library
 Summary(pl):	Biblioteka Raph's SVG
 Name:		librsvg
-Version:	1.0.1
-Release:	2
+Version:	1.0.2
+Release:	1
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
@@ -102,16 +102,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %doc *.gz
 %attr(755,root,root) %{_bindir}/librsvg-config
-%attr(755,root,root) %{_libdir}/*.la
-%attr(755,root,root) %{_libdir}/*.so
+%attr(755,root,root) %{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/*.sh
-%{_includedir}/librsvg
+%{_includedir}/librsvg-1
 
 %files static
 %defattr(644,root,root,755)
