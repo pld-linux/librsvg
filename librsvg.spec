@@ -12,26 +12,26 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
-Version:	2.8.1
-Release:	3
+Version:	2.9.5
+Release:	1
 Epoch:		1
-License:	LGPL
+License:	LGPL v2+
 Vendor:		GNOME
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	01c14f6adcf3a71be2b808879e1223a0
+Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.9/%{name}-%{version}.tar.bz2
+# Source0-md5:	44799d75e940eb4150acdae4f63cbe2a
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gtk+2-devel >= 2:2.4.0
+BuildRequires:	gtk+2-devel >= 2:2.6.2
 BuildRequires:	gtk-doc >= 0.9
-%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.4.0}
+%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.10.0}
 BuildRequires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.0}
-%{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.4.0}
-%{?with_libgsf:BuildRequires:	libgsf-devel >= 1.6.0}
+%{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.10.0}
+%{?with_libgsf:BuildRequires:	libgsf-devel >= 1.11.1}
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.5.10
+BuildRequires:	libxml2-devel >= 2.6.17
 %{?with_mozilla:BuildRequires:	mozilla-devel}
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
@@ -41,11 +41,11 @@ BuildRequires:	xrender-devel
 %{!?with_gnomeprint:BuildConflicts:	libgnomeprintui-devel}
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gtk+2
-Requires:	gtk+2 >= 2:2.4.0
+Requires:	gtk+2 >= 2:2.6.2
 Requires:	libart_lgpl >= 2.3.15
 %{?with_libcroco:Requires:	libcroco >= 0.6.0}
-%{?with_libgsf:Requires:	libgsf >= 1.6.0}
-Requires:	libxml2 >= 2.5.10
+%{?with_libgsf:Requires:	libgsf >= 1.11.1}
+Requires:	libxml2 >= 2.6.17
 Requires:	popt >= 1.5
 Obsoletes:	librsvg0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -75,12 +75,12 @@ Summary(ru):	Библиотечные линки и файлы заголовков для разработки с librsvg
 Summary(uk):	Б╕бл╕отечн╕ л╕нки та файли заголовк╕в для розробки з librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.4.0}
-Requires:	gtk+2-devel >= 2:2.4.0
+%{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.10.0}
+Requires:	gtk+2-devel >= 2:2.6.2
 Requires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.0}
-%{?with_libgsf:Requires:	libgsf-devel >= 1.6.0}
-Requires:	libxml2-devel >= 2.5.10
+%{?with_libgsf:Requires:	libgsf-devel >= 1.11.1}
+Requires:	libxml2-devel >= 2.6.17
 Obsoletes:	librsvg0-devel
 
 %description devel
@@ -154,7 +154,6 @@ Vector Graphics) w przegl╠darkach z rodziny Mozilli.
 	%{!?with_gnomevfs:--disable-gnome-vfs} \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}/%{name}
-
 %{__make}
 
 %install
