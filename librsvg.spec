@@ -14,7 +14,7 @@ Summary(uk):	SVG б╕бл╕отека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
 Version:	2.3.1
-Release:	1
+Release:	2
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
@@ -25,7 +25,7 @@ URL:		http://nautilus.eazel.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0.1
-%{!?_without_gimp:BuildRequires: gimp-devel >= 1.3.12}
+%{!?_without_gimp:BuildRequires: gimp-devel >= 1.3.17}
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	libart_lgpl-devel >= 2.3.11
 # TODO: libcroco-devel >= 0.1.0 (optional)
@@ -36,10 +36,12 @@ BuildRequires:	libxml2-devel >= 2.5.1
 BuildRequires:	popt-devel >= 1.5
 Requires:	gtk+2 >= 2.2.0
 Requires:	popt >= 1.5
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	librsvg0
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		gimpplugindir	%(gimp-config --gimpplugindir)/plug-ins
+%if 0%{!?_without_gimp:1}
+%define		gimpplugindir	%(gimptool-1.3 --gimpplugindir)/plug-ins
+%endif
 
 %description
 An SVG library based upon libart.
@@ -113,7 +115,7 @@ Summary:	SVG plugin for Gimp
 Summary:	Wtyczka SVG dla Gimpa
 Group:		X11/Applications/Graphics
 Requires:	%{name} = %{version}
-Requires:	gimp
+Requires:	gimp >= 1.3
 
 %description -n gimp-svg
 SVG plugin for Gimp.
