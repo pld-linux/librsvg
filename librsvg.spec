@@ -23,7 +23,7 @@ BuildRequires:	freetype-devel >= 2.0.1
 BuildRequires:	libpng-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define _prefix		/usr
+%define _prefix		/usr/X11R6
 %define _sysconfdir	/etc
 
 %description
