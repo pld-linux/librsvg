@@ -4,7 +4,7 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(uk):	SVG б╕бл╕отека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
-Version:	2.1.3
+Version:	2.1.5
 Release:	1
 License:	LGPL
 Vendor:		GNOME
@@ -20,7 +20,7 @@ BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.5.0
+BuildRequires:	libxml2-devel >= 2.5.1
 BuildRequires:	popt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	librsvg0
