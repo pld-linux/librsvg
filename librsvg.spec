@@ -69,42 +69,38 @@ export LC_ALL LINGUAS LANG
 	--prefix=%{_prefix} \
 	--sysconfdir=%{_sysconfdir}
 
-make -k
-make check
+%{__make} -k
+%{__make} check
 
 %install
 rm -rf $RPM_BUILD_ROOT
-[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
-%{__make} -k prefix=$RPM_BUILD_ROOT%{_prefix} sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir} install
+
+%{__make} DESTDIR=$RPM_BUILD_ROOT install
+
 for FILE in "$RPM_BUILD_ROOT/bin/*"; do
 	file "$FILE" | grep -q not\ stripped && strip $FILE
 done
 
-%clean
-[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
+gzip -9nf ChangeLog AUTHORS NEWS
 
 %post
-if ! grep %{_prefix}/lib /etc/ld.so.conf > /dev/null ; then
-	echo "%{_prefix}/lib" >> /etc/ld.so.conf
-fi
 /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %files
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/*.so*
+%doc *.gz
 
-%defattr(0555, bin, bin)
-%doc AUTHORS COPYING COPYING.LIB ChangeLog NEWS README
-%{_libdir}/*.so*
 
 %files devel
 %defattr(644,root,root,755)
-
-%defattr(0555, bin, bin)
-%{_libdir}/*.la
-%{_libdir}/*.sh
 %attr(755,root,root) %{_bindir}/librsvg-config
-
-%defattr(0444, bin, bin)
+%attr(755,root,root) %{_libdir}/*.la
+%{_libdir}/*.sh
+%{_libdir}/*.a
 %{_includedir}/librsvg/*.h
