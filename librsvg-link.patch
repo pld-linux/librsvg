@@ -1,0 +1,19 @@
+--- librsvg-2.1.1/Makefile.am.orig	Mon Oct 14 10:01:57 2002
++++ librsvg-2.1.1/Makefile.am	Sun Nov  3 11:37:29 2002
+@@ -27,6 +27,8 @@
+ 
+ librsvg_2_la_LDFLAGS = -version-info @VERSION_INFO@
+ 
++librsvg_2_la_LIBADD = $(LIBRSVG_LIBS)
++
+ librsvgincdir = $(includedir)/librsvg-2/librsvg
+ librsvginc_HEADERS = \
+ 	rsvg.h \
+@@ -47,7 +49,6 @@
+ 
+ DEPS = $(top_builddir)/librsvg-2.la
+ LDADDS = $(top_builddir)/librsvg-2.la \
+-	$(LIBRSVG_LIBS) \
+ 	$(POPT_LIBS)
+ 
+ rsvg_SOURCES=test-rsvg.c
