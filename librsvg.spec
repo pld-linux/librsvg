@@ -1,7 +1,7 @@
 # Note that this is NOT a relocatable package
 
 Summary:	Raph's SVG library
-Summary(pl):	biblioteka Raph's SVG
+Summary(pl):	Biblioteka Raph's SVG
 Name:		librsvg
 Version:	1.0.1
 Release:	1
@@ -34,6 +34,7 @@ Rozsze¿ona bibioteka eazel
 
 %package devel
 Summary:	Libraries and include files for developing with librsvg.
+Summaryi(pl):	Biblioteki i pliki nag³ówkowe do developing'u z u¿yciem librsvg.
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
@@ -51,6 +52,7 @@ librsvg.
 
 %package static
 Summary:	Static libraries and include files for developing with librsvg.
+Summaryi(pl):	Statyczne biblioteki do developing'u z u¿yciem librsvg.
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
@@ -69,24 +71,16 @@ wspomagaj± tworzenie oprogramowania z wykorzystaniem librsvg.
 %setup -q
 
 %build
-rm missing
 CFLAGS="$RPM_OPT_FLAGS" 
 export LDFLAGS
-%ifarch alpha
-	MYARCH_FLAGS="--host=alpha-redhat-linux"
-%endif
 
-LC_ALL=""
-LINGUAS=""
-LANG=""
-export LC_ALL LINGUAS LANG
-
-%configure2_13 $MYARCH_FLAGS \
+%configure2_13 \
 	--prefix=%{_prefix} \
 	--sysconfdir=%{_sysconfdir}
+%ifarch alpha
+	--host=alpha-pld-linux
+%endif
 
-%{__make} -k
-%{__make} check
 
 %install
 rm -rf $RPM_BUILD_ROOT
