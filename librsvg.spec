@@ -22,7 +22,7 @@ Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
 # Source0-md5:	1a073864e5f6e9793cf23e38dc723803
 Patch0:		%{name}-link.patch
-URL:		http://nautilus.eazel.com/
+URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0.1
