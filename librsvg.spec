@@ -21,6 +21,8 @@ BuildRequires:	gdk-pixbuf-devel >= 0.10.0
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	freetype-devel >= 2.0.1
 BuildRequires:	libpng-devel
+#BuildRequires:	arts-devel
+BuildRequires:	gnome-libs-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define _prefix		/usr/X11R6
