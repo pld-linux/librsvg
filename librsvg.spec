@@ -17,7 +17,6 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.t
 # Source0-md5: 31139e949850f79fa44e089ef10543c2
 Patch0:		%{name}-link.patch
 URL:		http://nautilus.eazel.com/
-Requires:	gtk+2 >= 2.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0.1
@@ -28,6 +27,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.1
 BuildRequires:	popt-devel
+Requires:	gtk+2 >= 2.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	librsvg0
 
@@ -128,6 +128,8 @@ rm -rf $RPM_BUILD_ROOT
 	pkgconfigdir=%{_pkgconfigdir} \
 	manonedir=%{_mandir}/man1
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/2.*/{engines,loaders}/*.{la,a}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -138,11 +140,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
-%{_libdir}/gtk-2.0/2.*/engines/*.la
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/*.so
-%{_libdir}/gtk-2.0/2.*/loaders/*.la
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/loaders/*.so
-%{_mandir}/man1/rsvg.1.gz
+%{_mandir}/man1/rsvg.1*
 
 %files devel
 %defattr(644,root,root,755)
