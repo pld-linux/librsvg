@@ -4,7 +4,7 @@ Summary:	Raph's SVG library
 Summary(pl):	Biblioteka Raph's SVG
 Name:		librsvg
 Version:	1.0.1
-Release:	1
+Release:	2
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
@@ -41,7 +41,7 @@ Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
-Requires:	%name = %{PACKAGE_VERSION}
+Requires:	%{name} = %{version}
 
 %description devel
 This package provides the necessary development libraries and include
@@ -59,7 +59,7 @@ Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
-Requires:	%name = %{PACKAGE_VERSION}
+Requires:	%{name}-devel = %{version}
 
 %description static
 This package provides the necessary development static libraries to allow you 
