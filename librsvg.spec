@@ -51,11 +51,6 @@ This package provides the necessary development libraries and include
 files to allow you to develop with librsvg.
  
 %description devel -l pl
-Bibliteki potrzebne do programowania, zawieraj±ce biblioteki i pliki
-nag³ówkowe, które pomagaj± tworzenie oprogramowania z wykorzystaniem
-librsvg.
-
-%description devel -l pl
 Pakiet zawiera pliki nag³ówkowe potrzebne do tworzenia oprogramowania
 z wykorzystaniem librsvg.
 
