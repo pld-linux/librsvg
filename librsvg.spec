@@ -123,8 +123,12 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	mozilla-embedded
 
 %description -n mozilla-plugin-rsvg
-This plugin allows Mozilla-family browsers to view Scalable Vector Graphics
-content using librsvg.
+This plugin allows Mozilla-family browsers to view Scalable Vector
+Graphics content using librsvg.
+
+%description -n mozilla-plugin-rsvg -l pl
+Ta wtyczka pozwala na ogl±danie grafiki w formacie SVG (Scalable
+Vector Graphics) w przegl±darkach z rodziny Mozilli.
 
 %prep
 %setup -q
