@@ -4,20 +4,18 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Name:		librsvg
-Version:	1.0.3
-Release:	3
+Version:	2.1.1
+Release:	2
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
-Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/librsvg/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
 URL:		http://nautilus.eazel.com/
 BuildRequires:	freetype-devel >= 2.0.1
-BuildRequires:	gdk-pixbuf-devel >= 0.10.0
-BuildRequires:	gnome-libs-devel
-BuildRequires:	gtk+-devel >= 1.2.9
+BuildRequires:	gtk+2-devel >= 2.0.6
 BuildRequires:	libpng-devel
-BuildRequires:	libxml-devel >= 1.8.10
-BuildRequires:	popt-devel >= 1.5
+BuildRequires:	libxml2-devel >= 2.4.23
+BuildRequires:	popt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	librsvg0
 
@@ -27,7 +25,7 @@ Obsoletes:	librsvg0
 An SVG library based upon libart.
 
 %description -l pl
-Biblioteka do SVG bazuj±ca na libart.
+Biblioteka do obs³ugi grafiki wektorowej.
 
 %description -l pt_BR
 Biblioteca de Extensão da Eazel.
@@ -49,8 +47,13 @@ Requires:	%{name} = %{version}
 Obsoletes:	librsvg0-devel
 
 %description devel
-This package provides the necessary include files which allow you to
-develop programs with librsvg.
+This package provides the necessary development libraries and include
+files to allow you to develop with librsvg.
+ 
+%description devel -l pl
+Bibliteki potrzebne do programowania, zawieraj±ce biblioteki i pliki
+nag³ówkowe, które pomagaj± tworzenie oprogramowania z wykorzystaniem
+librsvg.
 
 %description devel -l pl
 Pakiet zawiera pliki nag³ówkowe potrzebne do tworzenia oprogramowania
@@ -90,33 +93,34 @@ librsvg.
 %setup -q
 
 %build
-%configure2_13
+%configure
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
-
-gzip -9nf ChangeLog AUTHORS NEWS
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	pkgconfigdir=%{_pkgconfigdir}
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
+%{_libdir}/*.la
+%{_libdir}/gtk-2.0
+%{_datadir}/*
 
 %files devel
 %defattr(644,root,root,755)
-%doc *.gz
-%attr(755,root,root) %{_bindir}/librsvg-config
-%attr(755,root,root) %{_libdir}/lib*.la
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/*.sh
-%{_includedir}/librsvg-1
+%doc ChangeLog AUTHORS NEWS
+%attr(755,root,root) %{_libdir}/lib*.??
+%{_pkgconfigdir}/*.pc
+%{_includedir}/librsvg-2
 
 %files static
 %defattr(644,root,root,755)
