@@ -116,13 +116,16 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
-%attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/*.??
-%attr(755,root,root) %{_libdir}/gtk-2.0/2.*/loaders/*.??
+%{_libdir}/gtk-2.0/2.*/engines/*.la
+%attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/*.so
+%{_libdir}/gtk-2.0/2.*/loaders/*.la
+%attr(755,root,root) %{_libdir}/gtk-2.0/2.*/loaders/*.so
 
 %files devel
 %defattr(644,root,root,755)
 %doc ChangeLog AUTHORS NEWS
-%attr(755,root,root) %{_libdir}/lib*.??
+%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/lib*.so
 %{_pkgconfigdir}/*.pc
 %{_includedir}/librsvg-2
 
