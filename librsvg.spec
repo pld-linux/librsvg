@@ -14,6 +14,7 @@ License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
+# Source0-md5: 31139e949850f79fa44e089ef10543c2
 Patch0:		%{name}-link.patch
 URL:		http://nautilus.eazel.com/
 Requires:	gtk+2 >= 2.2.0
