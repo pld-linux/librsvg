@@ -19,7 +19,6 @@ Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.7/%{name}-%{version}.tar.bz2
 # Source0-md5:	c9377b685ca6e9a8892301a86724e4a7
 Patch0:		%{name}-mozilla.patch
-#Patch1:		%{name}-ac.patch
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -137,7 +136,6 @@ Vector Graphics) w przegl±darkach z rodziny Mozilli.
 %prep
 %setup -q
 %patch0 -p1
-##%patch1 -p1
 
 %build
 %{__libtoolize}
