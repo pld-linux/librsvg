@@ -4,23 +4,23 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(uk):	SVG б╕бл╕отека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
-Version:	2.1.2
-Release:	4
+Version:	2.1.3
+Release:	1
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-link.patch
 URL:		http://nautilus.eazel.com/
-Requires:	gtk+2 >= 2.2
+Requires:	gtk+2 >= 2.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0.1
-BuildRequires:	gtk+2-devel >= 2.2
+BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.4.23
+BuildRequires:	libxml2-devel >= 2.5.0
 BuildRequires:	popt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	librsvg0
