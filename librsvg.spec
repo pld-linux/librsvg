@@ -30,7 +30,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Eazel Extension Library
 
 %description -l pl
-Rozszezona bibioteka eazel
+Rozsze¿ona bibioteka eazel
 
 %package devel
 Summary:	Libraries and include files for developing with librsvg.
@@ -45,12 +45,17 @@ This package provides the necessary development libraries and include
 files to allow you to develop with librsvg.
 
 %description devel -l pl
-Bibliteki potrzebne do programowania.
+Bibliteki potrzebne do programowania, zawieraj±ce biblioteki i pliki
+nag³ówkowe, które pomagaj± tworzenie oprogramowania z wykorzystaniem 
+librsvg.
 
 %prep
 %setup -q
 
 %build
+rm missing
+CFLAGS="$RPM_OPT_FLAGS" 
+export LDFLAGS
 %ifarch alpha
 	MYARCH_FLAGS="--host=alpha-redhat-linux"
 %endif
@@ -60,9 +65,8 @@ LINGUAS=""
 LANG=""
 export LC_ALL LINGUAS LANG
 
-## Warning!  Make sure there are no spaces or tabs after the \ 
-## continuation character, or else the rpm demons will eat you.
-CFLAGS="$RPM_OPT_FLAGS" ./configure $MYARCH_FLAGS --prefix=%{_prefix} \
+%configure2_13 $MYARCH_FLAGS \
+	--prefix=%{_prefix} \
 	--sysconfdir=%{_sysconfdir}
 
 make -k
