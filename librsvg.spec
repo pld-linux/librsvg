@@ -9,7 +9,7 @@ Release:	1
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
-Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/2.0/%{name}-%{version}.tar.bz2
 URL:		http://nautilus.eazel.com/
 BuildRequires:	freetype-devel
 BuildRequires:	gtk+2-devel >= 2.0.6
@@ -85,8 +85,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
-gzip -9nf ChangeLog AUTHORS NEWS
-
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
@@ -99,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc *.gz
+%doc AUTHORS ChangeLog NEWS
 %attr(755,root,root) %{_libdir}/lib*.??
 %{_pkgconfigdir}/*.pc
 %{_includedir}/librsvg-2
