@@ -34,7 +34,7 @@ Rozsze¿ona bibioteka eazel
 
 %package devel
 Summary:	Libraries and include files for developing with librsvg.
-Summaryi(pl):	Biblioteki i pliki nag³ówkowe do developing'u z u¿yciem librsvg.
+Summary(pl):	Biblioteki i pliki nag³ówkowe do developing'u z u¿yciem librsvg.
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
@@ -52,7 +52,7 @@ librsvg.
 
 %package static
 Summary:	Static libraries and include files for developing with librsvg.
-Summaryi(pl):	Statyczne biblioteki do developing'u z u¿yciem librsvg.
+Summary(pl):	Statyczne biblioteki do developing'u z u¿yciem librsvg.
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
