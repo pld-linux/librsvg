@@ -9,7 +9,7 @@ Summary(uk):	SVG б╕бл╕отека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
 Version:	2.3.0
-Release:	1
+Release:	2
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
