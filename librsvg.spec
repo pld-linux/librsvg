@@ -32,7 +32,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 An SVG library based upon libart.
 
 %description -l pl
-Rozsze¿ona bibioteka eazel
+Rozszerzona bibioteka eazel
 
 %package devel
 Summary:	Libraries and include files for developing with librsvg.
