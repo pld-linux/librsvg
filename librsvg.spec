@@ -16,6 +16,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0.1
 BuildRequires:	gtk+2-devel >= 2.0.6
+BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.23
