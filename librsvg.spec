@@ -4,17 +4,17 @@ Summary:	Raph's SVG library
 Summary(pl):	Biblioteka Raph's SVG
 Summary(pt_BR):	Biblioteca SVG
 Name:		librsvg
-Version:	2.0.0
-Release:	0.1
+Version:	2.0.1
+Release:	1
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
 URL:		http://nautilus.eazel.com/
 BuildRequires:	freetype-devel
-BuildRequires:	gtk+2-devel
+BuildRequires:	gtk+2-devel >= 2.0.6
 BuildRequires:	libpng-devel
-BuildRequires:	libxml2-devel
+BuildRequires:	libxml2-devel >= 2.4.23
 BuildRequires:	popt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	librsvg0
