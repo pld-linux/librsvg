@@ -1,6 +1,8 @@
 Summary:	Raph's SVG library
 Summary(pl):	Biblioteka Raph's SVG
 Summary(pt_BR):	Biblioteca SVG
+Summary(uk):	SVG б╕бл╕отека
+Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
 Version:	1.0.3
 Release:	3
@@ -30,10 +32,18 @@ Biblioteka do SVG bazuj╠ca na libart.
 %description -l pt_BR
 Biblioteca de ExtensЦo da Eazel.
 
+%description -l ru
+Библиотека SVG, базирующаяся на libart.
+
+%description -l uk
+Б╕бл╕отека SVG, базована на libart.
+
 %package devel
 Summary:	Include files for developing with librsvg
 Summary(pl):	Pliki nagЁСwkowe do tworzenia oprogramowania z u©yciem librsvg
 Summary(pt_BR):	Bibliotecas e arquivos de inclusЦo para desenvolvimento com a librsvg
+Summary(ru):	Библиотечные линки и файлы заголовков для разработки с librsvg
+Summary(uk):	Б╕бл╕отечн╕ л╕нки та файли заголовк╕в для розробки з librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Obsoletes:	librsvg0-devel
@@ -49,6 +59,14 @@ z wykorzystaniem librsvg.
 %description devel -l pt_BR
 Este pacote contИm os arquivos necessАrios para desenvolver com base
 na biblioteca librsvg.
+
+%description devel -l ru
+Этот пакет содержит необходимые файлы для разработки программ с
+использованием librsvg.
+
+%description devel -l uk
+Цей пакет м╕стить необх╕дн╕ файли для розробки програм з використанням
+librsvg.
 
 %package static
 Summary:	Static libraries for developing with librsvg
