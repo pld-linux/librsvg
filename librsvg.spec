@@ -2,6 +2,7 @@
 # Conditional build
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
 %bcond_without	libcroco	# build without CSS support through libcroco
+%bcond_without	gnomevfs	# build without gnome-vfs support
 #
 Summary:	Raph's SVG library
 Summary(pl):	Biblioteka Raph's SVG
@@ -10,31 +11,33 @@ Summary(ru):	SVG ÂÉÂÌÉÏÔÅËÁ
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Name:		librsvg
 Version:	2.7.2
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.7/%{name}-%{version}.tar.bz2
 # Source0-md5:	c9377b685ca6e9a8892301a86724e4a7
-Patch1:		%{name}-ac.patch
+Patch0:		%{name}-mozilla.patch
+#Patch1:		%{name}-ac.patch
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gtk+2-devel >= 2:2.4.0
 BuildRequires:	gtk-doc >= 0.9
+%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.4.0}
 BuildRequires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.0}
+BuildRequires:	libgnomeprintui-devel >= 2.4.0
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.6.0}
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
-#BuildRequires:	mozilla-embedded-devel
+BuildRequires:	mozilla-devel
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	xcursor-devel
 BuildRequires:	xft-devel
 BuildRequires:	xrender-devel
-#PreReq:		mozilla-embedded
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gtk+2
 Requires:	gtk+2 >= 2:2.4.0
@@ -121,7 +124,7 @@ Summary:	Mozilla SVG plugin using librsvg
 Summary(pl):	Wtyczka Mozilli do SVG wykorzystuj±ca librsvg
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	mozilla-embedded
+Requires:	mozilla
 
 %description -n mozilla-plugin-rsvg
 This plugin allows Mozilla-family browsers to view Scalable Vector
@@ -133,7 +136,8 @@ Vector Graphics) w przegl±darkach z rodziny Mozilli.
 
 %prep
 %setup -q
-#%patch1 -p1
+%patch0 -p1
+##%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -143,6 +147,7 @@ Vector Graphics) w przegl±darkach z rodziny Mozilli.
 %configure \
 	%{!?with_libcroco:--without-croco} \
 	%{!?with_libgsf:--without-svgz} \
+	%{!?with_gnomevfs:--disable-gnome-vfs} \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}/%{name}
 
@@ -193,6 +198,6 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
 
-#%%files -n mozilla-plugin-rsvg
-#%%defattr(644,root,root,755)
-#%%attr(755,root,root) %{mozilladir}/plugins/*.so
+%files -n mozilla-plugin-rsvg
+%defattr(644,root,root,755)
+%attr(755,root,root) %{mozilladir}/plugins/*.so
