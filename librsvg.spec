@@ -35,6 +35,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	popt-devel >= 1.5
+BuildRequires:	bzip2-devel
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gtk+2
 Requires:	gtk+2 >= 2.2.3
