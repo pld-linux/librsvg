@@ -4,7 +4,7 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Name:		librsvg
-Version:	2.2.2.1
+Version:	2.2.3
 Release:	1
 License:	LGPL
 Vendor:		GNOME
@@ -89,7 +89,7 @@ Bibliotecas estáticas para o desenvolvimento de aplicações com
 librsvg.
 
 %prep
-%setup -q -n librsvg-2.2.2
+%setup -q
 %patch -p1
 
 %build
