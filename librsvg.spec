@@ -12,13 +12,13 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(uk):	SVG б╕бл╕отека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
-Version:	2.3.0
-Release:	3
+Version:	2.3.1
+Release:	1
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
-# Source0-md5: 31139e949850f79fa44e089ef10543c2
+# Source0-md5:	ef9317a3df6d99a44ddf75e4fbcaab4a
 Patch0:		%{name}-link.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	autoconf
