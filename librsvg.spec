@@ -1,6 +1,6 @@
 #
 # Conditional build
-%bcond_without	gimp		# don't build gimp svg plugin
+%bcond_with	gimp		# build gimp svg plugin (but gimp.spec provides better plugin)
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
 %bcond_with	libcroco	# build with CSS support through libcroco
 #
@@ -15,7 +15,7 @@ Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
 Version:	2.4.0
-Release:	1
+Release:	2
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
