@@ -11,11 +11,6 @@ Vendor:		GNOME
 Group:		Libraries
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/2.0/%{name}-%{version}.tar.bz2
 URL:		http://nautilus.eazel.com/
-BuildRequires:	freetype-devel
-BuildRequires:	gtk+2-devel >= 2.0.6
-BuildRequires:	libpng-devel
-BuildRequires:	libxml2-devel >= 2.4.23
-BuildRequires:	popt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	librsvg0
 
@@ -43,7 +38,7 @@ This package provides the necessary development libraries and include
 files to allow you to develop with librsvg.
 
 %description devel -l pl
-Bibliteki potrzebne do programowania, zawieraj±ce biblioteki i pliki
+Biblioteki potrzebne do programowania, zawieraj±ce biblioteki i pliki
 nag³ówkowe, które pomagaj± tworzenie oprogramowania z wykorzystaniem
 librsvg.
 
@@ -76,6 +71,10 @@ librsvg.
 %setup -q
 
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 %configure
 
 %install
@@ -85,11 +84,11 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -98,7 +97,8 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS
-%attr(755,root,root) %{_libdir}/lib*.??
+%attr(755,root,root) %{_libdir}/lib*.so
+%{_libdir}/lib*.la
 %{_pkgconfigdir}/*.pc
 %{_includedir}/librsvg-2
 
