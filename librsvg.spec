@@ -14,14 +14,13 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
-Version:	2.4.0
-Release:	3
+Version:	2.5.0
+Release:	1
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	1a073864e5f6e9793cf23e38dc723803
-Patch0:		%{name}-link.patch
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
+# Source0-md5:	f3e7033a730c9fc0cf7f1430e7ca9fc3
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -129,13 +128,12 @@ Wtyczka SVG dla Gimpa.
 
 %prep
 %setup -q
-%patch -p1
 
 %build
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__automake}
+#%%{__libtoolize}
+#%%{__aclocal}
+#%%{__autoconf}
+#%%{__automake}
 %configure \
 	%{!?with_libcroco:--without-croco} \
 	%{!?with_gimp:--without-gimp} \
