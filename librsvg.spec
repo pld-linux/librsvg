@@ -25,7 +25,7 @@ URL:		http://nautilus.eazel.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0.1
-%{!?_without_gimp:BuildRequires:	gimp-devel >= 1.3.29}
+%{!?_without_gimp:BuildRequires:	gimp-devel >= 1.3.20}
 BuildRequires:	gtk+2-devel >= 2.2.3
 BuildRequires:	libart_lgpl-devel >= 2.3.15
 # TODO: libcroco-devel >= 0.1.0 (optional)
