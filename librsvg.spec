@@ -1,7 +1,8 @@
 #
 # Conditional build
-# _without_gimp		- without gimp svg plugin
-# _without_libgsf	- without libgsf (used for run-time decompression)
+%bcond_without	gimp		# don't build gimp svg plugin
+%bcond_without	libgsf		# build without libgsf (used for run-time decompression)
+%bcond_with	libcroco	# build with CSS support through libcroco
 #
 %ifarch ppc
 %define	_without_gimp	1
@@ -25,22 +26,21 @@ URL:		http://nautilus.eazel.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0.1
-%{!?_without_gimp:BuildRequires:	gimp-devel >= 1.3.20}
+%{?with_gimp:BuildRequires:	gimp-devel >= 1.3.20}
 BuildRequires:	gtk+2-devel >= 2.2.3
 BuildRequires:	libart_lgpl-devel >= 2.3.15
-# TODO: libcroco-devel >= 0.1.0 (optional)
-%{!?_without_libgsf:BuildRequires:	libgsf-devel >= 1.6.0}
+%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.1.0}
+%{?with_libgsf:BuildRequires:	libgsf-devel >= 1.6.0}
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	popt-devel >= 1.5
-BuildConflicts:	libcroco-devel
 Requires:	gtk+2 >= 2.2.3
 Requires:	popt >= 1.5
 Obsoletes:	librsvg0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%if 0%{!?_without_gimp:1}
+%if %{with gimp}
 %define		gimpplugindir	%(gimptool --gimpplugindir)/plug-ins
 %endif
 
@@ -69,7 +69,8 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	gtk+2-devel >= 2.2.3
 Requires:	libart_lgpl-devel >= 2.3.15
-%{!?_without_libgsf:Requires:	libgsf-devel >= 1.6.0}
+%{?with_libcroco:Requires:	libcroco-devel >= 0.1.0}
+%{?with_libgsf:Requires:	libgsf-devel >= 1.6.0}
 Requires:	libxml2-devel >= 2.5.10
 Obsoletes:	librsvg0-devel
 
@@ -134,8 +135,9 @@ Wtyczka SVG dla Gimpa.
 %{__autoconf}
 %{__automake}
 %configure \
-	%{?_without_gimp:--without-gimp} \
-	%{?_without_libgsf:--without-svgz}
+	%{!?with_libcroco:--without-croco} \
+	%{!?with_gimp:--without-gimp} \
+	%{!?with_libgsf:--without-svgz}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -174,7 +176,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
 
-%if %{?_without_gimp:0}%{!?_without_gimp:1}
+%if %{with gimp}
 %files -n gimp-svg
 %defattr(644,root,root,755)
 %attr(755,root,root) %{gimpplugindir}/svg
