@@ -4,20 +4,18 @@ Summary:	Raph's SVG library
 Summary(pl):	Biblioteka Raph's SVG
 Summary(pt_BR):	Biblioteca SVG
 Name:		librsvg
-Version:	1.0.3
-Release:	2
+Version:	1.1.6
+Release:	0.1
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
-Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/librsvg/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
 URL:		http://nautilus.eazel.com/
-BuildRequires:	freetype-devel >= 2.0.1
-BuildRequires:	gdk-pixbuf-devel >= 0.10.0
-BuildRequires:	gnome-libs-devel
-BuildRequires:	gtk+-devel >= 1.2.9
+BuildRequires:	freetype-devel
+BuildRequires:	gtk+2-devel
 BuildRequires:	libpng-devel
-BuildRequires:	libxml-devel >= 1.8.10
-BuildRequires:	popt-devel >= 1.5
+BuildRequires:	libxml2-devel
+BuildRequires:	popt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	librsvg0
 
@@ -78,12 +76,14 @@ librsvg.
 %setup -q
 
 %build
-%configure2_13
+%configure
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	pkgconfigdir=%{_pkgconfigdir}
 
 gzip -9nf ChangeLog AUTHORS NEWS
 
@@ -100,11 +100,9 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc *.gz
-%attr(755,root,root) %{_bindir}/librsvg-config
-%attr(755,root,root) %{_libdir}/lib*.la
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/*.sh
-%{_includedir}/librsvg-1
+%attr(755,root,root) %{_libdir}/lib*.??
+%{_pkgconfigdir}/*.pc
+%{_includedir}/librsvg-2
 
 %files static
 %defattr(644,root,root,755)
