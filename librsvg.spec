@@ -49,6 +49,22 @@ Bibliteki potrzebne do programowania, zawieraj±ce biblioteki i pliki
 nag³ówkowe, które pomagaj± tworzenie oprogramowania z wykorzystaniem 
 librsvg.
 
+%package static
+Summary:	Static libraries and include files for developing with librsvg.
+Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
+Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
+Requires:	%name = %{PACKAGE_VERSION}
+
+%description static
+This package provides the necessary development static libraries to allow you 
+to develop with librsvg.
+
+%description static -l pl
+Bibliteki statyczne potrzebne do programowania, zawieraj±ce biblioteki, które 
+wspomagaj± tworzenie oprogramowania z wykorzystaniem librsvg.
+
 %prep
 %setup -q
 
@@ -102,5 +118,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/librsvg-config
 %attr(755,root,root) %{_libdir}/*.la
 %{_libdir}/*.sh
-%{_libdir}/*.a
 %{_includedir}/librsvg/*.h
+
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/*.a
