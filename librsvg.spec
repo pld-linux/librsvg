@@ -112,7 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/librsvg-config
 %attr(755,root,root) %{_libdir}/*.la
 %{_libdir}/*.sh
-%{_includedir}/librsvg/*.h
+%dir %{_includedir}/librsvg/*.h
 
 
 %files static
