@@ -63,6 +63,10 @@ Summary(uk):	Б╕бл╕отечн╕ л╕нки та файли заголовк╕в для розробки з librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gtk+2-devel >= 2:2.4.0
+Requires:	libart_lgpl-devel >= 2.3.15
+%{?with_libcroco:Requires:	libcroco-devel >= 0.5.0}
+%{?with_libgsf:Requires:	libgsf-devel >= 1.6.0}
+Requires:	libxml2-devel >= 2.5.10
 Obsoletes:	librsvg0-devel
 
 %description devel
