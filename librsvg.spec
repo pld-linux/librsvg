@@ -75,6 +75,7 @@ Summary(ru):	Библиотечные линки и файлы заголовков для разработки с librsvg
 Summary(uk):	Б╕бл╕отечн╕ л╕нки та файли заголовк╕в для розробки з librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+%{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.4.0}
 Requires:	gtk+2-devel >= 2:2.4.0
 Requires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.0}
