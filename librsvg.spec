@@ -10,15 +10,14 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG ÂÉÂÌÉÏÔÅËÁ
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Name:		librsvg
-Version:	2.7.2
+Version:	2.8.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	c9377b685ca6e9a8892301a86724e4a7
-Patch0:		%{name}-mozilla.patch
+Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.8/%{name}-%{version}.tar.bz2
+# Source0-md5:	95d277280babc5c39e42521fb478ba0d
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -75,7 +74,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gtk+2-devel >= 2:2.4.0
 Requires:	libart_lgpl-devel >= 2.3.15
-%{?with_libcroco:Requires:	libcroco-devel >= 0.5.0}
+%{?with_libcroco:Requires:	libcroco-devel >= 0.6.0}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.6.0}
 Requires:	libxml2-devel >= 2.5.10
 Obsoletes:	librsvg0-devel
@@ -135,7 +134,6 @@ Vector Graphics) w przegl±darkach z rodziny Mozilli.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__libtoolize}
