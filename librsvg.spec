@@ -1,7 +1,8 @@
-
+#
 # Conditional build
 # _without_gimp		- without gimp svg plugin
-
+# _without_libgsf	- without libgsf (used for run-time decompression)
+#
 %ifarch ppc
 %define	_without_gimp	1
 %endif
@@ -27,11 +28,14 @@ BuildRequires:	freetype-devel >= 2.0.1
 %{!?_without_gimp:BuildRequires: gimp-devel >= 1.3.12}
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	libart_lgpl-devel >= 2.3.11
+# TODO: libcroco-devel >= 0.1.0 (optional)
+%{!?_without_libgsf:BuildRequires:	libgsf-devel >= 1.6.0}
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.1
-BuildRequires:	popt-devel
+BuildRequires:	popt-devel >= 1.5
 Requires:	gtk+2 >= 2.2.0
+Requires:	popt >= 1.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	librsvg0
 
@@ -60,6 +64,10 @@ Summary(ru):	Библиотечные линки и файлы заголовков для разработки с librsvg
 Summary(uk):	Б╕бл╕отечн╕ л╕нки та файли заголовк╕в для розробки з librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	gtk+2-devel >= 2.2.0
+Requires:	libart_lgpl-devel >= 2.3.11
+%{!?_without_libgsf:Requires:	libgsf-devel >= 1.6.0}
+Requires:	libxml2-devel >= 2.5.1
 Obsoletes:	librsvg0-devel
 
 %description devel
@@ -123,7 +131,8 @@ Wtyczka SVG dla Gimpa.
 %{__autoconf}
 %{__automake}
 %configure \
-    %{?_without_gimp:--without-gimp}
+	%{?_without_gimp:--without-gimp} \
+	%{?_without_libgsf:--without-svgz}
 
 %install
 rm -rf $RPM_BUILD_ROOT

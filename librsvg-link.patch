@@ -1,18 +1,21 @@
-diff -Nru librsvg-2.2.2.orig/Makefile.am librsvg-2.2.2/Makefile.am
---- librsvg-2.2.2.orig/Makefile.am	Sat Feb  1 22:17:27 2003
-+++ librsvg-2.2.2/Makefile.am	Mon Feb  3 14:50:45 2003
-@@ -48,6 +48,8 @@
+--- librsvg-2.3.1/Makefile.am.orig	2003-06-21 23:31:33.000000000 +0200
++++ librsvg-2.3.1/Makefile.am	2003-07-17 00:38:56.000000000 +0200
+@@ -47,7 +47,7 @@
+ 	rsvg.c
  
- librsvg_2_la_LDFLAGS = -version-info @VERSION_INFO@
+ librsvg_2_la_LDFLAGS = -version-info @VERSION_INFO@ -no-undefined -export-dynamic
+-librsvg_2_la_LIBADD = $(LIBRSVG_LIBS)
++librsvg_2_la_LIBADD = $(LIBRSVG_LIBS) $(LIBGSF_LIBS) $(LIBRSVG_LIBS)
  
-+librsvg_2_la_LIBADD = $(LIBRSVG_LIBS)
-+
  librsvgincdir = $(includedir)/librsvg-2/librsvg
  librsvginc_HEADERS = $(GSFHEADERS) \
- 	rsvg.h \
-@@ -69,7 +71,6 @@
+@@ -69,10 +69,8 @@
+ 	-DDATADIR="\"$(datadir)\""
+ 
  DEPS = $(top_builddir)/librsvg-2.la
- LDADDS =$(LIBGSF_LIBS)\
+-LDADDS =$(LIBGSF_LIBS)\
+-	$(LIBCROCO_LIBS)\
++LDADDS =\
  	$(top_builddir)/librsvg-2.la \
 -	$(LIBRSVG_LIBS) \
  	$(POPT_LIBS)
