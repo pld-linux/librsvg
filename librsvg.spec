@@ -9,14 +9,14 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG ÂÉÂÌÉÏÔÅËÁ
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Name:		librsvg
-Version:	2.7.1
-Release:	1
+Version:	2.7.2
+Release:	0.1
 Epoch:		1
 License:	LGPL
 Vendor:		GNOME
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	bfdb8ef48923fcfbb38cf7dd2ec848f8
+# Source0-md5:	c9377b685ca6e9a8892301a86724e4a7
 Patch1:		%{name}-ac.patch
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
@@ -24,21 +24,22 @@ BuildRequires:	automake
 BuildRequires:	gtk+2-devel >= 2:2.4.0
 BuildRequires:	gtk-doc >= 0.9
 BuildRequires:	libart_lgpl-devel >= 2.3.15
-%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.5.0}
+%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.0}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.6.0}
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
-BuildRequires:	mozilla-embedded-devel
+#BuildRequires:	mozilla-embedded-devel
 BuildRequires:	popt-devel >= 1.5
+BuildRequires:	pkgconfig
 BuildRequires:	xcursor-devel
 BuildRequires:	xft-devel
 BuildRequires:	xrender-devel
-PreReq:		mozilla-embedded
+#PreReq:		mozilla-embedded
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gtk+2
 Requires:	gtk+2 >= 2:2.4.0
 Requires:	libart_lgpl >= 2.3.15
-%{?with_libcroco:Requires:	libcroco >= 0.5.0}
+%{?with_libcroco:Requires:	libcroco >= 0.6.0}
 %{?with_libgsf:Requires:	libgsf >= 1.6.0}
 Requires:	libxml2 >= 2.5.10
 Requires:	popt >= 1.5
@@ -132,7 +133,7 @@ Vector Graphics) w przegl±darkach z rodziny Mozilli.
 
 %prep
 %setup -q
-%patch1 -p1
+#%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -178,6 +179,7 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/*.so
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/loaders/*.so
 %{_mandir}/man1/rsvg.1*
+%{_pixmapsdir}/*
 
 %files devel
 %defattr(644,root,root,755)
@@ -191,6 +193,6 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
 
-%files -n mozilla-plugin-rsvg
-%defattr(644,root,root,755)
-%attr(755,root,root) %{mozilladir}/plugins/*.so
+#%%files -n mozilla-plugin-rsvg
+#%%defattr(644,root,root,755)
+#%%attr(755,root,root) %{mozilladir}/plugins/*.so
