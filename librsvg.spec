@@ -12,6 +12,9 @@ Group(de):	Libraries
 Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
+Group(pt_BR):	Bibliotecas
+Group(ru):	âÉÂÌÉÏÔÅËÉ
+Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/librsvg/%{name}-%{version}.tar.bz2
 URL:		http://nautilus.eazel.com/
 BuildRequires:	glib-devel >= 1.2.9
@@ -39,8 +42,12 @@ Summary:	Libraries and include files for developing with librsvg.
 Summary(pl):	Biblioteki i pliki nag³ówkowe do developing'u z u¿yciem librsvg.
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
+Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 
 %description devel
@@ -49,7 +56,7 @@ files to allow you to develop with librsvg.
 
 %description devel -l pl
 Bibliteki potrzebne do programowania, zawieraj±ce biblioteki i pliki
-nag³ówkowe, które pomagaj± tworzenie oprogramowania z wykorzystaniem 
+nag³ówkowe, które pomagaj± tworzenie oprogramowania z wykorzystaniem
 librsvg.
 
 %package static
@@ -57,17 +64,22 @@ Summary:	Static libraries and include files for developing with librsvg.
 Summary(pl):	Statyczne biblioteki do developing'u z u¿yciem librsvg.
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
+Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name}-devel = %{version}
 
 %description static
-This package provides the necessary development static libraries to allow you 
-to develop with librsvg.
+This package provides the necessary development static libraries to
+allow you to develop with librsvg.
 
 %description static -l pl
-Bibliteki statyczne potrzebne do programowania, zawieraj±ce biblioteki, które 
-wspomagaj± tworzenie oprogramowania z wykorzystaniem librsvg.
+Bibliteki statyczne potrzebne do programowania, zawieraj±ce
+biblioteki, które wspomagaj± tworzenie oprogramowania z wykorzystaniem
+librsvg.
 
 %prep
 %setup -q
