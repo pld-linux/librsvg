@@ -10,7 +10,7 @@
 Summary:	Raph's SVG library
 Summary(pl):	Biblioteka Raph's SVG
 Summary(pt_BR):	Biblioteca SVG
-Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
+Summary(ru):	SVG ÂÉÂÌÉÏÔÅËÁ
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Name:		librsvg
 Version:	2.3.1
@@ -25,7 +25,7 @@ URL:		http://nautilus.eazel.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0.1
-%{!?_without_gimp:BuildRequires: gimp-devel >= 1.3.18}
+%{!?_without_gimp:BuildRequires:	gimp-devel >= 1.3.18}
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	libart_lgpl-devel >= 2.3.11
 # TODO: libcroco-devel >= 0.1.0 (optional)
@@ -75,7 +75,7 @@ Obsoletes:	librsvg0-devel
 %description devel
 This package provides the necessary development libraries and include
 files to allow you to develop with librsvg.
- 
+
 %description devel -l pl
 Pakiet zawiera pliki nag³ówkowe potrzebne do tworzenia oprogramowania
 z wykorzystaniem librsvg.
