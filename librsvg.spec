@@ -34,6 +34,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	popt-devel >= 1.5
+BuildConflicts:	libcroco-devel
 Requires:	gtk+2 >= 2.2.3
 Requires:	popt >= 1.5
 Obsoletes:	librsvg0
