@@ -10,7 +10,7 @@ Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
 Version:	2.6.1
-Release:	2
+Release:	3
 Epoch:		1
 License:	LGPL
 Vendor:		GNOME
@@ -21,7 +21,7 @@ URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0.1
-BuildRequires:	gtk+2-devel >= 2.2.3
+BuildRequires:	gtk+2-devel >= 2:2.4.0
 BuildRequires:	gtk-doc >= 0.9
 BuildRequires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.5.0}
@@ -32,7 +32,7 @@ BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	popt-devel >= 1.5
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gtk+2
-Requires:	gtk+2 >= 2.2.3
+Requires:	gtk+2 >= 2:2.4.0
 Requires:	popt >= 1.5
 Obsoletes:	librsvg0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -60,7 +60,7 @@ Summary(ru):	Библиотечные линки и файлы заголовков для разработки с librsvg
 Summary(uk):	Б╕бл╕отечн╕ л╕нки та файли заголовк╕в для розробки з librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gtk+2-devel >= 2.2.3
+Requires:	gtk+2-devel >= 2:2.4.0
 Requires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:Requires:	libcroco-devel >= 0.5.0}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.6.0}
