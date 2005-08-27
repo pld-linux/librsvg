@@ -121,7 +121,7 @@ Statyczna wersja bibliotek librsvg.
 Bibliotecas estáticas para o desenvolvimento de aplicações com
 librsvg.
 
-%package -n	mozilla-plugin-rsvg
+%package -n mozilla-plugin-rsvg
 Summary:	Mozilla SVG plugin using librsvg
 Summary(pl):	Wtyczka Mozilli do SVG wykorzystuj±ca librsvg
 Group:		X11/Applications/Multimedia
