@@ -1,3 +1,5 @@
+# TODO
+# - mozilla_firefox bcond/subpackage
 #
 # Conditional build
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
@@ -12,14 +14,14 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
-Version:	2.12.3
+Version:	2.12.4
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Vendor:		GNOME
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.12/%{name}-%{version}.tar.bz2
-# Source0-md5:	437e9419ff214a1f6ad1a5ba119f12fd
+# Source0-md5:	cfc7e22027d180eea312932394ecfc71
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
