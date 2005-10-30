@@ -33,7 +33,7 @@ BuildRequires:	libart_lgpl-devel >= 2.3.15
 %{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.12.1}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.13.2}
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.6.22
+BuildRequires:	libxml2-devel >= 1:2.6.22
 %{?with_mozilla:BuildRequires:	mozilla-devel}
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
@@ -46,7 +46,7 @@ Requires:	gtk+2 >= 2:2.8.6
 Requires:	libart_lgpl >= 2.3.15
 %{?with_libcroco:Requires:	libcroco >= 0.6.0}
 %{?with_libgsf:Requires:	libgsf >= 1.13.2}
-Requires:	libxml2 >= 2.6.22
+Requires:	libxml2 >= 1:2.6.22
 Requires:	popt >= 1.5
 Obsoletes:	librsvg0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
