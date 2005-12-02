@@ -2,6 +2,7 @@
 # - mozilla_firefox bcond/subpackage
 #
 # Conditional build
+%bcond_without	apidocs		# disable gtk-doc
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
 %bcond_without	libcroco	# build without CSS support through libcroco
 %bcond_without	gnomeprint	# build without gnome-print support in viewer
@@ -26,7 +27,7 @@ URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gtk+2-devel >= 2:2.8.6
-BuildRequires:	gtk-doc >= 0.9
+%{?with_apidocs:BuildRequires:	gtk-doc >= 0.9}
 %{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.10.0-2}
 BuildRequires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.0}
@@ -153,7 +154,7 @@ Vector Graphics) w przegl±darkach z rodziny Mozilli.
 	%{!?with_libcroco:--without-croco} \
 	%{!?with_libgsf:--without-svgz} \
 	%{!?with_gnomevfs:--disable-gnome-vfs} \
-	--enable-gtk-doc \
+	%{?with_apidocs:--enable-gtk-doc} \
 	--with-html-dir=%{_gtkdocdir}/%{name}
 %{__make}
 
