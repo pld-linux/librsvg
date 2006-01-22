@@ -30,7 +30,6 @@ BuildRequires:	cairo-devel >= 1.0.2
 BuildRequires:	gtk+2-devel >= 2:2.8.6
 %{?with_apidocs:BuildRequires:	gtk-doc >= 0.9}
 %{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.10.0-2}
-BuildRequires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.0}
 %{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.12.1}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.13.2}
