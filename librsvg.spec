@@ -15,14 +15,14 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
-Version:	2.13.5
+Version:	2.13.90
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Vendor:		GNOME
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.13/%{name}-%{version}.tar.bz2
-# Source0-md5:	ed74fe02d3a624956dd3bde0909d8516
+# Source0-md5:	fabddb3ea29817398ed378da29c71edf
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -30,6 +30,7 @@ BuildRequires:	cairo-devel >= 1.0.2
 BuildRequires:	gtk+2-devel >= 2:2.8.6
 %{?with_apidocs:BuildRequires:	gtk-doc >= 0.9}
 %{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.10.0-2}
+
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.0}
 %{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.12.1}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.13.2}
@@ -197,8 +198,7 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %{_libdir}/lib*.la
 %{_pkgconfigdir}/*.pc
 %{_includedir}/librsvg-2
-# looks like 2.13.x is shipped without APIdocs
-#%%{_gtkdocdir}/%{name}
+%{_gtkdocdir}/%{name}
 
 %files static
 %defattr(644,root,root,755)
