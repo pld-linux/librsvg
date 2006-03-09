@@ -38,6 +38,7 @@ BuildRequires:	libxml2-devel >= 1:2.6.22
 %{?with_mozilla:BuildRequires:	mozilla-devel}
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-pythonprov
 BuildRequires:	xorg-lib-libXcursor-devel
 BuildRequires:	xorg-lib-libXft-devel
 # CHECK ME! next two are propably not directly required here
