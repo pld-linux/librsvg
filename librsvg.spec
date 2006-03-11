@@ -30,7 +30,7 @@ BuildRequires:	cairo-devel >= 1.0.2
 BuildRequires:	gtk+2-devel >= 2:2.8.6
 %{?with_apidocs:BuildRequires:	gtk-doc >= 0.9}
 %{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.10.0-2}
-%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.0}
+%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
 %{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.12.1}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.13.2}
 BuildRequires:	libtool
@@ -49,7 +49,7 @@ BuildRequires:	xorg-lib-libXrender-devel
 Requires(post,postun):	gtk+2
 Requires:	cairo >= 1.0.2
 Requires:	gtk+2 >= 2:2.8.6
-%{?with_libcroco:Requires:	libcroco >= 0.6.0}
+%{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.13.2}
 Requires:	libxml2 >= 1:2.6.22
 Requires:	popt >= 1.5
