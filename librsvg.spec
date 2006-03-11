@@ -15,14 +15,14 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
-Version:	2.14.1
+Version:	2.14.2
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Vendor:		GNOME
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	35f1a4f80cda377efecf5525ae6742b9
+# Source0-md5:	6e149ebcbc70471b74f9ceaa9fab16c5
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
