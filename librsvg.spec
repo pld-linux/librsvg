@@ -15,22 +15,22 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
-Version:	2.12.7
-Release:	3
+Version:	2.14.3
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Vendor:		GNOME
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.12/%{name}-%{version}.tar.bz2
-# Source0-md5:	2113f01fbf228f3f8fc17c49966143fe
+Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.14/%{name}-%{version}.tar.bz2
+# Source0-md5:	f926aa102ccc3ce99ddf257fcce8ebf4
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	cairo-devel >= 1.0.2
 BuildRequires:	gtk+2-devel >= 2:2.8.6
 %{?with_apidocs:BuildRequires:	gtk-doc >= 0.9}
 %{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.10.0-2}
-BuildRequires:	libart_lgpl-devel >= 2.3.15
-%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.0}
+%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
 %{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.12.1}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.13.2}
 BuildRequires:	libtool
@@ -38,14 +38,18 @@ BuildRequires:	libxml2-devel >= 1:2.6.22
 %{?with_mozilla:BuildRequires:	mozilla-devel}
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
-BuildRequires:	xcursor-devel
-BuildRequires:	xft-devel
-BuildRequires:	xrender-devel
+BuildRequires:	rpm-pythonprov
+BuildRequires:	xorg-lib-libXcursor-devel
+BuildRequires:	xorg-lib-libXft-devel
+# CHECK ME! next two are propably not directly required here
+BuildRequires:	xorg-lib-libXinerama-devel
+BuildRequires:	xorg-lib-libXrandr-devel
+BuildRequires:	xorg-lib-libXrender-devel
 %{!?with_gnomeprint:BuildConflicts:	libgnomeprintui-devel}
 Requires(post,postun):	gtk+2
+Requires:	cairo >= 1.0.2
 Requires:	gtk+2 >= 2:2.8.6
-Requires:	libart_lgpl >= 2.3.15
-%{?with_libcroco:Requires:	libcroco >= 0.6.0}
+%{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.13.2}
 Requires:	libxml2 >= 1:2.6.22
 Requires:	popt >= 1.5
@@ -83,6 +87,12 @@ Requires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.0}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.13.2}
 Requires:	libxml2-devel >= 2.6.22
+Requires:	xorg-lib-libXcursor-devel
+Requires:	xorg-lib-libXft-devel
+# CHECK ME! next two are propably not directly required here
+Requires:	xorg-lib-libXinerama-devel
+Requires:	xorg-lib-libXrandr-devel
+Requires:	xorg-lib-libXrender-devel
 Obsoletes:	librsvg0-devel
 
 %description devel
