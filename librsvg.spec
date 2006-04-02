@@ -39,12 +39,6 @@ BuildRequires:	libxml2-devel >= 1:2.6.22
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
-BuildRequires:	xorg-lib-libXcursor-devel
-BuildRequires:	xorg-lib-libXft-devel
-# CHECK ME! next two are propably not directly required here
-BuildRequires:	xorg-lib-libXinerama-devel
-BuildRequires:	xorg-lib-libXrandr-devel
-BuildRequires:	xorg-lib-libXrender-devel
 %{!?with_gnomeprint:BuildConflicts:	libgnomeprintui-devel}
 Requires(post,postun):	gtk+2
 Requires:	cairo >= 1.0.2
@@ -87,12 +81,6 @@ Requires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.0}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.13.2}
 Requires:	libxml2-devel >= 2.6.22
-Requires:	xorg-lib-libXcursor-devel
-Requires:	xorg-lib-libXft-devel
-# CHECK ME! next two are propably not directly required here
-Requires:	xorg-lib-libXinerama-devel
-Requires:	xorg-lib-libXrandr-devel
-Requires:	xorg-lib-libXrender-devel
 Obsoletes:	librsvg0-devel
 
 %description devel
