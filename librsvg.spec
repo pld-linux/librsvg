@@ -141,9 +141,6 @@ Vector Graphics) w przegl±darkach z rodziny Mozilli.
 %prep
 %setup -q
 
-# obsolete macro (defined as empty in gnome-common)
-#%%{__perl} -pi -e 's/GNOME_REQUIRE_PKGCONFIG//' configure.in
-
 %build
 %{!?with_mozilla:export MOZILLA_CONFIG=no}
 %{__libtoolize}
