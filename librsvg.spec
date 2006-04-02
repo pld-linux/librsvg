@@ -24,27 +24,22 @@ Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.14/%{name}-%{version}.tar.bz2
 # Source0-md5:	f926aa102ccc3ce99ddf257fcce8ebf4
 URL:		http://librsvg.sourceforge.net/
+BuildRequires:	X11-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	cairo-devel >= 1.0.2
-BuildRequires:	gtk+2-devel >= 2:2.8.6
+BuildRequires:	cairo-devel >= 1.0.4
+BuildRequires:	gtk+2-devel >= 2:2.8.13
 %{?with_apidocs:BuildRequires:	gtk-doc >= 0.9}
-%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.10.0-2}
+%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.14.0}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
 %{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.12.1}
-%{?with_libgsf:BuildRequires:	libgsf-devel >= 1.13.2}
+%{?with_libgsf:BuildRequires:	libgsf-devel >= 1.14.0}
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.22
 %{?with_mozilla:BuildRequires:	mozilla-devel}
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
-BuildRequires:	xorg-lib-libXcursor-devel
-BuildRequires:	xorg-lib-libXft-devel
-# CHECK ME! next two are propably not directly required here
-BuildRequires:	xorg-lib-libXinerama-devel
-BuildRequires:	xorg-lib-libXrandr-devel
-BuildRequires:	xorg-lib-libXrender-devel
 %{!?with_gnomeprint:BuildConflicts:	libgnomeprintui-devel}
 Requires(post,postun):	gtk+2
 Requires:	cairo >= 1.0.2
@@ -81,18 +76,13 @@ Summary(ru):	Библиотечные линки и файлы заголовков для разработки с librsvg
 Summary(uk):	Б╕бл╕отечн╕ л╕нки та файли заголовк╕в для розробки з librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	X11-devel
 %{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.10.0-2}
 Requires:	gtk+2-devel >= 2:2.8.6
 Requires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.0}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.13.2}
 Requires:	libxml2-devel >= 2.6.22
-Requires:	xorg-lib-libXcursor-devel
-Requires:	xorg-lib-libXft-devel
-# CHECK ME! next two are propably not directly required here
-Requires:	xorg-lib-libXinerama-devel
-Requires:	xorg-lib-libXrandr-devel
-Requires:	xorg-lib-libXrender-devel
 Obsoletes:	librsvg0-devel
 
 %description devel
@@ -152,7 +142,7 @@ Vector Graphics) w przegl╠darkach z rodziny Mozilli.
 %setup -q
 
 # obsolete macro (defined as empty in gnome-common)
-%{__perl} -pi -e 's/GNOME_REQUIRE_PKGCONFIG//' configure.in
+#%%{__perl} -pi -e 's/GNOME_REQUIRE_PKGCONFIG//' configure.in
 
 %build
 %{!?with_mozilla:export MOZILLA_CONFIG=no}
