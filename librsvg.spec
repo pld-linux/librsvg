@@ -8,7 +8,7 @@
 %bcond_without	gnomevfs	# build without gnome-vfs support
 %bcond_without	mozilla		# do not build mozilla plugin
 #
-Summary:	Raph's SVG library
+Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl):	Biblioteka Raph's SVG
 Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG ¬…¬Ã…œ‘≈À¡
@@ -54,7 +54,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		mozilladir	%{_libdir}/mozilla
 
 %description
-An SVG library based upon libart.
+An library to render SVG (scalable vector graphics), databased upon libart.
 
 %description -l pl
 Biblioteka do obs≥ugi grafiki wektorowej.
