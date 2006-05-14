@@ -144,7 +144,7 @@ Supported browsers: %{browsers}.
 Ta wtyczka pozwala na ogl±danie grafiki w formacie SVG (Scalable
 Vector Graphics) w przegl±darkach z rodziny Mozilli.
 
-Supported browsers: %{browsers}.
+Obs³ugiwane przegl±darki: %{browsers}.
 
 %prep
 %setup -q
