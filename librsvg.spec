@@ -172,7 +172,7 @@ rm -rf $RPM_BUILD_ROOT
 	pkgconfigdir=%{_pkgconfigdir}
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/2.*/{engines,loaders}/*.{la,a}
--rm -f $RPM_BUILD_ROOT%{_plugindir}/*.{la,a}
+rm -f $RPM_BUILD_ROOT%{_plugindir}/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
