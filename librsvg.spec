@@ -1,5 +1,5 @@
 # TODO
-# - mozilla_firefox bcond/subpackage
+# - check what browsers can be supported by browser plugin
 #
 # Conditional build
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
@@ -15,7 +15,7 @@ Summary(ru):	SVG ÂÉÂÌÉÏÔÅËÁ
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Name:		librsvg
 Version:	2.12.7
-Release:	3
+Release:	4
 Epoch:		1
 License:	LGPL v2+
 Vendor:		GNOME
@@ -35,6 +35,7 @@ BuildRequires:	libart_lgpl-devel >= 2.3.15
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.22
 %{?with_mozilla:BuildRequires:	mozilla-devel}
+%{?with_mozilla:BuildRequires:	rpmbuild(macros) >= 1.236}
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	xcursor-devel
@@ -51,7 +52,10 @@ Requires:	popt >= 1.5
 Obsoletes:	librsvg0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		mozilladir	%{_libdir}/mozilla
+%define		_plugindir	%{_libdir}/browser-plugins
+
+# list of supported browsers, in free form text
+%define		browsers	mozilla, mozilla-firefox, netscape, seamonkey
 
 %description
 An library to render SVG (scalable vector graphics), databased upon libart.
@@ -122,20 +126,26 @@ Statyczna wersja bibliotek librsvg.
 Bibliotecas estáticas para o desenvolvimento de aplicações com
 librsvg.
 
-%package -n mozilla-plugin-rsvg
-Summary:	Mozilla SVG plugin using librsvg
-Summary(pl):	Wtyczka Mozilli do SVG wykorzystuj±ca librsvg
+%package -n browser-plugin-%{name}
+Summary:	SVG browse plugin using librsvg
+Summary(pl):	Wtyczka SVG do przegl±darski WWW wykorzystuj±ca librsvg
 Group:		X11/Applications/Multimedia
+Requires:	browser-plugins(%{_target_base_arch})
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	mozilla
+Provides:	mozilla-plugin-rsvg
+Obsoletes:	mozilla-plugin-rsvg
 
-%description -n mozilla-plugin-rsvg
+%description -n browser-plugin-%{name}
 This plugin allows Mozilla-family browsers to view Scalable Vector
 Graphics content using librsvg.
 
-%description -n mozilla-plugin-rsvg -l pl
+Supported browsers: %{browsers}.
+
+%description -n browser-plugin-%{name} -l pl
 Ta wtyczka pozwala na ogl±danie grafiki w formacie SVG (Scalable
 Vector Graphics) w przegl±darkach z rodziny Mozilli.
+
+Supported browsers: %{browsers}.
 
 %prep
 %setup -q
@@ -162,10 +172,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
+	plugindir=%{_plugindir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/2.*/{engines,loaders}/*.{la,a}
-rm -f $RPM_BUILD_ROOT%{mozilladir}/plugins/*.{la,a}
+rm -f $RPM_BUILD_ROOT%{_plugindir}/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -179,6 +190,35 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 /sbin/ldconfig
 umask 022
 gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
+
+%triggerin -n browser-plugin-%{name} -- mozilla
+%nsplugin_install -d %{_libdir}/mozilla/plugins libmozsvgdec.so
+
+%triggerun -n browser-plugin-%{name} -- mozilla
+%nsplugin_uninstall -d %{_libdir}/mozilla/plugins libmozsvgdec.so
+
+%triggerin -n browser-plugin-%{name} -- mozilla-firefox
+%nsplugin_install -d %{_libdir}/mozilla-firefox/plugins libmozsvgdec.so
+
+%triggerun -n browser-plugin-%{name} -- mozilla-forefox
+%nsplugin_uninstall -d %{_libdir}/mozilla-firefox/plugins libmozsvgdec.so
+
+%triggerin -n browser-plugin-%{name} -- netscape-common
+%nsplugin_install -d %{_libdir}/netscape/plugins libmozsvgdec.so
+
+%triggerun -n browser-plugin-%{name} -- netscape-common
+%nsplugin_uninstall -d %{_libdir}/netscape/plugins libmozsvgdec.so
+
+%triggerin -n browser-plugin-%{name} -- seamonkey
+%nsplugin_install -d %{_libdir}/seamonkey/plugins libmozsvgdec.so
+
+%triggerun -n browser-plugin-%{name} -- seamonkey
+%nsplugin_uninstall -d %{_libdir}/seamonkey/plugins libmozsvgdec.so
+
+# as rpm removes the old obsoleted package files after the triggers
+# are ran, add another trigger to make the links there.
+%triggerpostun -n browser-plugin-%{name} -- mozilla-plugin-rsvg
+%nsplugin_install -f -d %{_libdir}/mozilla/plugins libmozsvgdec.so
 
 %files
 %defattr(644,root,root,755)
@@ -203,7 +243,7 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %{_libdir}/lib*.a
 
 %if %{with mozilla}
-%files -n mozilla-plugin-rsvg
+%files -n browser-plugin-%{name}
 %defattr(644,root,root,755)
-%attr(755,root,root) %{mozilladir}/plugins/*.so
+%attr(755,root,root) %{_plugindir}/*.so
 %endif
