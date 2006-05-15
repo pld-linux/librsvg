@@ -2,6 +2,7 @@
 # - check what browsers can be supported by browser plugin
 #
 # Conditional build
+%bcond_without	apidocs		# disable gtk-doc
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
 %bcond_without	libcroco	# build without CSS support through libcroco
 %bcond_without	gnomeprint	# build without gnome-print support in viewer
@@ -14,22 +15,22 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG ÂÉÂÌÉÏÔÅËÁ
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Name:		librsvg
-Version:	2.12.7
-Release:	4
+Version:	2.14.3
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Vendor:		GNOME
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.12/%{name}-%{version}.tar.bz2
-# Source0-md5:	2113f01fbf228f3f8fc17c49966143fe
+Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.14/%{name}-%{version}.tar.bz2
+# Source0-md5:	f926aa102ccc3ce99ddf257fcce8ebf4
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	cairo-devel >= 1.0.2
 BuildRequires:	gtk+2-devel >= 2:2.8.6
-BuildRequires:	gtk-doc >= 0.9
+%{?with_apidocs:BuildRequires:	gtk-doc >= 0.9}
 %{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.10.0-2}
-BuildRequires:	libart_lgpl-devel >= 2.3.15
-%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.0}
+%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
 %{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.12.1}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.13.2}
 BuildRequires:	libtool
@@ -41,11 +42,12 @@ BuildRequires:	pkgconfig
 BuildRequires:	xcursor-devel
 BuildRequires:	xft-devel
 BuildRequires:	xrender-devel
+BuildRequires:	rpm-pythonprov
 %{!?with_gnomeprint:BuildConflicts:	libgnomeprintui-devel}
 Requires(post,postun):	gtk+2
+Requires:	cairo >= 1.0.2
 Requires:	gtk+2 >= 2:2.8.6
-Requires:	libart_lgpl >= 2.3.15
-%{?with_libcroco:Requires:	libcroco >= 0.6.0}
+%{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.13.2}
 Requires:	libxml2 >= 1:2.6.22
 Requires:	popt >= 1.5
@@ -145,13 +147,10 @@ Supported browsers: %{browsers}.
 Ta wtyczka pozwala na ogl±danie grafiki w formacie SVG (Scalable
 Vector Graphics) w przegl±darkach z rodziny Mozilli.
 
-Supported browsers: %{browsers}.
+Obs³ugiwane przegl±darki: %{browsers}.
 
 %prep
 %setup -q
-
-# obsolete macro (defined as empty in gnome-common)
-%{__perl} -pi -e 's/GNOME_REQUIRE_PKGCONFIG//' configure.in
 
 %build
 %{!?with_mozilla:export MOZILLA_CONFIG=no}
@@ -163,7 +162,7 @@ Supported browsers: %{browsers}.
 	%{!?with_libcroco:--without-croco} \
 	%{!?with_libgsf:--without-svgz} \
 	%{!?with_gnomevfs:--disable-gnome-vfs} \
-	--enable-gtk-doc \
+	%{?with_apidocs:--enable-gtk-doc} \
 	--with-html-dir=%{_gtkdocdir}/%{name}
 %{__make}
 
