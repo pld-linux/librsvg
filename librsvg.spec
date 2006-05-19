@@ -10,7 +10,7 @@
 %bcond_without	mozilla		# do not build mozilla plugin
 #
 Summary:	A Raph's Library for Rendering SVG Data
-Summary(pl):	Biblioteka Raph's SVG
+Summary(pl):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
@@ -60,7 +60,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 An library to render SVG (scalable vector graphics), databased upon libart.
 
 %description -l pl
-Biblioteka do obsЁugi grafiki wektorowej.
+Biblioteka do renderowania SVG (skalowalnej grafiki wektorowej) oparta
+na kodzie libart.
 
 %description -l pt_BR
 Biblioteca de ExtensЦo da Eazel.
