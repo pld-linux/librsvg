@@ -13,7 +13,7 @@ Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
 Version:	2.15.0
-Release:	2
+Release:	3
 Epoch:		1
 License:	LGPL v2+
 Vendor:		GNOME
@@ -23,26 +23,26 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.15/%{name}-%{version}.
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	cairo-devel >= 1.1.6
-BuildRequires:	gtk+2-devel >= 2:2.9.2
-%{?with_apidocs:BuildRequires:	gtk-doc >= 0.9}
-%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.15.1}
+BuildRequires:	cairo-devel >= 1.2.0
+BuildRequires:	gtk+2-devel >= 2:2.10.0
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.6}
+%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.15.3}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
 %{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.12.1}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.14.1}
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 1:2.6.25
+BuildRequires:	libxml2-devel >= 1:2.6.26
 %{?with_mozilla:BuildRequires:	rpmbuild(macros) >= 1.236}
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 %{!?with_gnomeprint:BuildConflicts:	libgnomeprintui-devel}
 Requires(post,postun):	gtk+2
-Requires:	cairo >= 1.1.6
-Requires:	gtk+2 >= 2:2.9.2
+Requires:	cairo >= 1.2.0
+Requires:	gtk+2 >= 2:2.10.0
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.14.1}
-Requires:	libxml2 >= 1:2.6.25
+Requires:	libxml2 >= 1:2.6.26
 Requires:	popt >= 1.5
 Obsoletes:	browser-plugin-librsvg
 Obsoletes:	librsvg0
@@ -72,12 +72,12 @@ Summary(ru):	Библиотечные линки и файлы заголовков для разработки с librsvg
 Summary(uk):	Б╕бл╕отечн╕ л╕нки та файли заголовк╕в для розробки з librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.15.1}
-Requires:	gtk+2-devel >= 2:2.9.2
+%{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.15.3}
+Requires:	gtk+2-devel >= 2:2.10.0
 Requires:	libart_lgpl-devel >= 2.3.15
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.14.1}
-Requires:	libxml2-devel >= 2.6.25
+Requires:	libxml2-devel >= 2.6.26
 Obsoletes:	librsvg0-devel
 
 %description devel
@@ -126,6 +126,7 @@ librsvg.
 %{__aclocal}
 %{__autoconf}
 %{__automake}
+LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	%{!?with_libcroco:--without-croco} \
 	%{!?with_libgsf:--without-svgz} \
