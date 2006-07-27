@@ -139,11 +139,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	plugindir=%{_plugindir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/2.*/{engines,loaders}/*.{la,a}
-rm -f $RPM_BUILD_ROOT%{_plugindir}/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
