@@ -32,7 +32,6 @@ BuildRequires:	gtk+2-devel >= 2:2.10.1
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.14.1}
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.26
-%{?with_mozilla:BuildRequires:	rpmbuild(macros) >= 1.236}
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
