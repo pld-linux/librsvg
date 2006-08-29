@@ -35,7 +35,6 @@ BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
-%{!?with_gnomeprint:BuildConflicts:	libgnomeprintui-devel}
 Requires(post,postun):	gtk+2
 Requires:	cairo >= 1.2.0
 Requires:	gtk+2 >= 2:2.10.1
@@ -129,6 +128,7 @@ librsvg.
 	%{!?with_libcroco:--without-croco} \
 	%{!?with_libgsf:--without-svgz} \
 	%{!?with_gnomevfs:--disable-gnome-vfs} \
+	%{!?with_gnomeprint:--disable-gnome-print} \
 	%{?with_apidocs:--enable-gtk-doc} \
 	--with-html-dir=%{_gtkdocdir}/%{name}
 %{__make}
