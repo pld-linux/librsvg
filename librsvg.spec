@@ -12,21 +12,21 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
-Version:	2.15.90
-Release:	2
+Version:	2.16.0
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Vendor:		GNOME
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.15/%{name}-%{version}.tar.bz2
-# Source0-md5:	aa3788c32b5af38bb6417b7524443562
+Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.16/%{name}-%{version}.tar.bz2
+# Source0-md5:	dc6385e62ed278732146bca5aab74568
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	cairo-devel >= 1.2.0
-BuildRequires:	gtk+2-devel >= 2:2.10.1
-%{?with_apidocs:BuildRequires:	gtk-doc >= 1.6}
-%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.15.90}
+BuildRequires:	cairo-devel >= 1.2.4
+BuildRequires:	gtk+2-devel >= 2:2.10.2
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.7}
+%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.15.92}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
 %{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.12.1}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.14.1}
@@ -36,8 +36,8 @@ BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 Requires(post,postun):	gtk+2
-Requires:	cairo >= 1.2.0
-Requires:	gtk+2 >= 2:2.10.1
+Requires:	cairo >= 1.2.4
+Requires:	gtk+2 >= 2:2.10.2
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.14.1}
 Requires:	libxml2 >= 1:2.6.26
@@ -70,9 +70,9 @@ Summary(ru):	Библиотечные линки и файлы заголовков для разработки с librsvg
 Summary(uk):	Б╕бл╕отечн╕ л╕нки та файли заголовк╕в для розробки з librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.15.90}
-Requires:	gtk+2-devel >= 2:2.10.1
-Requires:	libart_lgpl-devel >= 2.3.15
+%{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.15.92}
+Requires:	gtk+2-devel >= 2:2.10.2
+Requires:	libart_lgpl-devel >= 2.3.17
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.14.1}
 Requires:	libxml2-devel >= 2.6.26
