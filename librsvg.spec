@@ -43,6 +43,7 @@ Requires:	gtk+2 >= 2:2.10.2
 Requires:	libxml2 >= 1:2.6.26
 Requires:	popt >= 1.5
 Obsoletes:	browser-plugin-librsvg
+Obsoletes:	mozilla-plugin-rsvg
 Obsoletes:	librsvg0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
