@@ -125,11 +125,12 @@ librsvg.
 %{__autoconf}
 %{__automake}
 %configure \
-	%{!?with_libcroco:--without-croco} \
-	%{!?with_libgsf:--without-svgz} \
 	%{!?with_gnomevfs:--disable-gnome-vfs} \
 	%{!?with_gnomeprint:--disable-gnome-print} \
+	--disable-mozilla-plugin \
 	%{?with_apidocs:--enable-gtk-doc} \
+	%{!?with_libcroco:--without-croco} \
+	%{!?with_libgsf:--without-svgz} \
 	--with-html-dir=%{_gtkdocdir}/%{name}
 %{__make}
 
