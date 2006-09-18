@@ -25,6 +25,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cairo-devel >= 1.2.4
 BuildRequires:	gtk+2-devel >= 2:2.10.2
+BuildRequires:	gtk-doc-automake
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.7}
 %{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.15.92}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
