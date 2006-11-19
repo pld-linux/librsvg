@@ -12,18 +12,19 @@ Summary(pt_BR):	Biblioteca SVG
 Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
-Version:	2.16.0
+Version:	2.16.1
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Vendor:		GNOME
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	dc6385e62ed278732146bca5aab74568
+# Source0-md5:	37e046571097ff7ce77ae6e07f096324
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cairo-devel >= 1.2.4
+BuildRequires:	glib2-devel >= 1:2.12.0
 BuildRequires:	gtk+2-devel >= 2:2.10.2
 BuildRequires:	gtk-doc-automake
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.7}
@@ -33,16 +34,15 @@ BuildRequires:	gtk-doc-automake
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.14.1}
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.26
-BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 Requires(post,postun):	gtk+2
 Requires:	cairo >= 1.2.4
+Requires:	glib2 >= 1:2.12.0
 Requires:	gtk+2 >= 2:2.10.2
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.14.1}
 Requires:	libxml2 >= 1:2.6.26
-Requires:	popt >= 1.5
 Obsoletes:	browser-plugin-librsvg
 Obsoletes:	mozilla-plugin-rsvg
 Obsoletes:	librsvg0
@@ -72,6 +72,7 @@ Summary(ru):	Библиотечные линки и файлы заголовков для разработки с librsvg
 Summary(uk):	Б╕бл╕отечн╕ л╕нки та файли заголовк╕в для розробки з librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	glib2 >= 1:2.12.0
 %{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.15.92}
 Requires:	gtk+2-devel >= 2:2.10.2
 Requires:	libart_lgpl-devel >= 2.3.17
@@ -161,21 +162,21 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog AUTHORS NEWS
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_bindir}/rsvg*
+%attr(755,root,root) %{_libdir}/librsvg-2.so.*.*.*
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/*.so
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/loaders/*.so
 %{_mandir}/man1/rsvg.1*
-%{_pixmapsdir}/*
+%{_pixmapsdir}/svg-viewer.svg
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_pkgconfigdir}/*.pc
+%attr(755,root,root) %{_libdir}/librsvg-2.so
+%{_libdir}/librsvg-2.la
+%{_pkgconfigdir}/librsvg-2.0.pc
 %{_includedir}/librsvg-2
 %{_gtkdocdir}/%{name}
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/librsvg-2.a
