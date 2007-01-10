@@ -1,6 +1,3 @@
-# TODO
-# - check what browsers can be supported by browser plugin
-#
 # Conditional build
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
@@ -16,10 +13,9 @@ Summary(ru):	SVG ÂÉÂÌÉÏÔÅËÁ
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Name:		librsvg
 Version:	2.14.3
-Release:	2
+Release:	2.1
 Epoch:		1
 License:	LGPL v2+
-Vendor:		GNOME
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.14/%{name}-%{version}.tar.bz2
 # Source0-md5:	f926aa102ccc3ce99ddf257fcce8ebf4
@@ -27,22 +23,21 @@ URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cairo-devel >= 1.0.2
+%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.10.0-2}
 BuildRequires:	gtk+2-devel >= 2:2.8.6
 %{?with_apidocs:BuildRequires:	gtk-doc >= 0.9}
-%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.10.0-2}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
 %{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.12.1}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.13.2}
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.22
-%{?with_mozilla:BuildRequires:	mozilla-devel}
-%{?with_mozilla:BuildRequires:	rpmbuild(macros) >= 1.236}
-BuildRequires:	popt-devel >= 1.5
 BuildRequires:	pkgconfig
+BuildRequires:	popt-devel >= 1.5
+BuildRequires:	rpm-pythonprov
+%{?with_mozilla:BuildRequires:	rpmbuild(macros) >= 1.357}
 BuildRequires:	xcursor-devel
 BuildRequires:	xft-devel
 BuildRequires:	xrender-devel
-BuildRequires:	rpm-pythonprov
 %{!?with_gnomeprint:BuildConflicts:	libgnomeprintui-devel}
 Requires(post,postun):	gtk+2
 Requires:	cairo >= 1.0.2
@@ -54,13 +49,9 @@ Requires:	popt >= 1.5
 Obsoletes:	librsvg0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_plugindir	%{_libdir}/browser-plugins
-
-# list of supported browsers, in free form text
-%define		browsers	mozilla, mozilla-firefox, netscape, seamonkey
-
 %description
-An library to render SVG (scalable vector graphics), databased upon libart.
+An library to render SVG (scalable vector graphics), databased upon
+libart.
 
 %description -l pl
 Biblioteka do obs³ugi grafiki wektorowej.
@@ -132,8 +123,9 @@ librsvg.
 Summary:	SVG browse plugin using librsvg
 Summary(pl):	Wtyczka SVG do przegl±darski WWW wykorzystuj±ca librsvg
 Group:		X11/Applications/Multimedia
-Requires:	browser-plugins(%{_target_base_arch})
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	browser-plugins >= 2.0
+Requires:	browser-plugins(%{_target_base_arch})
 Provides:	mozilla-plugin-rsvg
 Obsoletes:	mozilla-plugin-rsvg
 
@@ -141,13 +133,9 @@ Obsoletes:	mozilla-plugin-rsvg
 This plugin allows Mozilla-family browsers to view Scalable Vector
 Graphics content using librsvg.
 
-Supported browsers: %{browsers}.
-
 %description -n browser-plugin-%{name} -l pl
 Ta wtyczka pozwala na ogl±danie grafiki w formacie SVG (Scalable
 Vector Graphics) w przegl±darkach z rodziny Mozilli.
-
-Obs³ugiwane przegl±darki: %{browsers}.
 
 %prep
 %setup -q
@@ -171,11 +159,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	plugindir=%{_plugindir} \
+	plugindir=%{_browserpluginsdir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/2.*/{engines,loaders}/*.{la,a}
-rm -f $RPM_BUILD_ROOT%{_plugindir}/*.{la,a}
+rm -f $RPM_BUILD_ROOT%{_browserpluginsdir}/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -190,34 +178,13 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 umask 022
 gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 
-%triggerin -n browser-plugin-%{name} -- mozilla
-%nsplugin_install -d %{_libdir}/mozilla/plugins libmozsvgdec.so
+%post -n browser-plugin-%{name}
+%update_browser_plugins
 
-%triggerun -n browser-plugin-%{name} -- mozilla
-%nsplugin_uninstall -d %{_libdir}/mozilla/plugins libmozsvgdec.so
-
-%triggerin -n browser-plugin-%{name} -- mozilla-firefox
-%nsplugin_install -d %{_libdir}/mozilla-firefox/plugins libmozsvgdec.so
-
-%triggerun -n browser-plugin-%{name} -- mozilla-forefox
-%nsplugin_uninstall -d %{_libdir}/mozilla-firefox/plugins libmozsvgdec.so
-
-%triggerin -n browser-plugin-%{name} -- netscape-common
-%nsplugin_install -d %{_libdir}/netscape/plugins libmozsvgdec.so
-
-%triggerun -n browser-plugin-%{name} -- netscape-common
-%nsplugin_uninstall -d %{_libdir}/netscape/plugins libmozsvgdec.so
-
-%triggerin -n browser-plugin-%{name} -- seamonkey
-%nsplugin_install -d %{_libdir}/seamonkey/plugins libmozsvgdec.so
-
-%triggerun -n browser-plugin-%{name} -- seamonkey
-%nsplugin_uninstall -d %{_libdir}/seamonkey/plugins libmozsvgdec.so
-
-# as rpm removes the old obsoleted package files after the triggers
-# are ran, add another trigger to make the links there.
-%triggerpostun -n browser-plugin-%{name} -- mozilla-plugin-rsvg
-%nsplugin_install -f -d %{_libdir}/mozilla/plugins libmozsvgdec.so
+%postun -n browser-plugin-%{name}
+if [ "$1" = 0 ]; then
+	%update_browser_plugins
+fi
 
 %files
 %defattr(644,root,root,755)
@@ -244,5 +211,5 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %if %{with mozilla}
 %files -n browser-plugin-%{name}
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_plugindir}/*.so
+%attr(755,root,root) %{_browserpluginsdir}/*.so
 %endif
