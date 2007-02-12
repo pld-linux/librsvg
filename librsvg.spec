@@ -7,10 +7,10 @@
 %bcond_without	gnomevfs	# build without gnome-vfs support
 #
 Summary:	A Raph's Library for Rendering SVG Data
-Summary(pl):	Biblioteka Raph's SVG do renderowania danych SVG
-Summary(pt_BR):	Biblioteca SVG
-Summary(ru):	SVG библиотека
-Summary(uk):	SVG б╕бл╕отека
+Summary(pl.UTF-8):   Biblioteka Raph's SVG do renderowania danych SVG
+Summary(pt_BR.UTF-8):   Biblioteca SVG
+Summary(ru.UTF-8):   SVG п╠п╦п╠п╩п╦п╬я┌п╣п╨п╟
+Summary(uk.UTF-8):   SVG п╠я√п╠п╩я√п╬я┌п╣п╨п╟
 Name:		librsvg
 Version:	2.16.1
 Release:	1
@@ -51,25 +51,25 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 An library to render SVG (scalable vector graphics), databased upon libart.
 
-%description -l pl
+%description -l pl.UTF-8
 Biblioteka do renderowania SVG (skalowalnej grafiki wektorowej) oparta
 na kodzie libart.
 
-%description -l pt_BR
-Biblioteca de ExtensЦo da Eazel.
+%description -l pt_BR.UTF-8
+Biblioteca de Extensцёo da Eazel.
 
-%description -l ru
-Библиотека SVG, базирующаяся на libart.
+%description -l ru.UTF-8
+п▒п╦п╠п╩п╦п╬я┌п╣п╨п╟ SVG, п╠п╟п╥п╦я─я┐я▌я┴п╟я▐я│я▐ п╫п╟ libart.
 
-%description -l uk
-Б╕бл╕отека SVG, базована на libart.
+%description -l uk.UTF-8
+п▒я√п╠п╩я√п╬я┌п╣п╨п╟ SVG, п╠п╟п╥п╬п╡п╟п╫п╟ п╫п╟ libart.
 
 %package devel
 Summary:	Include files for developing with librsvg
-Summary(pl):	Pliki nagЁСwkowe do tworzenia oprogramowania z u©yciem librsvg
-Summary(pt_BR):	Bibliotecas e arquivos de inclusЦo para desenvolvimento com a librsvg
-Summary(ru):	Библиотечные линки и файлы заголовков для разработки с librsvg
-Summary(uk):	Б╕бл╕отечн╕ л╕нки та файли заголовк╕в для розробки з librsvg
+Summary(pl.UTF-8):   Pliki nagе┌цЁwkowe do tworzenia oprogramowania z uе╪yciem librsvg
+Summary(pt_BR.UTF-8):   Bibliotecas e arquivos de inclusцёo para desenvolvimento com a librsvg
+Summary(ru.UTF-8):   п▒п╦п╠п╩п╦п╬я┌п╣я┤п╫я▀п╣ п╩п╦п╫п╨п╦ п╦ я└п╟п╧п╩я▀ п╥п╟пЁп╬п╩п╬п╡п╨п╬п╡ п╢п╩я▐ я─п╟п╥я─п╟п╠п╬я┌п╨п╦ я│ librsvg
+Summary(uk.UTF-8):   п▒я√п╠п╩я√п╬я┌п╣я┤п╫я√ п╩я√п╫п╨п╦ я┌п╟ я└п╟п╧п╩п╦ п╥п╟пЁп╬п╩п╬п╡п╨я√п╡ п╢п╩я▐ я─п╬п╥я─п╬п╠п╨п╦ п╥ librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	glib2 >= 1:2.12.0
@@ -85,38 +85,38 @@ Obsoletes:	librsvg0-devel
 This package provides the necessary development libraries and include
 files to allow you to develop with librsvg.
 
-%description devel -l pl
-Pakiet zawiera pliki nagЁСwkowe potrzebne do tworzenia oprogramowania
+%description devel -l pl.UTF-8
+Pakiet zawiera pliki nagе┌цЁwkowe potrzebne do tworzenia oprogramowania
 z wykorzystaniem librsvg.
 
-%description devel -l pt_BR
-Este pacote contИm os arquivos necessАrios para desenvolver com base
+%description devel -l pt_BR.UTF-8
+Este pacote contц╘m os arquivos necessц║rios para desenvolver com base
 na biblioteca librsvg.
 
-%description devel -l ru
-Этот пакет содержит необходимые файлы для разработки программ с
-использованием librsvg.
+%description devel -l ru.UTF-8
+п╜я┌п╬я┌ п©п╟п╨п╣я┌ я│п╬п╢п╣я─п╤п╦я┌ п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ я└п╟п╧п╩я▀ п╢п╩я▐ я─п╟п╥я─п╟п╠п╬я┌п╨п╦ п©я─п╬пЁя─п╟п╪п╪ я│
+п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ librsvg.
 
-%description devel -l uk
-Цей пакет м╕стить необх╕дн╕ файли для розробки програм з використанням
+%description devel -l uk.UTF-8
+п╕п╣п╧ п©п╟п╨п╣я┌ п╪я√я│я┌п╦я┌я▄ п╫п╣п╬п╠я┘я√п╢п╫я√ я└п╟п╧п╩п╦ п╢п╩я▐ я─п╬п╥я─п╬п╠п╨п╦ п©я─п╬пЁя─п╟п╪ п╥ п╡п╦п╨п╬я─п╦я│я┌п╟п╫п╫я▐п╪
 librsvg.
 
 %package static
 Summary:	Static libraries for developing with librsvg
-Summary(es):	Archivos estАticos necesarios para el desarrollo de aplicaciones con librsvg
-Summary(pl):	Statyczne biblioteki librsvg
-Summary(pt_BR):	Arquivos estАticos necessАrios para o desenvolvimento de aplicaГУes com librsvg
+Summary(es.UTF-8):   Archivos estц║ticos necesarios para el desarrollo de aplicaciones con librsvg
+Summary(pl.UTF-8):   Statyczne biblioteki librsvg
+Summary(pt_BR.UTF-8):   Arquivos estц║ticos necessц║rios para o desenvolvimento de aplicaц╖ц╣es com librsvg
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 This package contains static version of librsvg libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna wersja bibliotek librsvg.
 
-%description static -l pt_BR
-Bibliotecas estАticas para o desenvolvimento de aplicaГУes com
+%description static -l pt_BR.UTF-8
+Bibliotecas estц║ticas para o desenvolvimento de aplicaц╖ц╣es com
 librsvg.
 
 %prep
