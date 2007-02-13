@@ -7,10 +7,10 @@
 %bcond_without	gnomevfs	# build without gnome-vfs support
 #
 Summary:	A Raph's Library for Rendering SVG Data
-Summary(pl.UTF-8):   Biblioteka Raph's SVG do renderowania danych SVG
-Summary(pt_BR.UTF-8):   Biblioteca SVG
-Summary(ru.UTF-8):   SVG библиотека
-Summary(uk.UTF-8):   SVG бібліотека
+Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
+Summary(pt_BR.UTF-8):	Biblioteca SVG
+Summary(ru.UTF-8):	SVG библиотека
+Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	2.16.1
 Release:	1
@@ -66,10 +66,10 @@ Biblioteca de Extensão da Eazel.
 
 %package devel
 Summary:	Include files for developing with librsvg
-Summary(pl.UTF-8):   Pliki nagłówkowe do tworzenia oprogramowania z użyciem librsvg
-Summary(pt_BR.UTF-8):   Bibliotecas e arquivos de inclusão para desenvolvimento com a librsvg
-Summary(ru.UTF-8):   Библиотечные линки и файлы заголовков для разработки с librsvg
-Summary(uk.UTF-8):   Бібліотечні лінки та файли заголовків для розробки з librsvg
+Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia oprogramowania z użyciem librsvg
+Summary(pt_BR.UTF-8):	Bibliotecas e arquivos de inclusão para desenvolvimento com a librsvg
+Summary(ru.UTF-8):	Библиотечные линки и файлы заголовков для разработки с librsvg
+Summary(uk.UTF-8):	Бібліотечні лінки та файли заголовків для розробки з librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	glib2 >= 1:2.12.0
@@ -103,9 +103,9 @@ librsvg.
 
 %package static
 Summary:	Static libraries for developing with librsvg
-Summary(es.UTF-8):   Archivos estáticos necesarios para el desarrollo de aplicaciones con librsvg
-Summary(pl.UTF-8):   Statyczne biblioteki librsvg
-Summary(pt_BR.UTF-8):   Arquivos estáticos necessários para o desenvolvimento de aplicações com librsvg
+Summary(es.UTF-8):	Archivos estáticos necesarios para el desarrollo de aplicaciones con librsvg
+Summary(pl.UTF-8):	Statyczne biblioteki librsvg
+Summary(pt_BR.UTF-8):	Arquivos estáticos necessários para o desenvolvimento de aplicações com librsvg
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
