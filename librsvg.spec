@@ -13,13 +13,14 @@ Summary(ru):	SVG ÂÉÂÌÉÏÔÅËÁ
 Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
 Name:		librsvg
 Version:	2.14.3
-Release:	2.1
+Release:	3
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.14/%{name}-%{version}.tar.bz2
 # Source0-md5:	f926aa102ccc3ce99ddf257fcce8ebf4
 URL:		http://librsvg.sourceforge.net/
+Patch0:		%{name}-xulrunner.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cairo-devel >= 1.0.2
@@ -35,6 +36,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	rpm-pythonprov
 %{?with_mozilla:BuildRequires:	rpmbuild(macros) >= 1.357}
+%{?with_mozilla:BuildRequires:	xulrunner-devel}
 BuildRequires:	xcursor-devel
 BuildRequires:	xft-devel
 BuildRequires:	xrender-devel
@@ -139,14 +141,15 @@ Vector Graphics) w przegl±darkach z rodziny Mozilli.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%{!?with_mozilla:export MOZILLA_CONFIG=no}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
+	--enable-mozilla-plugin \
 	%{!?with_libcroco:--without-croco} \
 	%{!?with_libgsf:--without-svgz} \
 	%{!?with_gnomevfs:--disable-gnome-vfs} \
@@ -202,7 +205,9 @@ fi
 %{_libdir}/lib*.la
 %{_pkgconfigdir}/*.pc
 %{_includedir}/librsvg-2
+%if %{with apidocs}
 %{_gtkdocdir}/%{name}
+%endif
 
 %files static
 %defattr(644,root,root,755)
