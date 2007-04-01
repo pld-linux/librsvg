@@ -1,0 +1,11 @@
+--- librsvg-2.14.3/configure.in~	2006-04-01 19:30:35.000000000 +0300
++++ librsvg-2.14.3/configure.in	2007-04-01 21:26:42.204010055 +0300
+@@ -306,7 +306,7 @@
+ 
+ if test "x$test_mozilla_plugin" != "xno"; then
+    if test -z "$MOZILLA_CONFIG"; then
+-      AC_PATH_PROGS(MOZILLA_CONFIG, mozilla-config firefox-config, no)
++      AC_PATH_PROGS(MOZILLA_CONFIG, xulrunner-config mozilla-config firefox-config, no)
+    fi
+ 
+    if test "x$MOZILLA_CONFIG" != "xno"; then
