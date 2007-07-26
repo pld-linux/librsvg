@@ -12,37 +12,37 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.16.1
+Version:	2.18.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Vendor:		GNOME
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	37e046571097ff7ce77ae6e07f096324
+Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.18/%{name}-%{version}.tar.bz2
+# Source0-md5:	cf3b600b874c6940594db512b4260382
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cairo-devel >= 1.2.4
-BuildRequires:	glib2-devel >= 1:2.12.0
-BuildRequires:	gtk+2-devel >= 2:2.10.2
+BuildRequires:	glib2-devel >= 1:2.12.13
+BuildRequires:	gtk+2-devel >= 2:2.10.14
 BuildRequires:	gtk-doc-automake
-%{?with_apidocs:BuildRequires:	gtk-doc >= 1.7}
-%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.15.92}
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
+%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.18.0}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
-%{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.12.1}
-%{?with_libgsf:BuildRequires:	libgsf-devel >= 1.14.1}
+%{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.18.0}
+%{?with_libgsf:BuildRequires:	libgsf-devel >= 1.14.4}
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 1:2.6.26
+BuildRequires:	libxml2-devel >= 1:2.6.28
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 Requires(post,postun):	gtk+2
 Requires:	cairo >= 1.2.4
-Requires:	glib2 >= 1:2.12.0
-Requires:	gtk+2 >= 2:2.10.2
+Requires:	glib2 >= 1:2.12.13
+Requires:	gtk+2 >= 2:2.10.14
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
-%{?with_libgsf:Requires:	libgsf >= 1.14.1}
-Requires:	libxml2 >= 1:2.6.26
+%{?with_libgsf:Requires:	libgsf >= 1.14.4}
+Requires:	libxml2 >= 1:2.6.28
 Obsoletes:	browser-plugin-librsvg
 Obsoletes:	mozilla-plugin-rsvg
 Obsoletes:	librsvg0
@@ -72,13 +72,13 @@ Summary(ru.UTF-8):	Библиотечные линки и файлы загол�
 Summary(uk.UTF-8):	Бібліотечні лінки та файли заголовків для розробки з librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	glib2 >= 1:2.12.0
-%{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.15.92}
-Requires:	gtk+2-devel >= 2:2.10.2
+Requires:	glib2 >= 1:2.12.13
+%{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.18.0}
+Requires:	gtk+2-devel >= 2:2.10.14
 Requires:	libart_lgpl-devel >= 2.3.17
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
-%{?with_libgsf:Requires:	libgsf-devel >= 1.14.1}
-Requires:	libxml2-devel >= 2.6.26
+%{?with_libgsf:Requires:	libgsf-devel >= 1.14.4}
+Requires:	libxml2-devel >= 2.6.28
 Obsoletes:	librsvg0-devel
 
 %description devel
