@@ -5,7 +5,12 @@
 %bcond_without	libcroco	# build without CSS support through libcroco
 %bcond_without	gnomeprint	# build without gnome-print support in viewer
 %bcond_without	gnomevfs	# build without gnome-vfs support
+%bcond_without	gnome		# disable gnomeprint and gnomevfs
 #
+%if %{without gnome}
+%undefine	with_gnomeprint
+%undefine	with_gnomevfs
+%endif
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
