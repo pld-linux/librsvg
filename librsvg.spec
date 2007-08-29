@@ -17,13 +17,13 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.18.1
+Version:	2.18.2
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.18/%{name}-%{version}.tar.bz2
-# Source0-md5:	ab250b52cffb436e76f763e72f58e03d
+# Source0-md5:	4691ad687281e943260021272c28043e
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
