@@ -18,7 +18,7 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	2.18.2
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -123,6 +123,18 @@ Statyczna wersja bibliotek librsvg.
 Bibliotecas estáticas para o desenvolvimento de aplicações com
 librsvg.
 
+%package apidocs
+Summary:	librsvg API documentation
+Summary(pl.UTF-8):	Dokumentacja API biblioteki librsvg
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+librsvg API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki librsvg.
+
 %prep
 %setup -q
 
@@ -179,8 +191,13 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %{_libdir}/librsvg-2.la
 %{_pkgconfigdir}/librsvg-2.0.pc
 %{_includedir}/librsvg-2
-%{_gtkdocdir}/%{name}
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/librsvg-2.a
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/%{name}
+%endif
