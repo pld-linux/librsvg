@@ -53,14 +53,12 @@ Obsoletes:	librsvg0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-An library to render SVG (scalable vector graphics), databased upon libart.
+An library to render SVG (scalable vector graphics), databased upon
+libart.
 
 %description -l pl.UTF-8
 Biblioteka do renderowania SVG (skalowalnej grafiki wektorowej) oparta
 na kodzie libart.
-
-%description -l pt_BR.UTF-8
-Biblioteca de Extensão da Eazel.
 
 %description -l ru.UTF-8
 Библиотека SVG, базирующаяся на libart.
