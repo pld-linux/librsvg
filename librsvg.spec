@@ -17,22 +17,22 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.18.2
-Release:	2
+Version:	2.20.0
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.18/%{name}-%{version}.tar.bz2
-# Source0-md5:	4691ad687281e943260021272c28043e
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.20/%{name}-%{version}.tar.bz2
+# Source0-md5:	14cc098b68e72ee6a8cdd55edc1ea1b4
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cairo-devel >= 1.2.4
-BuildRequires:	glib2-devel >= 1:2.12.13
-BuildRequires:	gtk+2-devel >= 2:2.10.14
+BuildRequires:	glib2-devel >= 1:2.14.0
+BuildRequires:	gtk+2-devel >= 2:2.12.0
 BuildRequires:	gtk-doc-automake
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
-%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.18.0}
+%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.20.0}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
 %{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.18.0}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.14.4}
@@ -42,8 +42,8 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 Requires(post,postun):	gtk+2
 Requires:	cairo >= 1.2.4
-Requires:	glib2 >= 1:2.12.13
-Requires:	gtk+2 >= 2:2.10.14
+Requires:	glib2 >= 1:2.14.0
+Requires:	gtk+2 >= 2:2.12.0
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.14.4}
 Requires:	libxml2 >= 1:2.6.28
@@ -74,9 +74,9 @@ Summary(ru.UTF-8):	Библиотечные линки и файлы загол�
 Summary(uk.UTF-8):	Бібліотечні лінки та файли заголовків для розробки з librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	glib2 >= 1:2.12.13
-%{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.18.0}
-Requires:	gtk+2-devel >= 2:2.10.14
+Requires:	glib2 >= 1:2.14.0
+%{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.20.0}
+Requires:	gtk+2-devel >= 2:2.12.0
 Requires:	libart_lgpl-devel >= 2.3.17
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.14.4}
@@ -178,6 +178,7 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %doc ChangeLog AUTHORS NEWS
 %attr(755,root,root) %{_bindir}/rsvg*
 %attr(755,root,root) %{_libdir}/librsvg-2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/librsvg-2.so.2
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/*.so
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/loaders/*.so
 %{_mandir}/man1/rsvg.1*
