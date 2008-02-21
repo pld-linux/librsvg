@@ -3,50 +3,39 @@
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
 %bcond_without	libcroco	# build without CSS support through libcroco
-%bcond_without	gnomeprint	# build without gnome-print support in viewer
-%bcond_without	gnomevfs	# build without gnome-vfs support
-%bcond_without	gnome		# disable gnomeprint and gnomevfs
 #
-%if %{without gnome}
-%undefine	with_gnomeprint
-%undefine	with_gnomevfs
-%endif
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.20.0
+Version:	2.22.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
-Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.20/%{name}-%{version}.tar.bz2
-# Source0-md5:	14cc098b68e72ee6a8cdd55edc1ea1b4
+Group:		X11/Libraries
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.22/%{name}-%{version}.tar.bz2
+# Source0-md5:	14f2399c8b1a010cdc9167f966a45ee8
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	cairo-devel >= 1.2.4
-BuildRequires:	glib2-devel >= 1:2.14.0
-BuildRequires:	gtk+2-devel >= 2:2.12.0
+BuildRequires:	glib2-devel >= 1:2.15.5
+BuildRequires:	gtk+2-devel >= 2:2.12.8
 BuildRequires:	gtk-doc-automake
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
-%{?with_gnomevfs:BuildRequires:	gnome-vfs2-devel >= 2.20.0}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
-%{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.18.0}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.14.4}
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 1:2.6.28
+BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 Requires(post,postun):	gtk+2
-Requires:	cairo >= 1.2.4
-Requires:	glib2 >= 1:2.14.0
-Requires:	gtk+2 >= 2:2.12.0
+Requires:	glib2 >= 1:2.15.5
+Requires:	gtk+2 >= 2:2.12.8
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.14.4}
-Requires:	libxml2 >= 1:2.6.28
+Requires:	libxml2 >= 1:2.6.31
 Obsoletes:	browser-plugin-librsvg
 Obsoletes:	mozilla-plugin-rsvg
 Obsoletes:	librsvg0
@@ -72,15 +61,13 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia oprogramowania z użyciem lib
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos de inclusão para desenvolvimento com a librsvg
 Summary(ru.UTF-8):	Библиотечные линки и файлы заголовков для разработки с librsvg
 Summary(uk.UTF-8):	Бібліотечні лінки та файли заголовків для розробки з librsvg
-Group:		Development/Libraries
+Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	glib2 >= 1:2.14.0
-%{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.20.0}
-Requires:	gtk+2-devel >= 2:2.12.0
-Requires:	libart_lgpl-devel >= 2.3.17
+Requires:	glib2-devel >= 1:2.15.5
+Requires:	gtk+2-devel >= 2:2.12.8
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.14.4}
-Requires:	libxml2-devel >= 2.6.28
+Requires:	libxml2-devel >= 1:2.6.31
 Obsoletes:	librsvg0-devel
 
 %description devel
@@ -108,7 +95,7 @@ Summary:	Static libraries for developing with librsvg
 Summary(es.UTF-8):	Archivos estáticos necesarios para el desarrollo de aplicaciones con librsvg
 Summary(pl.UTF-8):	Statyczne biblioteki librsvg
 Summary(pt_BR.UTF-8):	Arquivos estáticos necessários para o desenvolvimento de aplicações com librsvg
-Group:		Development/Libraries
+Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
@@ -140,10 +127,9 @@ Dokumentacja API biblioteki librsvg.
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure \
-	%{!?with_gnomevfs:--disable-gnome-vfs} \
-	%{!?with_gnomeprint:--disable-gnome-print} \
 	--disable-mozilla-plugin \
 	%{?with_apidocs:--enable-gtk-doc} \
 	%{!?with_libcroco:--without-croco} \
@@ -176,11 +162,13 @@ gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog AUTHORS NEWS
-%attr(755,root,root) %{_bindir}/rsvg*
+%attr(755,root,root) %{_bindir}/rsvg
+%attr(755,root,root) %{_bindir}/rsvg-convert
+%attr(755,root,root) %{_bindir}/rsvg-view
 %attr(755,root,root) %{_libdir}/librsvg-2.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/librsvg-2.so.2
-%attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/*.so
-%attr(755,root,root) %{_libdir}/gtk-2.0/2.*/loaders/*.so
+%attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/libsvg.so
+%attr(755,root,root) %{_libdir}/gtk-2.0/2.*/loaders/svg_loader.so
 %{_mandir}/man1/rsvg.1*
 %{_pixmapsdir}/svg-viewer.svg
 
