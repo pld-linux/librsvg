@@ -20,7 +20,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.22/%{name}-%{version}.
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	glib2-devel >= 1:2.15.5
+BuildRequires:	glib2-devel >= 1:2.16.0
 BuildRequires:	gtk+2-devel >= 2:2.12.8
 BuildRequires:	gtk-doc-automake
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
@@ -31,7 +31,7 @@ BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 Requires(post,postun):	gtk+2
-Requires:	glib2 >= 1:2.15.5
+Requires:	glib2 >= 1:2.16.0
 Requires:	gtk+2 >= 2:2.12.8
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.14.4}
@@ -63,7 +63,7 @@ Summary(ru.UTF-8):	Библиотечные линки и файлы загол�
 Summary(uk.UTF-8):	Бібліотечні лінки та файли заголовків для розробки з librsvg
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	glib2-devel >= 1:2.15.5
+Requires:	glib2-devel >= 1:2.16.0
 Requires:	gtk+2-devel >= 2:2.12.8
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.14.4}
