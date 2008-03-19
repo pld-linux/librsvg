@@ -13,7 +13,7 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	2.14.3
-Release:	4
+Release:	5
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -185,11 +185,13 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 umask 022
 gdk-pixbuf-query-loaders%{pqext} > %{_gtkconfdir}/gdk-pixbuf.loaders
+exit 0
 
 %postun
 /sbin/ldconfig
 umask 022
 gdk-pixbuf-query-loaders%{pqext} > %{_gtkconfdir}/gdk-pixbuf.loaders
+exit 0
 
 %post -n browser-plugin-%{name}
 %update_browser_plugins
