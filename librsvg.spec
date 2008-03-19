@@ -51,6 +51,16 @@ Requires:	popt >= 1.5
 Obsoletes:	librsvg0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%if "%{_lib}" != "lib"
+%define		libext		%(lib="%{_lib}"; echo ${lib#lib})
+%define		_gtkconfdir	/etc/gtk%{libext}-2.0
+%define		pqext		-%{libext}
+%else
+%define		_gtkconfdir	/etc/gtk-2.0
+%define		pqext		%{nil}
+%endif
+
+
 %description
 An library to render SVG (scalable vector graphics), databased upon
 libart.
@@ -82,15 +92,6 @@ Requires:	libart_lgpl-devel >= 2.3.15
 %{?with_libgsf:Requires:	libgsf-devel >= 1.13.2}
 Requires:	libxml2-devel >= 2.6.22
 Obsoletes:	librsvg0-devel
-
-%if "%{_lib}" != "lib"
-%define		libext		%(lib="%{_lib}"; echo ${lib#lib})
-%define		pqext		-%{libext}
-%define		_gtkconfdir	/etc/gtk%{libext}-2.0
-%else
-%define		_gtkconfdir	/etc/gtk-2.0
-%define		pqext		%{nil}
-%endif
 
 %description devel
 This package provides the necessary development libraries and include
