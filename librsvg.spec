@@ -13,11 +13,11 @@ Summary(ru):	SVG библиотека
 Summary(uk):	SVG б╕бл╕отека
 Name:		librsvg
 Version:	2.14.3
-Release:	3
+Release:	4
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/librsvg/2.14/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.14/%{name}-%{version}.tar.bz2
 # Source0-md5:	f926aa102ccc3ce99ddf257fcce8ebf4
 URL:		http://librsvg.sourceforge.net/
 Patch0:		%{name}-xulrunner.patch
@@ -43,7 +43,7 @@ BuildRequires:	xrender-devel
 %{!?with_gnomeprint:BuildConflicts:	libgnomeprintui-devel}
 Requires(post,postun):	gtk+2
 Requires:	cairo >= 1.0.2
-Requires:	gtk+2 >= 2:2.8.6
+Requires:	gtk+2 >= 2:2.8.20-3.2
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.13.2}
 Requires:	libxml2 >= 1:2.6.22
@@ -82,6 +82,15 @@ Requires:	libart_lgpl-devel >= 2.3.15
 %{?with_libgsf:Requires:	libgsf-devel >= 1.13.2}
 Requires:	libxml2-devel >= 2.6.22
 Obsoletes:	librsvg0-devel
+
+%if "%{_lib}" != "lib"
+%define		libext		%(lib="%{_lib}"; echo ${lib#lib})
+%define		pqext		-%{libext}
+%define		_gtkconfdir	/etc/gtk%{libext}-2.0
+%else
+%define		_gtkconfdir	/etc/gtk-2.0
+%define		pqext		%{nil}
+%endif
 
 %description devel
 This package provides the necessary development libraries and include
@@ -174,12 +183,12 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 umask 022
-gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
+gdk-pixbuf-query-loaders%{pqext} > %{_gtkconfdir}/gdk-pixbuf.loaders
 
 %postun
 /sbin/ldconfig
 umask 022
-gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
+gdk-pixbuf-query-loaders%{pqext} > %{_gtkconfdir}/gdk-pixbuf.loaders
 
 %post -n browser-plugin-%{name}
 %update_browser_plugins
