@@ -7,10 +7,10 @@
 %bcond_without	mozilla		# do not build mozilla plugin
 #
 Summary:	A Raph's Library for Rendering SVG Data
-Summary(pl):	Biblioteka Raph's SVG
-Summary(pt_BR):	Biblioteca SVG
-Summary(ru):	SVG ÂÉÂÌÉÏÔÅËÁ
-Summary(uk):	SVG Â¦ÂÌ¦ÏÔÅËÁ
+Summary(pl.UTF-8):	Biblioteka Raph's SVG
+Summary(pt_BR.UTF-8):	Biblioteca SVG
+Summary(ru.UTF-8):	SVG Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ°
+Summary(uk.UTF-8):	SVG Ð±Ñ–Ð±Ð»Ñ–Ð¾Ñ‚ÐµÐºÐ°
 Name:		librsvg
 Version:	2.14.3
 Release:	4
@@ -55,24 +55,24 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 An library to render SVG (scalable vector graphics), databased upon
 libart.
 
-%description -l pl
-Biblioteka do obs³ugi grafiki wektorowej.
+%description -l pl.UTF-8
+Biblioteka do obsÅ‚ugi grafiki wektorowej.
 
-%description -l pt_BR
-Biblioteca de Extensão da Eazel.
+%description -l pt_BR.UTF-8
+Biblioteca de ExtensÃ£o da Eazel.
 
-%description -l ru
-âÉÂÌÉÏÔÅËÁ SVG, ÂÁÚÉÒÕÀÝÁÑÓÑ ÎÁ libart.
+%description -l ru.UTF-8
+Ð‘Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ° SVG, Ð±Ð°Ð·Ð¸Ñ€ÑƒÑŽÑ‰Ð°ÑÑÑ Ð½Ð° libart.
 
-%description -l uk
-â¦ÂÌ¦ÏÔÅËÁ SVG, ÂÁÚÏ×ÁÎÁ ÎÁ libart.
+%description -l uk.UTF-8
+Ð‘Ñ–Ð±Ð»Ñ–Ð¾Ñ‚ÐµÐºÐ° SVG, Ð±Ð°Ð·Ð¾Ð²Ð°Ð½Ð° Ð½Ð° libart.
 
 %package devel
 Summary:	Include files for developing with librsvg
-Summary(pl):	Pliki nag³ówkowe do tworzenia oprogramowania z u¿yciem librsvg
-Summary(pt_BR):	Bibliotecas e arquivos de inclusão para desenvolvimento com a librsvg
-Summary(ru):	âÉÂÌÉÏÔÅÞÎÙÅ ÌÉÎËÉ É ÆÁÊÌÙ ÚÁÇÏÌÏ×ËÏ× ÄÌÑ ÒÁÚÒÁÂÏÔËÉ Ó librsvg
-Summary(uk):	â¦ÂÌ¦ÏÔÅÞÎ¦ Ì¦ÎËÉ ÔÁ ÆÁÊÌÉ ÚÁÇÏÌÏ×Ë¦× ÄÌÑ ÒÏÚÒÏÂËÉ Ú librsvg
+Summary(pl.UTF-8):	Pliki nagÅ‚Ã³wkowe do tworzenia oprogramowania z uÅ¼yciem librsvg
+Summary(pt_BR.UTF-8):	Bibliotecas e arquivos de inclusÃ£o para desenvolvimento com a librsvg
+Summary(ru.UTF-8):	Ð‘Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÑ‡Ð½Ñ‹Ðµ Ð»Ð¸Ð½ÐºÐ¸ Ð¸ Ñ„Ð°Ð¹Ð»Ñ‹ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²ÐºÐ¾Ð² Ð´Ð»Ñ Ñ€Ð°Ð·Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ¸ Ñ librsvg
+Summary(uk.UTF-8):	Ð‘Ñ–Ð±Ð»Ñ–Ð¾Ñ‚ÐµÑ‡Ð½Ñ– Ð»Ñ–Ð½ÐºÐ¸ Ñ‚Ð° Ñ„Ð°Ð¹Ð»Ð¸ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²ÐºÑ–Ð² Ð´Ð»Ñ Ñ€Ð¾Ð·Ñ€Ð¾Ð±ÐºÐ¸ Ð· librsvg
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %{?with_gnomevfs:Requires:	gnome-vfs2-devel >= 2.10.0-2}
@@ -96,43 +96,43 @@ Obsoletes:	librsvg0-devel
 This package provides the necessary development libraries and include
 files to allow you to develop with librsvg.
 
-%description devel -l pl
-Pakiet zawiera pliki nag³ówkowe potrzebne do tworzenia oprogramowania
+%description devel -l pl.UTF-8
+Pakiet zawiera pliki nagÅ‚Ã³wkowe potrzebne do tworzenia oprogramowania
 z wykorzystaniem librsvg.
 
-%description devel -l pt_BR
-Este pacote contém os arquivos necessários para desenvolver com base
+%description devel -l pt_BR.UTF-8
+Este pacote contÃ©m os arquivos necessÃ¡rios para desenvolver com base
 na biblioteca librsvg.
 
-%description devel -l ru
-üÔÏÔ ÐÁËÅÔ ÓÏÄÅÒÖÉÔ ÎÅÏÂÈÏÄÉÍÙÅ ÆÁÊÌÙ ÄÌÑ ÒÁÚÒÁÂÏÔËÉ ÐÒÏÇÒÁÍÍ Ó
-ÉÓÐÏÌØÚÏ×ÁÎÉÅÍ librsvg.
+%description devel -l ru.UTF-8
+Ð­Ñ‚Ð¾Ñ‚ Ð¿Ð°ÐºÐµÑ‚ ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ñ‚ Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ñ‹Ðµ Ñ„Ð°Ð¹Ð»Ñ‹ Ð´Ð»Ñ Ñ€Ð°Ð·Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ¸ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼ Ñ
+Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸ÐµÐ¼ librsvg.
 
-%description devel -l uk
-ãÅÊ ÐÁËÅÔ Í¦ÓÔÉÔØ ÎÅÏÂÈ¦ÄÎ¦ ÆÁÊÌÉ ÄÌÑ ÒÏÚÒÏÂËÉ ÐÒÏÇÒÁÍ Ú ×ÉËÏÒÉÓÔÁÎÎÑÍ
+%description devel -l uk.UTF-8
+Ð¦ÐµÐ¹ Ð¿Ð°ÐºÐµÑ‚ Ð¼Ñ–ÑÑ‚Ð¸Ñ‚ÑŒ Ð½ÐµÐ¾Ð±Ñ…Ñ–Ð´Ð½Ñ– Ñ„Ð°Ð¹Ð»Ð¸ Ð´Ð»Ñ Ñ€Ð¾Ð·Ñ€Ð¾Ð±ÐºÐ¸ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼ Ð· Ð²Ð¸ÐºÐ¾Ñ€Ð¸ÑÑ‚Ð°Ð½Ð½ÑÐ¼
 librsvg.
 
 %package static
 Summary:	Static libraries for developing with librsvg
-Summary(es):	Archivos estáticos necesarios para el desarrollo de aplicaciones con librsvg
-Summary(pl):	Statyczne biblioteki librsvg
-Summary(pt_BR):	Arquivos estáticos necessários para o desenvolvimento de aplicações com librsvg
+Summary(es.UTF-8):	Archivos estÃ¡ticos necesarios para el desarrollo de aplicaciones con librsvg
+Summary(pl.UTF-8):	Statyczne biblioteki librsvg
+Summary(pt_BR.UTF-8):	Arquivos estÃ¡ticos necessÃ¡rios para o desenvolvimento de aplicaÃ§Ãµes com librsvg
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 This package contains static version of librsvg libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna wersja bibliotek librsvg.
 
-%description static -l pt_BR
-Bibliotecas estáticas para o desenvolvimento de aplicações com
+%description static -l pt_BR.UTF-8
+Bibliotecas estÃ¡ticas para o desenvolvimento de aplicaÃ§Ãµes com
 librsvg.
 
 %package -n browser-plugin-%{name}
 Summary:	SVG browse plugin using librsvg
-Summary(pl):	Wtyczka SVG do przegl±darski WWW wykorzystuj±ca librsvg
+Summary(pl.UTF-8):	Wtyczka SVG do przeglÄ…darski WWW wykorzystujÄ…ca librsvg
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	browser-plugins >= 2.0
@@ -144,9 +144,9 @@ Obsoletes:	mozilla-plugin-rsvg
 This plugin allows Mozilla-family browsers to view Scalable Vector
 Graphics content using librsvg.
 
-%description -n browser-plugin-%{name} -l pl
-Ta wtyczka pozwala na ogl±danie grafiki w formacie SVG (Scalable
-Vector Graphics) w przegl±darkach z rodziny Mozilli.
+%description -n browser-plugin-%{name} -l pl.UTF-8
+Ta wtyczka pozwala na oglÄ…danie grafiki w formacie SVG (Scalable
+Vector Graphics) w przeglÄ…darkach z rodziny Mozilli.
 
 %prep
 %setup -q
