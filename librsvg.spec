@@ -11,7 +11,7 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	2.22.2
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -40,6 +40,16 @@ Obsoletes:	browser-plugin-librsvg
 Obsoletes:	mozilla-plugin-rsvg
 Obsoletes:	librsvg0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# see gtk+2.spec for source of these ifdefs
+%if "%{_lib}" != "lib"
+%define         libext          %(lib="%{_lib}"; echo ${lib#lib})
+%define         gtketcdir	/etc/gtk%{libext}-2.0
+%define         pqext           -%{libext}
+%else
+%define         gtketcdir	/etc/gtk-2.0
+%define         pqext           %{nil}
+%endif
 
 %description
 An library to render SVG (scalable vector graphics), databased upon
@@ -152,12 +162,12 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 umask 022
-gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
+%{_bindir}/gdk-pixbuf-query-loaders%{pqext} > %{gtketcdir}/gdk-pixbuf.loaders
 
 %postun
 /sbin/ldconfig
 umask 022
-gdk-pixbuf-query-loaders > %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
+%{_bindir}/gdk-pixbuf-query-loaders%{pqext} > %{gtketcdir}/gdk-pixbuf.loaders
 
 %files
 %defattr(644,root,root,755)
