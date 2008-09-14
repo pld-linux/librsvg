@@ -3,6 +3,7 @@
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
 %bcond_without	libcroco	# build without CSS support through libcroco
+%bcond_without	static_libs	# don't build static library
 #
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
@@ -22,7 +23,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 1:2.16.0
 BuildRequires:	gtk+2-devel >= 2:2.12.8
-BuildRequires:	gtk-doc-automake
+%{?with_apidocs:BuildRequires:	gtk-doc-automake}
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.14.4}
@@ -133,6 +134,12 @@ Dokumentacja API biblioteki librsvg.
 %prep
 %setup -q
 
+%if !%{with apidocs}
+echo 'EXTRA_DIST=' > gtk-doc.make
+echo 'CLEANFILES=' > gtk-doc.make
+echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
+%endif
+
 %build
 %{__libtoolize}
 %{__aclocal}
@@ -141,6 +148,7 @@ Dokumentacja API biblioteki librsvg.
 %{__automake}
 %configure \
 	--disable-mozilla-plugin \
+	%{!?with_static_libs:--disable-static} \
 	%{?with_apidocs:--enable-gtk-doc} \
 	%{!?with_libcroco:--without-croco} \
 	%{!?with_libgsf:--without-svgz} \
@@ -167,7 +175,9 @@ umask 022
 %postun
 /sbin/ldconfig
 umask 022
-%{_bindir}/gdk-pixbuf-query-loaders%{pqext} > %{gtketcdir}/gdk-pixbuf.loaders
+if [ -x %{_bindir}/gdk-pixbuf-query-loaders%{pqext} ]; then
+  %{_bindir}/gdk-pixbuf-query-loaders%{pqext} > %{gtketcdir}/gdk-pixbuf.loaders
+fi
 
 %files
 %defattr(644,root,root,755)
@@ -189,9 +199,11 @@ umask 022
 %{_pkgconfigdir}/librsvg-2.0.pc
 %{_includedir}/librsvg-2
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/librsvg-2.a
+%endif
 
 %if %{with apidocs}
 %files apidocs
