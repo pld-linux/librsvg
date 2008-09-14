@@ -135,7 +135,6 @@ Dokumentacja API biblioteki librsvg.
 %setup -q
 
 %if !%{with apidocs}
-echo 'EXTRA_DIST=' > gtk-doc.make
 echo 'CLEANFILES=' > gtk-doc.make
 echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %endif
