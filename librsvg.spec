@@ -31,6 +31,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
+Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gtk+2
 Requires:	glib2 >= 1:2.16.0
 Requires:	gtk+2 >= 2:2.12.8
@@ -175,7 +176,7 @@ umask 022
 /sbin/ldconfig
 umask 022
 if [ -x %{_bindir}/gdk-pixbuf-query-loaders%{pqext} ]; then
-  %{_bindir}/gdk-pixbuf-query-loaders%{pqext} > %{gtketcdir}/gdk-pixbuf.loaders
+	%{_bindir}/gdk-pixbuf-query-loaders%{pqext} > %{gtketcdir}/gdk-pixbuf.loaders
 fi
 
 %files
