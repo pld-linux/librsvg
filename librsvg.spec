@@ -21,10 +21,11 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.26/%{name}-%{version}.
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	docbook-dtd412-xml
 BuildRequires:	glib2-devel >= 1:2.16.0
 BuildRequires:	gtk+2-devel >= 2:2.12.8
-%{?with_apidocs:BuildRequires:	gtk-doc-automake}
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
+%{?with_apidocs:BuildRequires:	gtk-doc-automake}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.14.4}
 BuildRequires:	libtool
@@ -39,8 +40,8 @@ Requires:	gtk+2 >= 2:2.12.8
 %{?with_libgsf:Requires:	libgsf >= 1.14.4}
 Requires:	libxml2 >= 1:2.6.31
 Obsoletes:	browser-plugin-librsvg
-Obsoletes:	mozilla-plugin-rsvg
 Obsoletes:	librsvg0
+Obsoletes:	mozilla-plugin-rsvg
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # see gtk+2.spec for source of these ifdefs
