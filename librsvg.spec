@@ -12,7 +12,7 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	2.26.0
-Release:	2
+Release:	3
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -142,6 +142,7 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %endif
 
 %build
+%{?with_apidocs:%{__gtkdocize}}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
