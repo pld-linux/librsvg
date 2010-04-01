@@ -11,13 +11,13 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.26.1
+Version:	2.26.2
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.26/%{name}-%{version}.tar.bz2
-# Source0-md5:	d1da797fa0a84da9d1849bb1a1575464
+# Source0-md5:	6bb1993f9180176e45d6084089f47aa8
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -149,6 +149,7 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %{__autoheader}
 %{__automake}
 %configure \
+	--disable-silent-rules \
 	%{!?with_static_libs:--disable-static} \
 	%{?with_apidocs:--enable-gtk-doc} \
 	%{!?with_libcroco:--without-croco} \
