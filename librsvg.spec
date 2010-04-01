@@ -11,19 +11,19 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.26.0
-Release:	3
+Version:	2.26.1
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.26/%{name}-%{version}.tar.bz2
-# Source0-md5:	65dbd726a514fe8b797d26254b8efc1e
+# Source0-md5:	d1da797fa0a84da9d1849bb1a1575464
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	glib2-devel >= 1:2.16.0
-BuildRequires:	gtk+2-devel >= 2:2.12.8
+BuildRequires:	gtk+2-devel >= 2:2.16.0
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
@@ -35,7 +35,7 @@ BuildRequires:	rpm-pythonprov
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gtk+2
 Requires:	glib2 >= 1:2.16.0
-Requires:	gtk+2 >= 2:2.12.8
+Requires:	gtk+2 >= 2:2.16.0
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.14.4}
 Requires:	libxml2 >= 1:2.6.31
@@ -77,7 +77,7 @@ Summary(uk.UTF-8):	Бібліотечні лінки та файли загол�
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	glib2-devel >= 1:2.16.0
-Requires:	gtk+2-devel >= 2:2.12.8
+Requires:	gtk+2-devel >= 2:2.16.0
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.14.4}
 Requires:	libxml2-devel >= 1:2.6.31
@@ -149,7 +149,6 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-mozilla-plugin \
 	%{!?with_static_libs:--disable-static} \
 	%{?with_apidocs:--enable-gtk-doc} \
 	%{!?with_libcroco:--without-croco} \
