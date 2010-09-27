@@ -11,20 +11,20 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.26.3
+Version:	2.32.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.26/%{name}-%{version}.tar.bz2
-# Source0-md5:	8df68c2c02cdf2a96a92b43bf737bf9c
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.32/%{name}-%{version}.tar.bz2
+# Source0-md5:	b015a9bd80143ec876af489d882dc28b
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	glib2-devel >= 1:2.16.0
+BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gtk+2-devel >= 2:2.16.0
-%{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.13}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.14.4}
@@ -33,8 +33,8 @@ BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 Requires(post,postun):	/sbin/ldconfig
-Requires(post,postun):	gtk+2
-Requires:	glib2 >= 1:2.16.0
+Requires(post,postun):	gdk-pixbuf2
+Requires:	glib2 >= 1:2.24.0
 Requires:	gtk+2 >= 2:2.16.0
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.14.4}
@@ -76,7 +76,7 @@ Summary(ru.UTF-8):	Библиотечные линки и файлы загол�
 Summary(uk.UTF-8):	Бібліотечні лінки та файли заголовків для розробки з librsvg
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	glib2-devel >= 1:2.16.0
+Requires:	glib2-devel >= 1:2.24.0
 Requires:	gtk+2-devel >= 2:2.16.0
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.14.4}
@@ -164,7 +164,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/2.*/{engines,loaders}/*.{la,a}
+rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/2.*/engines/*.{la,a}
+rm -f $RPM_BUILD_ROOT%{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -172,13 +173,14 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 umask 022
-%{_bindir}/gdk-pixbuf-query-loaders%{pqext} > %{gtketcdir}/gdk-pixbuf.loaders
+%{_bindir}/gdk-pixbuf-query-loaders%{pqext} --update-cache
+exit 0
 
 %postun
 /sbin/ldconfig
 umask 022
 if [ -x %{_bindir}/gdk-pixbuf-query-loaders%{pqext} ]; then
-	%{_bindir}/gdk-pixbuf-query-loaders%{pqext} > %{gtketcdir}/gdk-pixbuf.loaders
+	%{_bindir}/gdk-pixbuf-query-loaders%{pqext} --update-cache
 fi
 
 %files
@@ -190,7 +192,8 @@ fi
 %attr(755,root,root) %{_libdir}/librsvg-2.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/librsvg-2.so.2
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/libsvg.so
-%attr(755,root,root) %{_libdir}/gtk-2.0/2.*/loaders/svg_loader.so
+%attr(755,root,root) %{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader-svg.so
+%{_datadir}/themes/bubble
 %{_mandir}/man1/rsvg.1*
 %{_pixmapsdir}/svg-viewer.svg
 
@@ -199,7 +202,7 @@ fi
 %attr(755,root,root) %{_libdir}/librsvg-2.so
 %{_libdir}/librsvg-2.la
 %{_pkgconfigdir}/librsvg-2.0.pc
-%{_includedir}/librsvg-2
+%{_includedir}/librsvg-2.0
 
 %if %{with static_libs}
 %files static
