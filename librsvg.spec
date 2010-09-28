@@ -12,7 +12,7 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	2.32.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -32,6 +32,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
+BuildRequires:	sed >= 4.0
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gdk-pixbuf2
 Requires:	glib2 >= 1:2.24.0
@@ -47,10 +48,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # see gtk+2.spec for source of these ifdefs
 %if "%{_lib}" != "lib"
 %define         libext          %(lib="%{_lib}"; echo ${lib#lib})
-%define         gtketcdir	/etc/gtk%{libext}-2.0
 %define         pqext           -%{libext}
 %else
-%define         gtketcdir	/etc/gtk-2.0
 %define         pqext           %{nil}
 %endif
 
@@ -140,6 +139,8 @@ Dokumentacja API biblioteki librsvg.
 echo 'CLEANFILES=' > gtk-doc.make
 echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %endif
+
+%{__sed} -e 's/gdk-pixbuf-query-loaders/gdk-pixbuf-query-loaders%{pqext}/' -i configure.in
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
