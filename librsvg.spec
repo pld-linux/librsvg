@@ -22,6 +22,7 @@ URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
+BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gtk+2-devel >= 2:2.16.0
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.13}
@@ -36,6 +37,7 @@ BuildRequires:	sed >= 4.0
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gdk-pixbuf2
 Requires:	glib2 >= 1:2.24.0
+Requires:	gdk-pixbuf2 >= 2.0
 Requires:	gtk+2 >= 2:2.16.0
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.14.4}
@@ -76,6 +78,7 @@ Summary(uk.UTF-8):	Бібліотечні лінки та файли загол�
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	glib2-devel >= 1:2.24.0
+Requires:	gdk-pixbuf2-devel >= 2.0
 Requires:	gtk+2-devel >= 2:2.16.0
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.14.4}
@@ -165,8 +168,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/2.*/engines/*.{la,a}
-rm -f $RPM_BUILD_ROOT%{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/2.*/engines/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
