@@ -1,4 +1,6 @@
 #
+# TODO:	- separate libs subpackage, current scheme conflicts on multilib
+#
 # Conditional build
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
@@ -36,8 +38,8 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	sed >= 4.0
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gdk-pixbuf2
-Requires:	glib2 >= 1:2.24.0
 Requires:	gdk-pixbuf2 >= 2.0
+Requires:	glib2 >= 1:2.24.0
 Requires:	gtk+2 >= 2:2.16.0
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.14.4}
@@ -170,6 +172,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/2.*/engines/*.{la,a}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/librsvg-2.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -177,8 +180,7 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 umask 022
-%{_bindir}/gdk-pixbuf-query-loaders%{pqext} --update-cache
-exit 0
+%{_bindir}/gdk-pixbuf-query-loaders%{pqext} --update-cache || :
 
 %postun
 /sbin/ldconfig
@@ -193,10 +195,10 @@ fi
 %attr(755,root,root) %{_bindir}/rsvg
 %attr(755,root,root) %{_bindir}/rsvg-convert
 %attr(755,root,root) %{_bindir}/rsvg-view
+%attr(755,root,root) %{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader-svg.so
+%attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/libsvg.so
 %attr(755,root,root) %{_libdir}/librsvg-2.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/librsvg-2.so.2
-%attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/libsvg.so
-%attr(755,root,root) %{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader-svg.so
 %{_datadir}/themes/bubble
 %{_mandir}/man1/rsvg.1*
 %{_pixmapsdir}/svg-viewer.svg
@@ -204,7 +206,6 @@ fi
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/librsvg-2.so
-%{_libdir}/librsvg-2.la
 %{_pkgconfigdir}/librsvg-2.0.pc
 %{_includedir}/librsvg-2.0
 
