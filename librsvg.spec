@@ -1,5 +1,8 @@
 #
 # TODO:	- separate libs subpackage, current scheme conflicts on multilib
+# shouldn't be a problem:
+# - rsvg script doesn't differ
+# - rsvg-{convert,view} are ELF binaries with proper colors in rpm, so should be handled properly
 #
 # Conditional build
 %bcond_without	apidocs		# disable gtk-doc
