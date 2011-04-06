@@ -6,6 +6,7 @@
 #
 # Conditional build
 %bcond_without	apidocs		# disable gtk-doc
+%bcond_without	gtk3		# disable gtk+3
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
 %bcond_without	libcroco	# build without CSS support through libcroco
 %bcond_without	static_libs	# don't build static library
@@ -30,7 +31,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gtk+2-devel >= 2:2.16.0
-BuildRequires:	gtk+3-devel >= 3.0.0
+%{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.13}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
@@ -45,7 +46,7 @@ Requires(post,postun):	gdk-pixbuf2
 Requires:	gdk-pixbuf2 >= 2.0
 Requires:	glib2 >= 1:2.24.0
 Requires:	gtk+2 >= 2:2.16.0
-Requires:	gtk+3 >= 3.0.0
+%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.14.4}
 Requires:	libxml2 >= 1:2.6.31
@@ -199,7 +200,7 @@ fi
 %doc ChangeLog AUTHORS NEWS
 %attr(755,root,root) %{_bindir}/rsvg
 %attr(755,root,root) %{_bindir}/rsvg-convert
-%attr(755,root,root) %{_bindir}/rsvg-view-3
+%{?with_gtk3:%attr(755,root,root) %{_bindir}/rsvg-view-3}
 %attr(755,root,root) %{_bindir}/rsvg-view
 %attr(755,root,root) %{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader-svg.so
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/libsvg.so
