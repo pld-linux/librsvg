@@ -1,9 +1,4 @@
 #
-# TODO:	- separate libs subpackage, current scheme conflicts on multilib
-# shouldn't be a problem:
-# - rsvg script doesn't differ
-# - rsvg-{convert,view} are ELF binaries with proper colors in rpm, so should be handled properly
-#
 # Conditional build
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	gtk3		# disable gtk+3
@@ -42,11 +37,9 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sed >= 4.0
 Requires(post,postun):	/sbin/ldconfig
-Requires(post,postun):	gdk-pixbuf2
+Requires(post,postun):	gdk-pixbuf2 >= 2.0
 Requires:	gdk-pixbuf2 >= 2.0
 Requires:	glib2 >= 1:2.24.0
-Requires:	gtk+2 >= 2:2.16.0
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.14.4}
 Requires:	libxml2 >= 1:2.6.31
@@ -55,7 +48,7 @@ Obsoletes:	librsvg0
 Obsoletes:	mozilla-plugin-rsvg
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-# see gtk+2.spec for source of these ifdefs
+# see gdk-pixbuf2.spec for source of these ifdefs
 %if "%{_lib}" != "lib"
 %define         libext          %(lib="%{_lib}"; echo ${lib#lib})
 %define         pqext           -%{libext}
@@ -143,6 +136,33 @@ librsvg API documentation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API biblioteki librsvg.
 
+%package gtk+2
+Summary:	librsvg/GTK+2 based SVG theme engine and viewer
+Summary(pl.UTF-8):	Silnik motywów oraz przeglądarka plików SVG oparte na bibliotekach librsvg/GTK+2
+Group:		X11/Libraries
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	gtk+2 >= 2:2.16.0
+
+%description gtk+2
+librsvg/GTK+2 based SVG theme engine and viewer.
+
+%description gtk+2 -l pl.UTF-8
+Silnik motywów oraz przeglądarka plików SVG oparte na bibliotekach
+librsvg/GTK+2.
+
+%package gtk+3
+Summary:	librsvg/GTK+3 based SVG theme and viewer
+Summary(pl.UTF-8):	Motyw i przeglądarka plików SVG oparte na bibliotekach librsvg/GTK+3
+Group:		X11/Libraries
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	gtk+3 >= 3.0.0
+
+%description gtk+3
+librsvg/GTK+3 based SVG theme and viewer.
+
+%description gtk+3 -l pl.UTF-8
+Motyw i przeglądarka plików SVG oparte na bibliotekach librsvg/GTK+3.
+
 %prep
 %setup -q
 
@@ -200,21 +220,18 @@ fi
 %doc ChangeLog AUTHORS NEWS
 %attr(755,root,root) %{_bindir}/rsvg
 %attr(755,root,root) %{_bindir}/rsvg-convert
-%{?with_gtk3:%attr(755,root,root) %{_bindir}/rsvg-view-3}
-%attr(755,root,root) %{_bindir}/rsvg-view
-%attr(755,root,root) %{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader-svg.so
-%attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/libsvg.so
 %attr(755,root,root) %{_libdir}/librsvg-2.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/librsvg-2.so.2
-%{_datadir}/themes/bubble
+%attr(755,root,root) %{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader-svg.so
+%dir %{_datadir}/themes/bubble
 %{_mandir}/man1/rsvg.1*
 %{_pixmapsdir}/svg-viewer.svg
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/librsvg-2.so
-%{_pkgconfigdir}/librsvg-2.0.pc
 %{_includedir}/librsvg-2.0
+%{_pkgconfigdir}/librsvg-2.0.pc
 
 %if %{with static_libs}
 %files static
@@ -226,4 +243,17 @@ fi
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/%{name}
+%endif
+
+%files gtk+2
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/rsvg-view
+%attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/libsvg.so
+%{_datadir}/themes/bubble/gtk-2.0
+
+%if %{with gtk3}
+%files gtk+3
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/rsvg-view-3
+%{_datadir}/themes/bubble/gtk-3.0
 %endif
