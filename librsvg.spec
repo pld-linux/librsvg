@@ -12,13 +12,13 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.34.0
+Version:	2.34.1
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.34/%{name}-%{version}.tar.bz2
-# Source0-md5:	5eb2fcd0765aa5e47a4999985e3c27ab
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.34/%{name}-%{version}.tar.xz
+# Source0-md5:	1f363ec36eb1428ccbdd155325717ae8
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
@@ -36,6 +36,8 @@ BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sed >= 4.0
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gdk-pixbuf2 >= 2.0
 Requires:	gdk-pixbuf2 >= 2.0
