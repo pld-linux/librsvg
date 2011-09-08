@@ -28,11 +28,12 @@ BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gtk+2-devel >= 2:2.16.0
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.13}
-%{?with_apidocs:BuildRequires:	gtk-doc-automake}
+%{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.13}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
 %{?with_libgsf:BuildRequires:	libgsf-devel >= 1.14.4}
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.31
+BuildRequires:	pango-devel >= 1:1.10.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sed >= 4.0
@@ -45,6 +46,7 @@ Requires:	glib2 >= 1:2.24.0
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf >= 1.14.4}
 Requires:	libxml2 >= 1:2.6.31
+Requires:	pango >= 1:1.10.0
 Obsoletes:	browser-plugin-librsvg
 Obsoletes:	librsvg0
 Obsoletes:	mozilla-plugin-rsvg
@@ -86,6 +88,7 @@ Requires:	gtk+2-devel >= 2:2.16.0
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.14.4}
 Requires:	libxml2-devel >= 1:2.6.31
+Requires:	pango-devel >= 1:1.10.0
 Obsoletes:	librsvg0-devel
 
 %description devel
