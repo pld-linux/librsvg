@@ -25,6 +25,7 @@ BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	glib2-devel >= 1:2.24.0
+BuildRequires:	gobject-introspection-devel >= 0.18.8
 BuildRequires:	gtk+2-devel >= 2:2.16.0
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.13}
@@ -189,6 +190,7 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 	--disable-silent-rules \
 	%{!?with_static_libs:--disable-static} \
 	%{?with_apidocs:--enable-gtk-doc} \
+	--enable-introspection \
 	%{!?with_libcroco:--without-croco} \
 	%{!?with_libgsf:--without-svgz} \
 	--with-html-dir=%{_gtkdocdir}/%{name}
@@ -227,6 +229,7 @@ fi
 %attr(755,root,root) %{_bindir}/rsvg-convert
 %attr(755,root,root) %{_libdir}/librsvg-2.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/librsvg-2.so.2
+%{_libdir}/girepository-1.0/Rsvg-2.0.typelib
 %attr(755,root,root) %{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader-svg.so
 %dir %{_datadir}/themes/bubble
 %{_mandir}/man1/rsvg.1*
@@ -236,6 +239,7 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/librsvg-2.so
 %{_includedir}/librsvg-2.0
+%{_datadir}/gir-1.0/Rsvg-2.0.gir
 %{_pkgconfigdir}/librsvg-2.0.pc
 
 %if %{with static_libs}
