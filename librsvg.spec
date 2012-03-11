@@ -1,24 +1,29 @@
 #
 # Conditional build
 %bcond_without	apidocs		# disable gtk-doc
-%bcond_without	gtk3		# disable gtk+3
+%bcond_with	gtk2		# enable gtk+2
 %bcond_without	libgsf		# build without libgsf (used for run-time decompression)
 %bcond_without	libcroco	# build without CSS support through libcroco
 %bcond_without	static_libs	# don't build static library
 #
+
+%define		ver	2.35
+%define		pver	2
+
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.34.2
+Version:	%{ver}.%{pver}
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.34/%{name}-%{version}.tar.xz
-# Source0-md5:	5287d0066eb9e3ac55d4e3597694232b
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{ver}/%{name}-%{version}.tar.xz
+# Source0-md5:	1e06889f88b42c9ed5c021a5847dfb45
+Source1:	rsvg
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
@@ -26,8 +31,8 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gobject-introspection-devel >= 0.18.8
-BuildRequires:	gtk+2-devel >= 2:2.16.0
-%{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
+%{?with_gtk2:BuildRequires:	gtk+2-devel >= 2:2.16.0}
+BuildRequires:	gtk+3-devel >= 3.0.0
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.13}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.13}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
@@ -85,7 +90,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	glib2-devel >= 1:2.24.0
 Requires:	gdk-pixbuf2-devel >= 2.0
-Requires:	gtk+2-devel >= 2:2.16.0
+Requires:	gtk+3-devel >= 3.0.0
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
 %{?with_libgsf:Requires:	libgsf-devel >= 1.14.4}
 Requires:	libxml2-devel >= 1:2.6.31
@@ -207,6 +212,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/*.{la,a}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/librsvg-2.la
 
+%{__ln_s} rsvg-view-3 $RPM_BUILD_ROOT%{_bindir}/rsvg-view
+
+install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -233,7 +242,7 @@ fi
 %attr(755,root,root) %{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader-svg.so
 %dir %{_datadir}/themes/bubble
 %{_mandir}/man1/rsvg.1*
-%{_pixmapsdir}/svg-viewer.svg
+#%{_pixmapsdir}/svg-viewer.svg
 
 %files devel
 %defattr(644,root,root,755)
@@ -254,15 +263,15 @@ fi
 %{_gtkdocdir}/%{name}
 %endif
 
+%if %{with gtk2}
 %files gtk+2
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/rsvg-view
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/libsvg.so
 %{_datadir}/themes/bubble/gtk-2.0
+%endif
 
-%if %{with gtk3}
 %files gtk+3
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/rsvg-view-3
+%attr(755,root,root) %{_bindir}/rsvg-view
 %{_datadir}/themes/bubble/gtk-3.0
-%endif
