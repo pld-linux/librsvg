@@ -17,7 +17,7 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	%{ver}.%{pver}
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -181,8 +181,6 @@ Motyw i przeglądarka plików SVG oparte na bibliotekach librsvg/GTK+3.
 echo 'CLEANFILES=' > gtk-doc.make
 echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %endif
-
-%{__sed} -e 's/gdk-pixbuf-query-loaders/gdk-pixbuf-query-loaders%{pqext}/' -i configure.in
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
