@@ -1,8 +1,7 @@
 #
 # Conditional build
 %bcond_without	apidocs		# disable gtk-doc
-%bcond_with	gtk2		# enable gtk+2
-%bcond_without	libgsf		# build without libgsf (used for run-time decompression)
+%bcond_without	gtk2		# legacy gtk+2 support
 %bcond_without	libcroco	# build without CSS support through libcroco
 %bcond_without	static_libs	# don't build static library
 #
@@ -27,19 +26,19 @@ Source1:	rsvg
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
+BuildRequires:	cairo-devel >= 1.2.0
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	glib2-devel >= 1:2.24.0
-BuildRequires:	gobject-introspection-devel >= 0.18.8
+BuildRequires:	gobject-introspection-devel >= 0.10.8
 %{?with_gtk2:BuildRequires:	gtk+2-devel >= 2:2.16.0}
 BuildRequires:	gtk+3-devel >= 3.0.0
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.13}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.13}
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
-%{?with_libgsf:BuildRequires:	libgsf-devel >= 1.14.4}
-BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 1:2.6.31
-BuildRequires:	pango-devel >= 1:1.10.0
+BuildRequires:	libtool >= 2:2.0
+BuildRequires:	libxml2-devel >= 1:2.7.0
+BuildRequires:	pango-devel >= 1:1.16.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sed >= 4.0
@@ -47,12 +46,12 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gdk-pixbuf2 >= 2.0
+Requires:	cairo >= 1.2.0
 Requires:	gdk-pixbuf2 >= 2.0
 Requires:	glib2 >= 1:2.24.0
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
-%{?with_libgsf:Requires:	libgsf >= 1.14.4}
-Requires:	libxml2 >= 1:2.6.31
-Requires:	pango >= 1:1.10.0
+Requires:	libxml2 >= 1:2.7.0
+Requires:	pango >= 1:1.16.0
 Obsoletes:	browser-plugin-librsvg
 Obsoletes:	librsvg0
 Obsoletes:	mozilla-plugin-rsvg
@@ -88,13 +87,13 @@ Summary(ru.UTF-8):	Библиотечные линки и файлы загол�
 Summary(uk.UTF-8):	Бібліотечні лінки та файли заголовків для розробки з librsvg
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	cairo-devel >= 1.2.0
 Requires:	glib2-devel >= 1:2.24.0
 Requires:	gdk-pixbuf2-devel >= 2.0
 Requires:	gtk+3-devel >= 3.0.0
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
-%{?with_libgsf:Requires:	libgsf-devel >= 1.14.4}
-Requires:	libxml2-devel >= 1:2.6.31
-Requires:	pango-devel >= 1:1.10.0
+Requires:	libxml2-devel >= 1:2.7.0
+Requires:	pango-devel >= 1:1.16.0
 Obsoletes:	librsvg0-devel
 
 %description devel
@@ -177,7 +176,7 @@ Motyw i przeglądarka plików SVG oparte na bibliotekach librsvg/GTK+3.
 %prep
 %setup -q
 
-%if !%{with apidocs}
+%if %{without apidocs}
 echo 'CLEANFILES=' > gtk-doc.make
 echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %endif
@@ -195,7 +194,6 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 	%{?with_apidocs:--enable-gtk-doc} \
 	--enable-introspection \
 	%{!?with_libcroco:--without-croco} \
-	%{!?with_libgsf:--without-svgz} \
 	--with-html-dir=%{_gtkdocdir}/%{name}
 %{__make}
 
@@ -240,7 +238,6 @@ fi
 %attr(755,root,root) %{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader-svg.so
 %dir %{_datadir}/themes/bubble
 %{_mandir}/man1/rsvg.1*
-#%{_pixmapsdir}/svg-viewer.svg
 
 %files devel
 %defattr(644,root,root,755)
