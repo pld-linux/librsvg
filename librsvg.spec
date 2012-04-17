@@ -7,7 +7,7 @@
 #
 
 %define		ver	2.36
-%define		pver	0
+%define		pver	1
 
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
@@ -16,12 +16,12 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	%{ver}.%{pver}
-Release:	3
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{ver}/%{name}-%{version}.tar.xz
-# Source0-md5:	1dbd07bbc870433ce6c5edcfba13a102
+# Source0-md5:	89d483f30a7c77245b7ee02faaea5a5a
 Source1:	rsvg
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
@@ -237,7 +237,7 @@ fi
 %{_libdir}/girepository-1.0/Rsvg-2.0.typelib
 %attr(755,root,root) %{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader-svg.so
 %dir %{_datadir}/themes/bubble
-%{_mandir}/man1/rsvg.1*
+%{_mandir}/man1/rsvg-convert.1*
 
 %files devel
 %defattr(644,root,root,755)
