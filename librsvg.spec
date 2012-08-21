@@ -7,7 +7,7 @@
 #
 
 %define		ver	2.36
-%define		pver	1
+%define		pver	2
 
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
@@ -21,7 +21,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{ver}/%{name}-%{version}.tar.xz
-# Source0-md5:	89d483f30a7c77245b7ee02faaea5a5a
+# Source0-md5:	8e2e7640d26322d6ab5426d27147b04e
 Source1:	rsvg
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
@@ -88,8 +88,8 @@ Summary(uk.UTF-8):	Бібліотечні лінки та файли загол�
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-devel >= 1.2.0
-Requires:	glib2-devel >= 1:2.24.0
 Requires:	gdk-pixbuf2-devel >= 2.0
+Requires:	glib2-devel >= 1:2.24.0
 Requires:	gtk+3-devel >= 3.0.0
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
 Requires:	libxml2-devel >= 1:2.7.0
@@ -182,6 +182,7 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %endif
 
 %build
+mkdir m4
 %{?with_apidocs:%{__gtkdocize}}
 %{__libtoolize}
 %{__aclocal}
@@ -190,10 +191,10 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %{__automake}
 %configure \
 	--disable-silent-rules \
-	%{!?with_static_libs:--disable-static} \
-	%{?with_apidocs:--enable-gtk-doc} \
+	%{__enable_disable static_libs static} \
+	%{__enable_disable apidocs gtk-doc} \
 	--enable-introspection \
-	%{!?with_libcroco:--without-croco} \
+	%{__with_without libcroco croco} \
 	--with-html-dir=%{_gtkdocdir}/%{name}
 %{__make}
 
