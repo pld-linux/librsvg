@@ -181,6 +181,9 @@ echo 'CLEANFILES=' > gtk-doc.make
 echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %endif
 
+# vala not ready yet here
+echo 'AC_DEFUN([VAPIGEN_CHECK],[AM_CONDITIONAL([ENABLE_VAPIGEN], [false])])' >> acinclude.m4
+
 %build
 mkdir m4
 %{?with_apidocs:%{__gtkdocize}}
