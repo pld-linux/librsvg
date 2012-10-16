@@ -7,7 +7,7 @@
 #
 
 %define		ver	2.36
-%define		pver	3
+%define		pver	4
 
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
@@ -21,7 +21,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{ver}/%{name}-%{version}.tar.xz
-# Source0-md5:	20415678cef81d20aec903732ae32d38
+# Source0-md5:	3c94524c8ccf668e30b236f409239f54
 Source1:	rsvg
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
