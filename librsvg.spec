@@ -4,11 +4,9 @@
 %bcond_without	gtk2		# legacy gtk+2 support
 %bcond_without	libcroco	# build without CSS support through libcroco
 %bcond_without	static_libs	# don't build static library
-#
 
 %define		ver	2.36
 %define		pver	4
-
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -16,7 +14,7 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	%{ver}.%{pver}
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -240,7 +238,6 @@ fi
 %attr(755,root,root) %ghost %{_libdir}/librsvg-2.so.2
 %{_libdir}/girepository-1.0/Rsvg-2.0.typelib
 %attr(755,root,root) %{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader-svg.so
-%dir %{_datadir}/themes/bubble
 %{_mandir}/man1/rsvg-convert.1*
 
 %files devel
@@ -266,6 +263,7 @@ fi
 %files gtk+2
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.*/engines/libsvg.so
+%dir %{_datadir}/themes/bubble
 %{_datadir}/themes/bubble/gtk-2.0
 %endif
 

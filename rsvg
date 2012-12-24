@@ -42,7 +42,7 @@ def main():
         sys.exit(1)
 
     command_str = ""
-    
+
     for o, a in opts:
         if o in ("-v", "--version"):
             print "rsvg version %s" % ("2.34.2")
