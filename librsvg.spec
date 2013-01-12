@@ -14,7 +14,7 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	%{ver}.%{pver}
-Release:	2
+Release:	3
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -43,7 +43,6 @@ BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
-Requires(post,postun):	gdk-pixbuf2 >= 2.0
 Requires:	cairo >= 1.2.0
 Requires:	gdk-pixbuf2 >= 2.0
 Requires:	glib2 >= 1:2.24.0
