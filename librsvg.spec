@@ -5,8 +5,8 @@
 %bcond_without	libcroco	# build without CSS support through libcroco
 %bcond_without	static_libs	# don't build static library
 
-%define		ver	2.36
-%define		pver	4
+%define		ver	2.39
+%define		pver	0
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -14,12 +14,12 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	%{ver}.%{pver}
-Release:	3
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{ver}/%{name}-%{version}.tar.xz
-# Source0-md5:	3c94524c8ccf668e30b236f409239f54
+# Source0-md5:	c64de5ecaa40a6ae37656eebbe6c9e08
 Source1:	rsvg
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
@@ -36,7 +36,7 @@ BuildRequires:	gtk+3-devel >= 3.0.0
 %{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
 BuildRequires:	libtool >= 2:2.0
 BuildRequires:	libxml2-devel >= 1:2.7.0
-BuildRequires:	pango-devel >= 1:1.16.0
+BuildRequires:	pango-devel >= 1:1.32.6
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sed >= 4.0
