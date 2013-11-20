@@ -6,7 +6,7 @@
 %bcond_without	static_libs	# don't build static library
 
 %define		mver	2.40
-%define		pver	0
+%define		pver	1
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -14,12 +14,12 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	%{mver}.%{pver}
-Release:	4
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	e16a84e9a86a18e5ca6ba95c512db6c6
+# Source0-md5:	a31eb5d66c3fe94d888a6b17a287ea42
 Source1:	rsvg
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
@@ -48,7 +48,7 @@ Requires:	gdk-pixbuf2 >= 2.20
 Requires:	glib2 >= 1:2.24.0
 %{?with_libcroco:Requires:	libcroco >= 0.6.1}
 Requires:	libxml2 >= 1:2.7.0
-Requires:	pango >= 1:1.16.0
+Requires:	pango >= 1:1.32.6
 Obsoletes:	browser-plugin-librsvg
 Obsoletes:	librsvg0
 Obsoletes:	librsvg-gtk+2
@@ -91,7 +91,7 @@ Requires:	glib2-devel >= 1:2.24.0
 Requires:	gtk+3-devel >= 3.2.0
 %{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
 Requires:	libxml2-devel >= 1:2.7.0
-Requires:	pango-devel >= 1:1.16.0
+Requires:	pango-devel >= 1:1.32.6
 Obsoletes:	librsvg0-devel
 
 %description devel
