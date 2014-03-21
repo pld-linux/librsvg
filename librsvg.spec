@@ -6,7 +6,7 @@
 %bcond_without	static_libs	# don't build static library
 
 %define		mver	2.40
-%define		pver	1
+%define		pver	2
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -19,7 +19,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	a31eb5d66c3fe94d888a6b17a287ea42
+# Source0-md5:	acdecdb9f08f3bf662a68bf7dafb8b82
 Source1:	rsvg
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
@@ -50,8 +50,8 @@ Requires:	glib2 >= 1:2.24.0
 Requires:	libxml2 >= 1:2.7.0
 Requires:	pango >= 1:1.32.6
 Obsoletes:	browser-plugin-librsvg
-Obsoletes:	librsvg0
 Obsoletes:	librsvg-gtk+2
+Obsoletes:	librsvg0
 Obsoletes:	mozilla-plugin-rsvg
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
