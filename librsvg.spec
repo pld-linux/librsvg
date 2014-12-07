@@ -2,11 +2,10 @@
 # Conditional build
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	gtk2		# legacy gtk+2 support
-%bcond_without	libcroco	# build without CSS support through libcroco
 %bcond_without	static_libs	# don't build static library
 
 %define		mver	2.40
-%define		pver	5
+%define		pver	6
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -19,7 +18,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	c2b044fccf415902a052d0e978e0ea60
+# Source0-md5:	259fd160b47ec11f3c27d7e18e507c99
 Source1:	rsvg
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
@@ -33,7 +32,7 @@ BuildRequires:	gobject-introspection-devel >= 0.10.8
 BuildRequires:	gtk+3-devel >= 3.2.0
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.13}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.13}
-%{?with_libcroco:BuildRequires:	libcroco-devel >= 0.6.1}
+BuildRequires:	libcroco-devel >= 0.6.1
 BuildRequires:	libtool >= 2:2.0
 BuildRequires:	libxml2-devel >= 1:2.7.0
 BuildRequires:	pango-devel >= 1:1.32.6
@@ -46,7 +45,7 @@ Requires(post,postun):	/sbin/ldconfig
 Requires:	cairo >= 1.2.0
 Requires:	gdk-pixbuf2 >= 2.20
 Requires:	glib2 >= 1:2.24.0
-%{?with_libcroco:Requires:	libcroco >= 0.6.1}
+Requires:	libcroco >= 0.6.1
 Requires:	libxml2 >= 1:2.7.0
 Requires:	pango >= 1:1.32.6
 Obsoletes:	browser-plugin-librsvg
@@ -89,7 +88,7 @@ Requires:	cairo-devel >= 1.2.0
 Requires:	gdk-pixbuf2-devel >= 2.20
 Requires:	glib2-devel >= 1:2.24.0
 Requires:	gtk+3-devel >= 3.2.0
-%{?with_libcroco:Requires:	libcroco-devel >= 0.6.1}
+Requires:	libcroco-devel >= 0.6.1
 Requires:	libxml2-devel >= 1:2.7.0
 Requires:	pango-devel >= 1:1.32.6
 Obsoletes:	librsvg0-devel
@@ -165,11 +164,7 @@ echo 'CLEANFILES=' > gtk-doc.make
 echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %endif
 
-# vala not ready yet here
-#echo 'AC_DEFUN([VAPIGEN_CHECK],[AM_CONDITIONAL([ENABLE_VAPIGEN], [false])])' >> acinclude.m4
-
 %build
-mkdir m4
 %{?with_apidocs:%{__gtkdocize}}
 %{__libtoolize}
 %{__aclocal}
@@ -181,7 +176,6 @@ mkdir m4
 	%{__enable_disable static_libs static} \
 	%{__enable_disable apidocs gtk-doc} \
 	--enable-introspection \
-	%{__with_without libcroco croco} \
 	--with-html-dir=%{_gtkdocdir}/%{name}
 %{__make}
 
