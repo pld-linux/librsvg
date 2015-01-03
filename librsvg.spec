@@ -20,6 +20,7 @@ Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
 # Source0-md5:	259fd160b47ec11f3c27d7e18e507c99
 Source1:	rsvg
+Patch0:		x32.patch
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
@@ -158,6 +159,7 @@ Przeglądarka plików SVG oparta na bibliotekach librsvg/GTK+3.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %if %{without apidocs}
 echo 'CLEANFILES=' > gtk-doc.make
