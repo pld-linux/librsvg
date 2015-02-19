@@ -3,6 +3,7 @@
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	gtk2		# legacy gtk+2 support
 %bcond_without	static_libs	# don't build static library
+%bcond_with	vala		# Vala API (vala up to 0.26 already contains librsvg-2.0.vapi)
 
 %define		mver	2.40
 %define		pver	7
@@ -22,7 +23,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{mver}/%{name}-%{versio
 Source1:	rsvg
 Patch0:		x32.patch
 URL:		http://librsvg.sourceforge.net/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	cairo-devel >= 1.2.0
 BuildRequires:	docbook-dtd412-xml
@@ -41,6 +42,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
+%{?with_vala:BuildRequires:	vala >= 2:0.18}
 BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
 Requires:	cairo >= 1.2.0
@@ -144,6 +146,18 @@ librsvg API documentation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API biblioteki librsvg.
 
+%package -n vala-librsvg
+Summary:	Vala API for librsvg library
+Summary(pl.UTF-8):	API języka Vala do biblioteki librsvg
+Group:		Development/Libraries
+Requires:	vala >= 2:0.18
+
+%description -n vala-librsvg
+Vala API for librsvg library.
+
+%description -n vala-librsvg -l pl.UTF-8
+API języka Vala do biblioteki librsvg.
+
 %package gtk+3
 Summary:	librsvg/GTK+3 based SVG viewer
 Summary(pl.UTF-8):	Przeglądarka plików SVG oparta na bibliotekach librsvg/GTK+3
@@ -174,10 +188,11 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-silent-rules \
-	%{__enable_disable static_libs static} \
 	%{__enable_disable apidocs gtk-doc} \
 	--enable-introspection \
+	--disable-silent-rules \
+	%{__enable_disable static_libs static} \
+	%{?with_vala:--enable-vala} \
 	--with-html-dir=%{_gtkdocdir}/%{name}
 %{__make}
 
@@ -238,6 +253,12 @@ fi
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/%{name}
+%endif
+
+%if %{with vala}
+%files -n vala-librsvg
+%defattr(644,root,root,755)
+%{_datadir}/vala/vapi/librsvg-2.0.vapi
 %endif
 
 %files gtk+3
