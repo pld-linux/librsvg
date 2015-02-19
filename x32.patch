@@ -1,5 +1,5 @@
---- librsvg-2.40.6/configure.in~	2014-12-03 09:31:45.000000000 +0000
-+++ librsvg-2.40.6/configure.in	2015-01-03 20:45:37.255065705 +0000
+--- librsvg-2.40.6/configure.ac~	2014-12-03 09:31:45.000000000 +0000
++++ librsvg-2.40.6/configure.ac	2015-01-03 20:45:37.255065705 +0000
 @@ -154,7 +154,7 @@
  if test "$enable_pixbuf_loader" = "yes"; then
    PKG_CHECK_MODULES([GDK_PIXBUF],[gdk-pixbuf-2.0 >= $GDK_PIXBUF_REQUIRED])

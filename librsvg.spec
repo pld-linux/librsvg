@@ -5,7 +5,7 @@
 %bcond_without	static_libs	# don't build static library
 
 %define		mver	2.40
-%define		pver	6
+%define		pver	7
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -18,7 +18,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	259fd160b47ec11f3c27d7e18e507c99
+# Source0-md5:	c055f255f63ecc9fbc1f1c8a18db5c1e
 Source1:	rsvg
 Patch0:		x32.patch
 URL:		http://librsvg.sourceforge.net/
