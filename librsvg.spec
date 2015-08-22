@@ -6,7 +6,7 @@
 %bcond_with	vala		# Vala API (vala up to 0.26 already contains librsvg-2.0.vapi)
 
 %define		mver	2.40
-%define		pver	9
+%define		pver	10
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -19,7 +19,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	31df15e3beaa8fbbf538ca3c52b400d2
+# Source0-md5:	fadebe2e799ab159169ee3198415ff85
 Source1:	rsvg
 Patch0:		x32.patch
 URL:		http://librsvg.sourceforge.net/
@@ -31,7 +31,7 @@ BuildRequires:	gdk-pixbuf2-devel >= 2.20
 BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gobject-introspection-devel >= 0.10.8
 %{?with_gtk2:BuildRequires:	gtk+2-devel >= 2:2.16.0}
-BuildRequires:	gtk+3-devel >= 3.2.0
+BuildRequires:	gtk+3-devel >= 3.10.0
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.13}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.13}
 BuildRequires:	libcroco-devel >= 0.6.1
@@ -90,7 +90,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-devel >= 1.2.0
 Requires:	gdk-pixbuf2-devel >= 2.20
 Requires:	glib2-devel >= 1:2.24.0
-Requires:	gtk+3-devel >= 3.2.0
+Requires:	gtk+3-devel >= 3.10.0
 Requires:	libcroco-devel >= 0.6.1
 Requires:	libxml2-devel >= 1:2.7.0
 Requires:	pango-devel >= 1:1.32.6
@@ -163,7 +163,7 @@ Summary:	librsvg/GTK+3 based SVG viewer
 Summary(pl.UTF-8):	Przeglądarka plików SVG oparta na bibliotekach librsvg/GTK+3
 Group:		X11/Applications/Graphics
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gtk+3 >= 3.2.0
+Requires:	gtk+3 >= 3.10.0
 
 %description gtk+3
 librsvg/GTK+3 based SVG viewer.
