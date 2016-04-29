@@ -14,7 +14,7 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	%{mver}.%{pver}
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -139,6 +139,9 @@ Summary:	librsvg API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki librsvg
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 librsvg API documentation.
