@@ -6,7 +6,7 @@
 %bcond_with	vala		# Vala API (vala up to 0.30 already contains librsvg-2.0.vapi)
 
 %define		mver	2.40
-%define		pver	16
+%define		pver	17
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -19,7 +19,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	f474fe37177a2bf8050787df2046095c
+# Source0-md5:	d6fcedf86c5c271abb36da5acc7eb987
 Source1:	rsvg
 Patch0:		x32.patch
 URL:		http://librsvg.sourceforge.net/
@@ -237,6 +237,7 @@ fi
 %attr(755,root,root) %ghost %{_libdir}/librsvg-2.so.2
 %{_libdir}/girepository-1.0/Rsvg-2.0.typelib
 %attr(755,root,root) %{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader-svg.so
+%{_datadir}/thumbnailers/librsvg.thumbnailer
 %{_mandir}/man1/rsvg-convert.1*
 
 %files devel
