@@ -6,7 +6,7 @@
 %bcond_with	vala		# Vala API (vala up to 0.30 already contains librsvg-2.0.vapi)
 
 %define		mver	2.40
-%define		pver	18
+%define		pver	19
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -19,7 +19,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	eaa5c8a8bbe2600ab5194c0d3b1b621b
+# Source0-md5:	934eff469b34c732fb91ddb9afd40638
 Source1:	rsvg
 Patch0:		x32.patch
 URL:		http://librsvg.sourceforge.net/
@@ -36,8 +36,8 @@ BuildRequires:	gtk+3-devel >= 3.10.0
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.13}
 BuildRequires:	libcroco-devel >= 0.6.1
 BuildRequires:	libtool >= 2:2.0
-BuildRequires:	libxml2-devel >= 1:2.7.0
-BuildRequires:	pango-devel >= 1:1.32.6
+BuildRequires:	libxml2-devel >= 1:2.9.0
+BuildRequires:	pango-devel >= 1:1.38.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sed >= 4.0
@@ -49,8 +49,8 @@ Requires:	cairo >= 1.2.0
 Requires:	gdk-pixbuf2 >= 2.20
 Requires:	glib2 >= 1:2.24.0
 Requires:	libcroco >= 0.6.1
-Requires:	libxml2 >= 1:2.7.0
-Requires:	pango >= 1:1.32.6
+Requires:	libxml2 >= 1:2.9.0
+Requires:	pango >= 1:1.38.0
 Obsoletes:	browser-plugin-librsvg
 Obsoletes:	librsvg-gtk+2
 Obsoletes:	librsvg0
@@ -92,8 +92,8 @@ Requires:	gdk-pixbuf2-devel >= 2.20
 Requires:	glib2-devel >= 1:2.24.0
 Requires:	gtk+3-devel >= 3.10.0
 Requires:	libcroco-devel >= 0.6.1
-Requires:	libxml2-devel >= 1:2.7.0
-Requires:	pango-devel >= 1:1.32.6
+Requires:	libxml2-devel >= 1:2.9.0
+Requires:	pango-devel >= 1:1.38.0
 Obsoletes:	librsvg0-devel
 
 %description devel
