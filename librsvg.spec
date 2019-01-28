@@ -3,10 +3,10 @@
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	gtk2		# legacy gtk+2 support
 %bcond_without	static_libs	# don't build static library
-%bcond_with	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
+%bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
-%define		mver	2.40
-%define		pver	20
+%define		mver	2.44
+%define		pver	12
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -19,7 +19,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	4949d313b0c5d9161a5c259104af5568
+# Source0-md5:	300f6a5981323c9ac2b65a98d24c7005
 Source1:	rsvg
 Patch0:		x32.patch
 URL:		http://librsvg.sourceforge.net/
@@ -230,7 +230,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog AUTHORS NEWS
+%doc AUTHORS NEWS
 %attr(755,root,root) %{_bindir}/rsvg
 %attr(755,root,root) %{_bindir}/rsvg-convert
 %attr(755,root,root) %{_libdir}/librsvg-2.so.*.*.*
