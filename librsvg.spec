@@ -25,10 +25,13 @@ Patch0:		x32.patch
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	cairo-devel >= 1.2.0
+BuildRequires:	cairo-devel >= 1.15.12
+BuildRequires:	cargo
 BuildRequires:	docbook-dtd412-xml
+# pkgconfig(freetype) >= 20.0.14
+BuildRequires:	freetype-devel >= 1:2.8
 BuildRequires:	gdk-pixbuf2-devel >= 2.20
-BuildRequires:	glib2-devel >= 1:2.24.0
+BuildRequires:	glib2-devel >= 1:2.48.0
 BuildRequires:	gobject-introspection-devel >= 0.10.8
 %{?with_gtk2:BuildRequires:	gtk+2-devel >= 2:2.16.0}
 BuildRequires:	gtk+3-devel >= 3.10.0
@@ -40,14 +43,16 @@ BuildRequires:	libxml2-devel >= 1:2.9.0
 BuildRequires:	pango-devel >= 1:1.38.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rust >= 1.27
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18}
 BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
-Requires:	cairo >= 1.2.0
+Requires:	cairo >= 1.15.12
+Requires:	freetype >= 1:2.8
 Requires:	gdk-pixbuf2 >= 2.20
-Requires:	glib2 >= 1:2.24.0
+Requires:	glib2 >= 1:2.48.0
 Requires:	libcroco >= 0.6.1
 Requires:	libxml2 >= 1:2.9.0
 Requires:	pango >= 1:1.38.0
@@ -87,9 +92,10 @@ Summary(ru.UTF-8):	Библиотечные линки и файлы загол�
 Summary(uk.UTF-8):	Бібліотечні лінки та файли заголовків для розробки з librsvg
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	cairo-devel >= 1.2.0
+Requires:	cairo-devel >= 1.15.12
+Requires:	freetype-devel >= 1:2.8
 Requires:	gdk-pixbuf2-devel >= 2.20
-Requires:	glib2-devel >= 1:2.24.0
+Requires:	glib2-devel >= 1:2.48.0
 Requires:	gtk+3-devel >= 3.10.0
 Requires:	libcroco-devel >= 0.6.1
 Requires:	libxml2-devel >= 1:2.9.0
@@ -153,7 +159,7 @@ Dokumentacja API biblioteki librsvg.
 Summary:	Vala API for librsvg library
 Summary(pl.UTF-8):	API języka Vala do biblioteki librsvg
 Group:		Development/Libraries
-Requires:	vala >= 2:0.18
+Requires:	vala >= 2:0.40
 
 %description -n vala-librsvg
 Vala API for librsvg library.
