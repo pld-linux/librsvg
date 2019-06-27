@@ -1,0 +1,11 @@
+--- librsvg-2.44.14/doc/Makefile.am.orig	2019-02-15 23:17:33.000000000 +0100
++++ librsvg-2.44.14/doc/Makefile.am	2019-06-26 21:41:53.160736381 +0200
+@@ -27,7 +27,7 @@
+ 
+ # Extra options to supply to gtkdoc-scan.
+ # e.g. SCAN_OPTIONS=--deprecated-guards="GTK_DISABLE_DEPRECATED"
+-SCAN_OPTIONS = --deprecated-guards="RSVG_DISABLE_DEPRECATED"
++SCAN_OPTIONS = --deprecated-guards="RSVG_DISABLE_DEPRECATED" --rebuild-types
+ 
+ # Extra options to supply to gtkdoc-mkdb.
+ # e.g. MKDB_OPTIONS=--sgml-mode --output-format=xml
