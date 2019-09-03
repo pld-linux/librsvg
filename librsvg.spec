@@ -6,7 +6,7 @@
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
 %define		mver	2.44
-%define		pver	14
+%define		pver	15
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -19,7 +19,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	7570d139148f3554fa60fb2a0ecfc4f8
+# Source0-md5:	20cd7d383a60349e2fcb15564ed46e8d
 Source1:	rsvg
 Patch0:		x32.patch
 Patch1:		%{name}-docbook5.patch
@@ -29,7 +29,7 @@ BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	cairo-devel >= 1.15.12
 BuildRequires:	cargo
-BuildRequires:	docbook-dtd5-xml
+BuildRequires:	docbook-dtd50-xml
 # pkgconfig(freetype) >= 20.0.14
 BuildRequires:	freetype-devel >= 1:2.8
 BuildRequires:	gdk-pixbuf2-devel >= 2.20
