@@ -1,12 +1,11 @@
 #
 # Conditional build
 %bcond_without	apidocs		# disable gtk-doc
-%bcond_without	gtk2		# legacy gtk+2 support
 %bcond_without	static_libs	# don't build static library
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
-%define		mver	2.44
-%define		pver	15
+%define		mver	2.46
+%define		pver	0
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -19,24 +18,24 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	20cd7d383a60349e2fcb15564ed46e8d
+# Source0-md5:	84fde1cdcfbe5ec8c388f9c8a7bbddb2
 Source1:	rsvg
 Patch0:		x32.patch
-Patch1:		%{name}-docbook5.patch
-Patch2:		%{name}-gtkdoc.patch
+Patch1:		%{name}-gtkdoc.patch
 URL:		http://librsvg.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	cairo-devel >= 1.15.12
+BuildRequires:	cairo-devel >= 1.16.0
+BuildRequires:	cairo-gobject-devel >= 1.16.0
 BuildRequires:	cargo
-BuildRequires:	docbook-dtd50-xml
+BuildRequires:	docbook-dtd43-xml
+BuildRequires:	fontconfig-devel
 # pkgconfig(freetype) >= 20.0.14
 BuildRequires:	freetype-devel >= 1:2.8
 BuildRequires:	gdk-pixbuf2-devel >= 2.20
+BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.48.0
 BuildRequires:	gobject-introspection-devel >= 0.10.8
-%{?with_gtk2:BuildRequires:	gtk+2-devel >= 2:2.16.0}
-BuildRequires:	gtk+3-devel >= 3.10.0
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.13}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.13}
 BuildRequires:	libcroco-devel >= 0.6.1
@@ -45,13 +44,13 @@ BuildRequires:	libxml2-devel >= 1:2.9.0
 BuildRequires:	pango-devel >= 1:1.38.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rust >= 1.27
+BuildRequires:	rust >= 1.34
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18}
 BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
-Requires:	cairo >= 1.15.12
+Requires:	cairo-gobject >= 1.16.0
 Requires:	freetype >= 1:2.8
 Requires:	gdk-pixbuf2 >= 2.20
 Requires:	glib2 >= 1:2.48.0
@@ -60,6 +59,7 @@ Requires:	libxml2 >= 1:2.9.0
 Requires:	pango >= 1:1.38.0
 Obsoletes:	browser-plugin-librsvg
 Obsoletes:	librsvg-gtk+2
+Obsoletes:	librsvg-gtk+3
 Obsoletes:	librsvg0
 Obsoletes:	mozilla-plugin-rsvg
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -94,11 +94,10 @@ Summary(ru.UTF-8):	Библиотечные линки и файлы загол�
 Summary(uk.UTF-8):	Бібліотечні лінки та файли заголовків для розробки з librsvg
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	cairo-devel >= 1.15.12
+Requires:	cairo-gobject-devel >= 1.16.0
 Requires:	freetype-devel >= 1:2.8
 Requires:	gdk-pixbuf2-devel >= 2.20
 Requires:	glib2-devel >= 1:2.48.0
-Requires:	gtk+3-devel >= 3.10.0
 Requires:	libcroco-devel >= 0.6.1
 Requires:	libxml2-devel >= 1:2.9.0
 Requires:	pango-devel >= 1:1.38.0
@@ -169,24 +168,10 @@ Vala API for librsvg library.
 %description -n vala-librsvg -l pl.UTF-8
 API języka Vala do biblioteki librsvg.
 
-%package gtk+3
-Summary:	librsvg/GTK+3 based SVG viewer
-Summary(pl.UTF-8):	Przeglądarka plików SVG oparta na bibliotekach librsvg/GTK+3
-Group:		X11/Applications/Graphics
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gtk+3 >= 3.10.0
-
-%description gtk+3
-librsvg/GTK+3 based SVG viewer.
-
-%description gtk+3 -l pl.UTF-8
-Przeglądarka plików SVG oparta na bibliotekach librsvg/GTK+3.
-
 %prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %if %{without apidocs}
 echo 'CLEANFILES=' > gtk-doc.make
@@ -219,9 +204,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/*.{la,a}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/librsvg-2.la
 
-%{__ln_s} rsvg-view-3 $RPM_BUILD_ROOT%{_bindir}/rsvg-view
-
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -238,7 +223,7 @@ if [ -x %{_bindir}/gdk-pixbuf-query-loaders%{pqext} ]; then
 	%{_bindir}/gdk-pixbuf-query-loaders%{pqext} --update-cache
 fi
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS
 %attr(755,root,root) %{_bindir}/rsvg
@@ -274,8 +259,3 @@ fi
 %defattr(644,root,root,755)
 %{_datadir}/vala/vapi/librsvg-2.0.vapi
 %endif
-
-%files gtk+3
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/rsvg-view
-%attr(755,root,root) %{_bindir}/rsvg-view-3
