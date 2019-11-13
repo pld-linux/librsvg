@@ -3,7 +3,7 @@
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	gtk2		# legacy gtk+2 support
 %bcond_without	static_libs	# don't build static library
-%bcond_with	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
+%bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
 %define		mver	2.40
 %define		pver	20
@@ -14,7 +14,7 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	%{mver}.%{pver}
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -42,7 +42,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
-%{?with_vala:BuildRequires:	vala >= 2:0.18}
+%{?with_vala:BuildRequires:	vala >= 2:0.40}
 BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
 Requires:	cairo >= 1.2.0
@@ -153,7 +153,8 @@ Dokumentacja API biblioteki librsvg.
 Summary:	Vala API for librsvg library
 Summary(pl.UTF-8):	API języka Vala do biblioteki librsvg
 Group:		Development/Libraries
-Requires:	vala >= 2:0.18
+# vala <= 0.38 contains librsvg-2.0.vapi
+Requires:	vala >= 2:0.40
 
 %description -n vala-librsvg
 Vala API for librsvg library.
