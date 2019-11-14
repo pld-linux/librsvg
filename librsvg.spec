@@ -160,6 +160,7 @@ Dokumentacja API biblioteki librsvg.
 Summary:	Vala API for librsvg library
 Summary(pl.UTF-8):	API języka Vala do biblioteki librsvg
 Group:		Development/Libraries
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Requires:	vala >= 2:0.40
 
 %description -n vala-librsvg
