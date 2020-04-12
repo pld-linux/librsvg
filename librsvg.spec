@@ -4,8 +4,8 @@
 %bcond_without	static_libs	# don't build static library
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
-%define		mver	2.46
-%define		pver	4
+%define		mver	2.48
+%define		pver	3
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -18,7 +18,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	aca4001b267de77924b786886a1ad64a
+# Source0-md5:	b76a213b0a569cb91badd48f1a9d8f4b
 Source1:	rsvg
 Patch0:		x32.patch
 Patch1:		%{name}-gtkdoc.patch
@@ -34,7 +34,7 @@ BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 1:2.8
 BuildRequires:	gdk-pixbuf2-devel >= 2.20
 BuildRequires:	gettext-tools >= 0.19.8
-BuildRequires:	glib2-devel >= 1:2.48.0
+BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gobject-introspection-devel >= 0.10.8
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.13}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.13}
@@ -44,7 +44,7 @@ BuildRequires:	libxml2-devel >= 1:2.9.0
 BuildRequires:	pango-devel >= 1:1.38.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rust >= 1.34
+BuildRequires:	rust >= 1.39
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18}
@@ -53,7 +53,7 @@ Requires(post,postun):	/sbin/ldconfig
 Requires:	cairo-gobject >= 1.16.0
 Requires:	freetype >= 1:2.8
 Requires:	gdk-pixbuf2 >= 2.20
-Requires:	glib2 >= 1:2.48.0
+Requires:	glib2 >= 1:2.50.0
 Requires:	libcroco >= 0.6.1
 Requires:	libxml2 >= 1:2.9.0
 Requires:	pango >= 1:1.38.0
@@ -97,7 +97,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-gobject-devel >= 1.16.0
 Requires:	freetype-devel >= 1:2.8
 Requires:	gdk-pixbuf2-devel >= 2.20
-Requires:	glib2-devel >= 1:2.48.0
+Requires:	glib2-devel >= 1:2.50.0
 Requires:	libcroco-devel >= 0.6.1
 Requires:	libxml2-devel >= 1:2.9.0
 Requires:	pango-devel >= 1:1.38.0
@@ -146,7 +146,7 @@ Summary:	librsvg API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki librsvg
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
