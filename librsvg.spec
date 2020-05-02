@@ -204,7 +204,10 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/*.la
+%if %{with static_libs}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/*.a
+%endif
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/librsvg-2.la
 
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
