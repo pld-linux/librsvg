@@ -4,8 +4,8 @@
 %bcond_without	static_libs	# don't build static library
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
-%define		mver	2.48
-%define		pver	8
+%define		mver	2.50
+%define		pver	0
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -18,7 +18,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	420860bd1f5eb4bde7fd89764a6e82f0
+# Source0-md5:	4c6068b7b296274f50e83e477d27a05b
 Source1:	rsvg
 Patch0:		x32.patch
 Patch1:		%{name}-gtkdoc.patch
@@ -38,13 +38,14 @@ BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gobject-introspection-devel >= 0.10.8
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.13}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.13}
+BuildRequires:	harfbuzz-devel >= 2.0.0
 BuildRequires:	libcroco-devel >= 0.6.1
 BuildRequires:	libtool >= 2:2.0
 BuildRequires:	libxml2-devel >= 1:2.9.0
 BuildRequires:	pango-devel >= 1:1.38.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rust >= 1.39
+BuildRequires:	rust >= 1.40
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18}
@@ -54,6 +55,7 @@ Requires:	cairo-gobject >= 1.16.0
 Requires:	freetype >= 1:2.8
 Requires:	gdk-pixbuf2 >= 2.20
 Requires:	glib2 >= 1:2.50.0
+Requires:	harfbuzz >= 2.0.0
 Requires:	libcroco >= 0.6.1
 Requires:	libxml2 >= 1:2.9.0
 Requires:	pango >= 1:1.38.0
