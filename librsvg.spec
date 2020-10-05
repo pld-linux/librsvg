@@ -45,6 +45,7 @@ BuildRequires:	libxml2-devel >= 1:2.9.0
 BuildRequires:	pango-devel >= 1:1.38.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	rust >= 1.40
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
@@ -65,7 +66,7 @@ Obsoletes:	librsvg-gtk+3
 Obsoletes:	librsvg0
 Obsoletes:	mozilla-plugin-rsvg
 # rust archs
-ExclusiveArch:	%{x8664} %{ix86} aarch64
+ExclusiveArch:	%{x8664} %{ix86} x32 aarch64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # see gdk-pixbuf2.spec for source of these ifdefs
@@ -150,9 +151,7 @@ Summary:	librsvg API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki librsvg
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "4.6"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description apidocs
 librsvg API documentation.
@@ -166,6 +165,7 @@ Summary(pl.UTF-8):	API języka Vala do biblioteki librsvg
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Requires:	vala >= 2:0.40
+%{?noarchpackage}
 
 %description -n vala-librsvg
 Vala API for librsvg library.
@@ -183,6 +183,10 @@ echo 'CLEANFILES=' > gtk-doc.make
 echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %endif
 
+%ifarch x32
+%{__sed} -i -e '/CROSS_COMPILING/ s/test \$cross_compiling = yes/true/' configure.ac
+%endif
+
 %build
 %{?with_apidocs:%{__gtkdocize}}
 %{__libtoolize}
@@ -191,6 +195,9 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %{__autoheader}
 %{__automake}
 %configure \
+%ifarch x32
+	RUST_TARGET=x86_64-unknown-linux-gnux32 \
+%endif
 	%{__enable_disable apidocs gtk-doc} \
 	--enable-introspection \
 	--disable-silent-rules \
