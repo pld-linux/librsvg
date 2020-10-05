@@ -184,7 +184,7 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %endif
 
 %ifarch x32
-%{__sed} -i -e '/CROSS_COMPILING/ s/test \$cross_compiling = yes/true/' configure.ac
+%{__sed} -i -e 's/test "\?x\?\$cross_compiling"\? = "\?x\?yes"\?/true/' configure.ac
 %endif
 
 %build
