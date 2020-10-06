@@ -179,8 +179,15 @@ API języka Vala do biblioteki librsvg.
 %patch1 -p1
 
 %if %{without apidocs}
-echo 'CLEANFILES=' > gtk-doc.make
-echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
+cat <<EOF > gtk-doc.make
+CLEANFILES=
+EXTRA_DIST=
+EOF
+cat <<EOF >> acinclude.m4
+AC_DEFUN([GTK_DOC_CHECK],[
+AM_CONDITIONAL([ENABLE_GTK_DOC], [/bin/false])
+])
+EOF
 %endif
 
 %ifarch x32
