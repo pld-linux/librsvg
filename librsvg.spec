@@ -66,7 +66,7 @@ Obsoletes:	librsvg-gtk+3
 Obsoletes:	librsvg0
 Obsoletes:	mozilla-plugin-rsvg
 # rust archs
-ExclusiveArch:	%{x8664} %{ix86} x32 aarch64
+ExclusiveArch:	%{x8664} %{ix86} x32 aarch64 armv6hl armv7hl armv7hnl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # see gdk-pixbuf2.spec for source of these ifdefs
