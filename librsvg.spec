@@ -151,7 +151,7 @@ Summary:	librsvg API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki librsvg
 Group:		Documentation
 Requires:	gtk-doc-common
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description apidocs
 librsvg API documentation.
@@ -165,7 +165,7 @@ Summary(pl.UTF-8):	API języka Vala do biblioteki librsvg
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Requires:	vala >= 2:0.40
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description -n vala-librsvg
 Vala API for librsvg library.
