@@ -1,11 +1,11 @@
 #
 # Conditional build
-%bcond_without	apidocs		# disable gtk-doc
-%bcond_without	static_libs	# don't build static library
+%bcond_without	apidocs		# gtk-doc based API documentation
+%bcond_without	static_libs	# static library
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
 %define		mver	2.50
-%define		pver	3
+%define		pver	4
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -18,7 +18,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	aa965ac365fb1078cfb23ee11c6ce4e0
+# Source0-md5:	94764e3dfbf9392afc986a42f2af0639
 Source1:	rsvg
 Patch0:		x32.patch
 Patch1:		%{name}-gtkdoc.patch
@@ -44,6 +44,7 @@ BuildRequires:	libtool >= 2:2.0
 BuildRequires:	libxml2-devel >= 1:2.9.0
 BuildRequires:	pango-devel >= 1:1.38.0
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	rust >= 1.40
@@ -60,11 +61,11 @@ Requires:	harfbuzz >= 2.0.0
 Requires:	libcroco >= 0.6.1
 Requires:	libxml2 >= 1:2.9.0
 Requires:	pango >= 1:1.38.0
-Obsoletes:	browser-plugin-librsvg
-Obsoletes:	librsvg-gtk+2
-Obsoletes:	librsvg-gtk+3
+Obsoletes:	browser-plugin-librsvg < 1:2.15
+Obsoletes:	librsvg-gtk+2 < 1:2.40
+Obsoletes:	librsvg-gtk+3 < 1:2.46
 Obsoletes:	librsvg0
-Obsoletes:	mozilla-plugin-rsvg
+Obsoletes:	mozilla-plugin-rsvg < 1:2.16.1
 # rust archs
 ExclusiveArch:	%{x8664} %{ix86} x32 aarch64 armv6hl armv7hl armv7hnl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
