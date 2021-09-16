@@ -1,13 +1,13 @@
---- librsvg-2.40.6/configure.ac~	2014-12-03 09:31:45.000000000 +0000
-+++ librsvg-2.40.6/configure.ac	2015-01-03 20:45:37.255065705 +0000
-@@ -154,7 +154,7 @@
- if test "$enable_pixbuf_loader" = "yes"; then
+--- librsvg-2.52.0/configure.ac.orig	2021-09-16 17:12:26.890707115 +0200
++++ librsvg-2.52.0/configure.ac	2021-09-16 17:14:30.413803506 +0200
+@@ -173,7 +173,7 @@
+ AS_IF([test "x$enable_pixbuf_loader" = "xyes"], [
    PKG_CHECK_MODULES([GDK_PIXBUF],[gdk-pixbuf-2.0 >= $GDK_PIXBUF_REQUIRED])
  
 -  AC_PATH_PROGS([GDK_PIXBUF_QUERYLOADERS],[gdk-pixbuf-query-loaders gdk-pixbuf-query-loaders-64 gdk-pixbuf-query-loaders-32],[none])
 +  AC_PATH_PROGS([GDK_PIXBUF_QUERYLOADERS],[gdk-pixbuf-query-loaders gdk-pixbuf-query-loaders-64 gdk-pixbuf-query-loaders-32 gdk-pixbuf-query-loaders-x32],[none])
  
-   if test "x$GDK_PIXBUF_QUERYLOADERS" = "xnone"; then
+   AS_IF([test "x$GDK_PIXBUF_QUERYLOADERS" = "xnone"], [
      AC_MSG_ERROR([gdk-pixbuf-query-loaders not found in path])
 --- librsvg-2.50.1/vendor/thin-slice/src/lib.rs.orig	2020-10-02 20:35:05.000000000 +0200
 +++ librsvg-2.50.1/vendor/thin-slice/src/lib.rs	2020-10-05 19:39:01.153324928 +0200
