@@ -4,8 +4,8 @@
 %bcond_without	static_libs	# static library
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
-%define		mver	2.50
-%define		pver	7
+%define		mver	2.52
+%define		pver	0
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -18,12 +18,12 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	e6ac4051ef7653cd8b1e27a4da051600
+# Source0-md5:	0b62a51488b0dcf0b954d28437400f01
 Source1:	rsvg
 Patch0:		x32.patch
 Patch1:		%{name}-gtkdoc.patch
 URL:		http://librsvg.sourceforge.net/
-BuildRequires:	autoconf >= 2.50
+BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	cairo-devel >= 1.16.0
 BuildRequires:	cairo-gobject-devel >= 1.16.0
@@ -33,7 +33,6 @@ BuildRequires:	fontconfig-devel
 # pkgconfig(freetype) >= 20.0.14
 BuildRequires:	freetype-devel >= 1:2.8
 BuildRequires:	gdk-pixbuf2-devel >= 2.20
-BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gobject-introspection-devel >= 0.10.8
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.13}
@@ -47,7 +46,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.752
-BuildRequires:	rust >= 1.40
+BuildRequires:	rust >= 1.52
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18}
@@ -229,8 +228,6 @@ rm -rf $RPM_BUILD_ROOT
 
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
 
-%find_lang %{name}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -246,7 +243,7 @@ if [ -x %{_bindir}/gdk-pixbuf-query-loaders%{pqext} ]; then
 	%{_bindir}/gdk-pixbuf-query-loaders%{pqext} --update-cache
 fi
 
-%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS
 %attr(755,root,root) %{_bindir}/rsvg
