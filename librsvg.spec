@@ -5,7 +5,7 @@
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
 %define		mver	2.52
-%define		pver	6
+%define		pver	7
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -18,7 +18,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	4b02d2ec72b3f1bd59dcea071a6c2a70
+# Source0-md5:	d87b93fca85c2ce87e5165e7c3b11712
 Source1:	rsvg
 Patch0:		x32.patch
 Patch1:		%{name}-gtkdoc.patch
@@ -63,7 +63,7 @@ Requires:	pango >= 1:1.44.0
 Obsoletes:	browser-plugin-librsvg < 1:2.15
 Obsoletes:	librsvg-gtk+2 < 1:2.40
 Obsoletes:	librsvg-gtk+3 < 1:2.46
-Obsoletes:	librsvg0
+Obsoletes:	librsvg0 < 2
 Obsoletes:	mozilla-plugin-rsvg < 1:2.16.1
 # rust archs
 ExclusiveArch:	%{x8664} %{ix86} x32 aarch64 armv6hl armv7hl armv7hnl
@@ -106,7 +106,7 @@ Requires:	glib2-devel >= 1:2.50.0
 Requires:	libcroco-devel >= 0.6.1
 Requires:	libxml2-devel >= 1:2.9.0
 Requires:	pango-devel >= 1:1.44.0
-Obsoletes:	librsvg0-devel
+Obsoletes:	librsvg0-devel < 2
 
 %description devel
 This package provides the necessary development libraries and include
