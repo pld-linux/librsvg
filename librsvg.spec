@@ -1,11 +1,10 @@
 #
 # Conditional build
-%bcond_without	apidocs		# gtk-doc based API documentation
 %bcond_without	static_libs	# static library
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
-%define		mver	2.52
-%define		pver	7
+%define		mver	2.54
+%define		pver	0
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -18,10 +17,9 @@ Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	d87b93fca85c2ce87e5165e7c3b11712
+# Source0-md5:	22328b7922ab04836959f669ecef1ea7
 Source1:	rsvg
 Patch0:		x32.patch
-Patch1:		%{name}-gtkdoc.patch
 URL:		https://wiki.gnome.org/Projects/LibRsvg
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.9
@@ -29,19 +27,19 @@ BuildRequires:	cairo-devel >= 1.16.0
 BuildRequires:	cairo-gobject-devel >= 1.16.0
 BuildRequires:	cargo
 BuildRequires:	docbook-dtd43-xml
+BuildRequires:	docutils
 BuildRequires:	fontconfig-devel
 # pkgconfig(freetype) >= 20.0.14
 BuildRequires:	freetype-devel >= 1:2.8
 BuildRequires:	gdk-pixbuf2-devel >= 2.20
+BuildRequires:	gi-docgen
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gobject-introspection-devel >= 0.10.8
-%{?with_apidocs:BuildRequires:	gtk-doc >= 1.13}
-%{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.13}
 BuildRequires:	harfbuzz-devel >= 2.0.0
 BuildRequires:	libcroco-devel >= 0.6.1
 BuildRequires:	libtool >= 2:2.0
 BuildRequires:	libxml2-devel >= 1:2.9.0
-BuildRequires:	pango-devel >= 1:1.44.0
+BuildRequires:	pango-devel >= 1:1.48.11
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-pythonprov
@@ -59,7 +57,7 @@ Requires:	glib2 >= 1:2.50.0
 Requires:	harfbuzz >= 2.0.0
 Requires:	libcroco >= 0.6.1
 Requires:	libxml2 >= 1:2.9.0
-Requires:	pango >= 1:1.44.0
+Requires:	pango >= 1:1.48.11
 Obsoletes:	browser-plugin-librsvg < 1:2.15
 Obsoletes:	librsvg-gtk+2 < 1:2.40
 Obsoletes:	librsvg-gtk+3 < 1:2.46
@@ -105,7 +103,7 @@ Requires:	gdk-pixbuf2-devel >= 2.20
 Requires:	glib2-devel >= 1:2.50.0
 Requires:	libcroco-devel >= 0.6.1
 Requires:	libxml2-devel >= 1:2.9.0
-Requires:	pango-devel >= 1:1.44.0
+Requires:	pango-devel >= 1:1.48.11
 Obsoletes:	librsvg0-devel < 2
 
 %description devel
@@ -176,26 +174,12 @@ API języka Vala do biblioteki librsvg.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-
-%if %{without apidocs}
-cat <<EOF > gtk-doc.make
-CLEANFILES=
-EXTRA_DIST=
-EOF
-cat <<EOF >> acinclude.m4
-AC_DEFUN([GTK_DOC_CHECK],[
-AM_CONDITIONAL([ENABLE_GTK_DOC], [/bin/false])
-])
-EOF
-%endif
 
 %ifarch x32
 %{__sed} -i -e 's/test "\?x\?\$cross_compiling"\? = "\?x\?yes"\?/true/' configure.ac
 %endif
 
 %build
-%{?with_apidocs:%{__gtkdocize}}
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
@@ -205,12 +189,11 @@ EOF
 %ifarch x32
 	RUST_TARGET=x86_64-unknown-linux-gnux32 \
 %endif
-	%{__enable_disable apidocs gtk-doc} \
 	--enable-introspection \
 	--disable-silent-rules \
 	%{__enable_disable static_libs static} \
-	%{?with_vala:--enable-vala} \
-	--with-html-dir=%{_gtkdocdir}/%{name}
+	%{?with_vala:--enable-vala}
+
 %{__make}
 
 %install
@@ -227,6 +210,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/librsvg-2.la
 
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
+
+install -d $RPM_BUILD_ROOT%{_gtkdocdir}
+%{__mv} $RPM_BUILD_ROOT%{_datadir}/doc/librsvg $RPM_BUILD_ROOT%{_gtkdocdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -268,11 +254,9 @@ fi
 %{_libdir}/librsvg-2.a
 %endif
 
-%if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/%{name}
-%endif
 
 %if %{with vala}
 %files -n vala-librsvg
