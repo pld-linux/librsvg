@@ -12,7 +12,7 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	%{mver}.%{pver}
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -20,6 +20,7 @@ Source0:	https://download.gnome.org/sources/librsvg/%{mver}/%{name}-%{version}.t
 # Source0-md5:	22328b7922ab04836959f669ecef1ea7
 Source1:	rsvg
 Patch0:		x32.patch
+Patch1:		comment_error.patch
 URL:		https://wiki.gnome.org/Projects/LibRsvg
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.9
@@ -174,6 +175,7 @@ API języka Vala do biblioteki librsvg.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %ifarch x32
 %{__sed} -i -e 's/test "\?x\?\$cross_compiling"\? = "\?x\?yes"\?/true/' configure.ac
