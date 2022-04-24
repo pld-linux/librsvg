@@ -4,7 +4,7 @@
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
 %define		mver	2.54
-%define		pver	0
+%define		pver	1
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
@@ -12,15 +12,14 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	%{mver}.%{pver}
-Release:	2
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	22328b7922ab04836959f669ecef1ea7
+# Source0-md5:	7a0532a6c8a19fe610045c3b41b65300
 Source1:	rsvg
 Patch0:		x32.patch
-Patch1:		comment_error.patch
 URL:		https://wiki.gnome.org/Projects/LibRsvg
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.9
@@ -45,7 +44,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.752
-BuildRequires:	rust >= 1.52
+BuildRequires:	rust >= 1.56
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18}
@@ -175,7 +174,6 @@ API języka Vala do biblioteki librsvg.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %ifarch x32
 %{__sed} -i -e 's/test "\?x\?\$cross_compiling"\? = "\?x\?yes"\?/true/' configure.ac
