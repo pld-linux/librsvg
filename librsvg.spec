@@ -1,5 +1,6 @@
 #
 # Conditional build
+%bcond_without	apidocs		# gi-docgen based API documentation
 %bcond_without	static_libs	# static library
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
@@ -32,7 +33,7 @@ BuildRequires:	fontconfig-devel
 # pkgconfig(freetype) >= 20.0.14
 BuildRequires:	freetype-devel >= 1:2.8
 BuildRequires:	gdk-pixbuf2-devel >= 2.20
-BuildRequires:	gi-docgen
+%{?with_apidocs:BuildRequires:	gi-docgen}
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gobject-introspection-devel >= 0.10.8
 BuildRequires:	harfbuzz-devel >= 2.0.0
@@ -189,6 +190,7 @@ API języka Vala do biblioteki librsvg.
 %ifarch x32
 	RUST_TARGET=x86_64-unknown-linux-gnux32 \
 %endif
+	%{__enable_disable apidocs gtk-doc} \
 	--enable-introspection \
 	--disable-silent-rules \
 	%{__enable_disable static_libs static} \
@@ -211,8 +213,10 @@ rm -rf $RPM_BUILD_ROOT
 
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
 
+%if %{with apidocs}
 install -d $RPM_BUILD_ROOT%{_gtkdocdir}
 %{__mv} $RPM_BUILD_ROOT%{_datadir}/doc/librsvg $RPM_BUILD_ROOT%{_gtkdocdir}
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -254,9 +258,11 @@ fi
 %{_libdir}/librsvg-2.a
 %endif
 
+%if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/%{name}
+%endif
 
 %if %{with vala}
 %files -n vala-librsvg
