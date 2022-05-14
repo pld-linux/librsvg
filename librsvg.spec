@@ -4,21 +4,19 @@
 %bcond_without	static_libs	# static library
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
-%define		mver	2.54
-%define		pver	2
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
 Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	%{mver}.%{pver}
+Version:	2.54.3
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	https://download.gnome.org/sources/librsvg/%{mver}/%{name}-%{version}.tar.xz
-# Source0-md5:	f9dfb2b16e9e747394ef9019b256b755
+Source0:	https://download.gnome.org/sources/librsvg/2.54/%{name}-%{version}.tar.xz
+# Source0-md5:	bbbd4b2bd0bbecf0c32aac9f5e0ef251
 Source1:	rsvg
 Patch0:		x32.patch
 URL:		https://wiki.gnome.org/Projects/LibRsvg
@@ -215,8 +213,10 @@ cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
 
 %if %{with apidocs}
 install -d $RPM_BUILD_ROOT%{_gtkdocdir}
-%{__mv} $RPM_BUILD_ROOT%{_datadir}/doc/librsvg $RPM_BUILD_ROOT%{_gtkdocdir}
+%{__mv} $RPM_BUILD_ROOT%{_datadir}/doc/Rsvg-2.0 $RPM_BUILD_ROOT%{_gtkdocdir}
 %endif
+# README.md packaged as %doc, the rest useful just for developers
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/librsvg
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -235,7 +235,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS
+%doc AUTHORS NEWS README.md
 %attr(755,root,root) %{_bindir}/rsvg
 %attr(755,root,root) %{_bindir}/rsvg-convert
 %attr(755,root,root) %{_libdir}/librsvg-2.so.*.*.*
@@ -261,7 +261,7 @@ fi
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/%{name}
+%{_gtkdocdir}/Rsvg-2.0
 %endif
 
 %if %{with vala}
