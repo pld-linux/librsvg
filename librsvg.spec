@@ -49,6 +49,7 @@ BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18}
 BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
+Requires(post,postun):	gdk-pixbuf2
 Requires:	cairo-gobject >= 1.16.0
 Requires:	freetype >= 1:2.8
 Requires:	gdk-pixbuf2 >= 2.20
