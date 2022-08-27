@@ -10,13 +10,13 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.54.4
+Version:	2.54.5
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/librsvg/2.54/%{name}-%{version}.tar.xz
-# Source0-md5:	03ed641e182b2813b445d4f4974b752e
+# Source0-md5:	eb56ffb37a7db48491177eb9bd135cb5
 Source1:	rsvg
 Patch0:		x32.patch
 URL:		https://wiki.gnome.org/Projects/LibRsvg
@@ -236,7 +236,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS.md README.md
+%doc AUTHORS NEWS README.md
 %attr(755,root,root) %{_bindir}/rsvg
 %attr(755,root,root) %{_bindir}/rsvg-convert
 %attr(755,root,root) %{_libdir}/librsvg-2.so.*.*.*
