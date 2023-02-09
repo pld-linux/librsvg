@@ -11,7 +11,7 @@ Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
 Version:	2.54.5
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -35,7 +35,6 @@ BuildRequires:	gdk-pixbuf2-devel >= 2.20
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gobject-introspection-devel >= 0.10.8
 BuildRequires:	harfbuzz-devel >= 2.0.0
-BuildRequires:	libcroco-devel >= 0.6.1
 BuildRequires:	libtool >= 2:2.0
 BuildRequires:	libxml2-devel >= 1:2.9.0
 BuildRequires:	pango-devel >= 1:1.48.11
@@ -55,7 +54,6 @@ Requires:	freetype >= 1:2.8
 Requires:	gdk-pixbuf2 >= 2.20
 Requires:	glib2 >= 1:2.50.0
 Requires:	harfbuzz >= 2.0.0
-Requires:	libcroco >= 0.6.1
 Requires:	libxml2 >= 1:2.9.0
 Requires:	pango >= 1:1.48.11
 Obsoletes:	browser-plugin-librsvg < 1:2.15
@@ -101,7 +99,6 @@ Requires:	cairo-gobject-devel >= 1.16.0
 Requires:	freetype-devel >= 1:2.8
 Requires:	gdk-pixbuf2-devel >= 2.20
 Requires:	glib2-devel >= 1:2.50.0
-Requires:	libcroco-devel >= 0.6.1
 Requires:	libxml2-devel >= 1:2.9.0
 Requires:	pango-devel >= 1:1.48.11
 Obsoletes:	librsvg0-devel < 2
