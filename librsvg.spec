@@ -4,7 +4,7 @@
 %bcond_without	static_libs	# static library
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
-%define		crates_ver	2.56.0
+%define		crates_ver	2.56.1
 
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
@@ -12,15 +12,15 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.56.0
-Release:	2
+Version:	2.56.1
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/librsvg/2.56/%{name}-%{version}.tar.xz
-# Source0-md5:	ee5fa3ce1653b5b313e52007c53ab190
+# Source0-md5:	023e34798503c964ad982d130ee369c9
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
-# Source1-md5:	1b301d70073e295aee1a284e6bef4aac
+# Source1-md5:	10249215e606c8fc13e9c40aa54bc556
 Source2:	rsvg
 Patch0:		x32.patch
 URL:		https://wiki.gnome.org/Projects/LibRsvg
@@ -46,7 +46,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.752
-BuildRequires:	rust >= 1.64.0
+BuildRequires:	rust >= 1.65.0
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18}
