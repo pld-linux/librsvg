@@ -12,13 +12,13 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.56.1
+Version:	2.56.2
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/librsvg/2.56/%{name}-%{version}.tar.xz
-# Source0-md5:	023e34798503c964ad982d130ee369c9
+# Source0-md5:	3a73cf8b41be9c231885801f2ad49cd6
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
 # Source1-md5:	10249215e606c8fc13e9c40aa54bc556
 Source2:	rsvg
