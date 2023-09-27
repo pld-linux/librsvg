@@ -45,7 +45,7 @@ BuildRequires:	pango-devel >= 1:1.48.11
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.752
+BuildRequires:	rpmbuild(macros) >= 2.029
 BuildRequires:	rust >= 1.65.0
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
@@ -149,7 +149,6 @@ librsvg.
 Summary:	librsvg API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki librsvg
 Group:		Documentation
-Requires:	gtk-doc-common
 BuildArch:	noarch
 
 %description apidocs
@@ -233,8 +232,8 @@ export CARGO_HOME="$(pwd)/.cargo"
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}
 
 %if %{with apidocs}
-install -d $RPM_BUILD_ROOT%{_gtkdocdir}
-%{__mv} $RPM_BUILD_ROOT%{_datadir}/doc/Rsvg-2.0 $RPM_BUILD_ROOT%{_gtkdocdir}
+install -d $RPM_BUILD_ROOT%{_gidocdir}
+%{__mv} $RPM_BUILD_ROOT%{_datadir}/doc/Rsvg-2.0 $RPM_BUILD_ROOT%{_gidocdir}
 %endif
 # README.md packaged as %doc, the rest useful just for developers
 %{__rm} -r $RPM_BUILD_ROOT%{_docdir}/librsvg
@@ -282,7 +281,7 @@ fi
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/Rsvg-2.0
+%{_gidocdir}/Rsvg-2.0
 %endif
 
 %if %{with vala}
