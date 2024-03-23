@@ -4,7 +4,7 @@
 %bcond_without	static_libs	# static library
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
-%define		crates_ver	2.56.1
+%define		crates_ver	2.58.0
 
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
@@ -12,22 +12,22 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.56.4
+Version:	2.58.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	https://download.gnome.org/sources/librsvg/2.56/%{name}-%{version}.tar.xz
-# Source0-md5:	eb24d60a623d9d6a6b3ed04c74ecdfb5
+Source0:	https://download.gnome.org/sources/librsvg/2.58/%{name}-%{version}.tar.xz
+# Source0-md5:	21b2957a2e7ceeb7ddbd207aa2c7ed29
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
-# Source1-md5:	10249215e606c8fc13e9c40aa54bc556
+# Source1-md5:	f45f6678db7009ec076f8314fa7e5a4e
 Source2:	rsvg
 Patch0:		x32.patch
 URL:		https://wiki.gnome.org/Projects/LibRsvg
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	cairo-devel >= 1.16.0
-BuildRequires:	cairo-gobject-devel >= 1.16.0
+BuildRequires:	cairo-devel >= 1.17.0
+BuildRequires:	cairo-gobject-devel >= 1.17.0
 BuildRequires:	cargo
 BuildRequires:	docbook-dtd43-xml
 BuildRequires:	docutils
@@ -41,25 +41,25 @@ BuildRequires:	gobject-introspection-devel >= 0.10.8
 BuildRequires:	harfbuzz-devel >= 2.0.0
 BuildRequires:	libtool >= 2:2.0
 BuildRequires:	libxml2-devel >= 1:2.9.0
-BuildRequires:	pango-devel >= 1:1.48.11
+BuildRequires:	pango-devel >= 1:1.50.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 2.029
-BuildRequires:	rust >= 1.65.0
+BuildRequires:	rust >= 1.70.0
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18}
 BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gdk-pixbuf2
-Requires:	cairo-gobject >= 1.16.0
+Requires:	cairo-gobject >= 1.17.0
 Requires:	freetype >= 1:2.8
 Requires:	gdk-pixbuf2 >= 2.20
 Requires:	glib2 >= 1:2.50.0
 Requires:	harfbuzz >= 2.0.0
 Requires:	libxml2 >= 1:2.9.0
-Requires:	pango >= 1:1.48.11
+Requires:	pango >= 1:1.50.0
 Obsoletes:	browser-plugin-librsvg < 1:2.15
 Obsoletes:	librsvg-gtk+2 < 1:2.40
 Obsoletes:	librsvg-gtk+3 < 1:2.46
@@ -99,12 +99,12 @@ Summary(ru.UTF-8):	Библиотечные линки и файлы загол�
 Summary(uk.UTF-8):	Бібліотечні лінки та файли заголовків для розробки з librsvg
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	cairo-gobject-devel >= 1.16.0
+Requires:	cairo-gobject-devel >= 1.17.0
 Requires:	freetype-devel >= 1:2.8
 Requires:	gdk-pixbuf2-devel >= 2.20
 Requires:	glib2-devel >= 1:2.50.0
 Requires:	libxml2-devel >= 1:2.9.0
-Requires:	pango-devel >= 1:1.48.11
+Requires:	pango-devel >= 1:1.50.0
 Obsoletes:	librsvg0-devel < 2
 
 %description devel
