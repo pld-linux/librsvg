@@ -8,13 +8,13 @@
 import getopt, sys, os
 
 def usage():
-    print >> sys.stdout, """Usage: rsvg [-v?] [-d|--dpi-x <float>] [-p|--dpi-y <float>]
+    print("""Usage: rsvg [-v?] [-d|--dpi-x <float>] [-p|--dpi-y <float>]
         [-x|--x-zoom <float>] [-y|--y-zoom <float>] [-w|--width <int>]
         [-h|--height <int>] [-q|--quality <int>] [-f|--format [png, jpeg]]
-        [-v|--version] [-?|--help] [--usage] [OPTIONS...] file.svg file.png"""
+        [-v|--version] [-?|--help] [--usage] [OPTIONS...] file.svg file.png""")
 
 def help():
-    print >> sys.stdout, """Usage: rsvg [OPTIONS...] file.svg file.png
+    print("""Usage: rsvg [OPTIONS...] file.svg file.png
   -d, --dpi-x=<float>          pixels per inch
   -p, --dpi-y=<float>          pixels per inch
   -x, --x-zoom=<float>         x zoom factor
@@ -27,8 +27,7 @@ def help():
 
 Help options:
   -?, --help                   Show this help message
-  --usage                      Display brief usage message
-""",
+  --usage                      Display brief usage message""")
 
 def shellEscape(param):
     """Escape a string parameter for the shell."""
@@ -45,7 +44,7 @@ def main():
 
     for o, a in opts:
         if o in ("-v", "--version"):
-            print "rsvg version %s" % ("2.34.2")
+            print("rsvg version %s" % ("2.34.2"))
             sys.exit(0)
         elif o in ("--usage"):
             usage()
@@ -55,10 +54,10 @@ def main():
             sys.exit(0)
         elif (o in ("-f", "--format")):
             if a in ("jpg", "jpeg"):
-                print >> sys.stderr, "The JPEG output format is no longer supported"
+                print("The JPEG output format is no longer supported", file=sys.stderr)
                 sys.exit(1)
         elif (o in ("-q", "--quality")):
-            print "The --quality option is no longer supported"
+            print("The --quality option is no longer supported")
             sys.exit(1)
         else:
             command_str += " " + shellEscape(o) + " " + shellEscape(a)
