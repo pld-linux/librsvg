@@ -4,7 +4,7 @@
 %bcond_without	static_libs	# static library
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
-%define		crates_ver	2.58.4
+%define		crates_ver	2.58.5
 
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
@@ -12,15 +12,16 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.58.4
+Version:	2.58.5
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/librsvg/2.58/%{name}-%{version}.tar.xz
-# Source0-md5:	e522dc71c6eb850c23fa1e79a82cb9e5
+# Source0-md5:	40354357d8da605691ef24dc430550db
+# cargo vendor-filterer --platform='*-unknown-linux-*' --tier=2
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
-# Source1-md5:	6639d357cba93a3ff0ed4363427d7e89
+# Source1-md5:	c4e0788dfaea389cae5141c20757944d
 Source2:	rsvg
 Patch0:		x32.patch
 URL:		https://wiki.gnome.org/Projects/LibRsvg
@@ -188,7 +189,6 @@ export CARGO_HOME="$(pwd)/.cargo"
 mkdir -p "$CARGO_HOME"
 cat >.cargo/config <<EOF
 [source.crates-io]
-registry = 'https://github.com/rust-lang/crates.io-index'
 replace-with = 'vendored-sources'
 
 [source.vendored-sources]
