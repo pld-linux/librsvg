@@ -194,6 +194,7 @@ EOF
 %build
 export CARGO_HOME="$(pwd)/.cargo"
 export PKG_CONFIG_ALLOW_CROSS=1
+RUSTFLAGS="%{rpmrustflags} --target=%{rust_target}"
 %meson \
 	%{!?with_static_libs:--default-library=shared} \
 	-Davif=enabled \
