@@ -194,7 +194,6 @@ EOF
 %build
 export CARGO_HOME="$(pwd)/.cargo"
 export PKG_CONFIG_ALLOW_CROSS=1
-RUSTFLAGS="%{rpmrustflags} --target=%{rust_target}"
 %meson \
 	%{!?with_static_libs:--default-library=shared} \
 	-Davif=enabled \
@@ -202,6 +201,9 @@ RUSTFLAGS="%{rpmrustflags} --target=%{rust_target}"
 	-Dintrospection=enabled \
 	-Dpixbuf=enabled \
 	-Dpixbuf-loader=enabled \
+%ifarch x32
+	-Dtriplet=x86_64-unknown-linux-gnux32 \
+%endif
 	-Dvala=%{__enabled_disabled vala}
 
 %meson_build
