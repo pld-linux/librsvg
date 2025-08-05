@@ -248,7 +248,7 @@ fi
 %{_libdir}/girepository-1.0/Rsvg-2.0.typelib
 %attr(755,root,root) %{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader_svg.so
 %{_datadir}/thumbnailers/librsvg.thumbnailer
-%{?with_docs:%{_mandir}/man1/rsvg-convert.1*}
+%{?with_apidocs:%{_mandir}/man1/rsvg-convert.1*}
 
 %files devel
 %defattr(644,root,root,755)
