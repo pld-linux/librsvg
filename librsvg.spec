@@ -23,7 +23,7 @@ Source0:	https://download.gnome.org/sources/librsvg/2.60/%{name}-%{version}.tar.
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
 # Source1-md5:	78edcd0935254159444a94c1d595b9c8
 Source2:	rsvg
-URL:		https://wiki.gnome.org/Projects/LibRsvg
+URL:		https://gnome.pages.gitlab.gnome.org/librsvg/
 BuildRequires:	cairo-devel >= 1.18.0
 BuildRequires:	cairo-gobject-devel >= 1.18.0
 BuildRequires:	cargo
