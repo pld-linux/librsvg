@@ -47,7 +47,7 @@ BuildRequires:	pango-devel >= 1:1.50.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 2.042
+BuildRequires:	rpmbuild(macros) >= 2.050
 BuildRequires:	rust >= 1.77.2
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
@@ -55,6 +55,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	gdk-pixbuf2
+%{?rust_req}
 Requires:	cairo-gobject >= 1.18.0
 Requires:	dav1d >= 1.3.0
 Requires:	freetype >= 1:2.8
