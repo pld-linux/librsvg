@@ -4,7 +4,7 @@
 %bcond_without	static_libs	# static library
 %bcond_without	vala		# Vala API (vala up to 0.38.x already contains librsvg-2.0.vapi)
 
-%define		crates_ver	2.60.0
+%define		crates_ver	%{version}
 
 Summary:	A Raph's Library for Rendering SVG Data
 Summary(pl.UTF-8):	Biblioteka Raph's SVG do renderowania danych SVG
@@ -12,16 +12,16 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.60.0
-Release:	2
+Version:	2.60.2
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/librsvg/2.60/%{name}-%{version}.tar.xz
-# Source0-md5:	ba3320798fec656c58c849df030dd7d3
+# Source0-md5:	659cdbad9308f1508bac8a4acbcd72e4
 # cargo vendor-filterer --platform='*-unknown-linux-*' --tier=2 --features avif,pixbuf
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
-# Source1-md5:	78edcd0935254159444a94c1d595b9c8
+# Source1-md5:	35a144dc14463cd01da329e889a48204
 Source2:	rsvg
 URL:		https://gnome.pages.gitlab.gnome.org/librsvg/
 BuildRequires:	cairo-devel >= 1.18.0
@@ -178,8 +178,6 @@ API języka Vala do biblioteki librsvg.
 %prep
 %setup -q -a1
 
-%{__mv} librsvg-%{crates_ver}/* .
-
 # use our offline registry
 export CARGO_HOME="$(pwd)/.cargo"
 
@@ -244,16 +242,16 @@ fi
 %doc AUTHORS NEWS README.md
 %attr(755,root,root) %{_bindir}/rsvg
 %attr(755,root,root) %{_bindir}/rsvg-convert
-%attr(755,root,root) %{_libdir}/librsvg-2.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/librsvg-2.so.2
+%{_libdir}/librsvg-2.so.*.*.*
+%ghost %{_libdir}/librsvg-2.so.2
 %{_libdir}/girepository-1.0/Rsvg-2.0.typelib
-%attr(755,root,root) %{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader_svg.so
+%{_libdir}/gdk-pixbuf-2.0/2.*.*/loaders/libpixbufloader_svg.so
 %{_datadir}/thumbnailers/librsvg.thumbnailer
 %{?with_apidocs:%{_mandir}/man1/rsvg-convert.1*}
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/librsvg-2.so
+%{_libdir}/librsvg-2.so
 %{_includedir}/librsvg-2.0
 %{_datadir}/gir-1.0/Rsvg-2.0.gir
 %{_pkgconfigdir}/librsvg-2.0.pc
