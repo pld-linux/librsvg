@@ -12,21 +12,21 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.60.2
+Version:	2.62.1
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	https://download.gnome.org/sources/librsvg/2.60/%{name}-%{version}.tar.xz
-# Source0-md5:	659cdbad9308f1508bac8a4acbcd72e4
+Source0:	https://download.gnome.org/sources/librsvg/2.62/%{name}-%{version}.tar.xz
+# Source0-md5:	3469f8635f571fe7f294c0eec9fbe426
 # cargo vendor-filterer --platform='*-unknown-linux-*' --tier=2 --features avif,pixbuf
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
-# Source1-md5:	35a144dc14463cd01da329e889a48204
+# Source1-md5:	a9c36ed6e63815f94bb725f26ac2f9d8
 Source2:	rsvg
 URL:		https://gnome.pages.gitlab.gnome.org/librsvg/
 BuildRequires:	cairo-devel >= 1.18.0
 BuildRequires:	cairo-gobject-devel >= 1.18.0
-BuildRequires:	cargo
+BuildRequires:	cargo >= 1.92.0
 BuildRequires:	cargo-c >= 0.9.19
 BuildRequires:	dav1d-devel >= 1.3.0
 BuildRequires:	docbook-dtd43-xml
@@ -48,7 +48,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 2.050
-BuildRequires:	rust >= 1.77.2
+BuildRequires:	rust >= 1.92.0
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18}
