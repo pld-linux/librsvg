@@ -12,16 +12,16 @@ Summary(pt_BR.UTF-8):	Biblioteca SVG
 Summary(ru.UTF-8):	SVG библиотека
 Summary(uk.UTF-8):	SVG бібліотека
 Name:		librsvg
-Version:	2.62.1
+Version:	2.62.2
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/librsvg/2.62/%{name}-%{version}.tar.xz
-# Source0-md5:	3469f8635f571fe7f294c0eec9fbe426
+# Source0-md5:	634f7bc38bc635e8f205ab75c4ebeeda
 # cargo vendor-filterer --platform='*-unknown-linux-*' --tier=2 --features avif,pixbuf
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
-# Source1-md5:	a9c36ed6e63815f94bb725f26ac2f9d8
+# Source1-md5:	ac9b778a9cb3ab3f0ed662aa16c277f3
 Source2:	rsvg
 URL:		https://gnome.pages.gitlab.gnome.org/librsvg/
 BuildRequires:	cairo-devel >= 1.18.0
